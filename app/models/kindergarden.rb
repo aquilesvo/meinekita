@@ -1,0 +1,2 @@
+class Kindergarden < ApplicationRecord
+end

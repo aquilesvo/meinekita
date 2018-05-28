@@ -1,0 +1,2 @@
+class KitaFoci < ApplicationRecord
+end

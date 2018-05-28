@@ -10,10 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_28_143543) do
+ActiveRecord::Schema.define(version: 2018_05_28_162005) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "kindergardens", force: :cascade do |t|
+    t.string "name"
+    t.string "address"
+    t.integer "phone"
+    t.string "email"
+    t.integer "children_below_three"
+    t.integer "children_above_three"
+    t.integer "min_age_months"
+    t.time "opening_hour"
+    t.time "closing_hour"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
