@@ -8,6 +8,6 @@ class Kindergarden < ApplicationRecord
   has_many :bookmarks
   has_many :users, :through => :bookmarks
 
-  has_many :kita_properties
+  has_many :kita_properties, dependent: :destroy
   has_many :properties, :through => :kita_properties
 end

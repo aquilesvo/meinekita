@@ -9,9 +9,10 @@
 require 'csv'
 require 'json'
 
+puts "deleting old data..."
 [Property, Kindergarden].each(&:destroy_all)
 
-
+puts "setting up static parameters"
 #Property.language
 languages = ["deutsch - arabisch","deutsch - englisch","deutsch - polnisch","deutsch - türkisch","deutsch - spanisch","deutsch - russisch","deutsch - französisch","deutsch - italienisch","deutsch - kurdisch","Gebärdensprache","deutsch - griechisch","deutsch - niederländisch","deutsch - portugiesisch"]
 
@@ -51,8 +52,13 @@ end
 csv_options = { col_sep: ',', quote_char: '"', headers: :first_row }
 filepath = 'db/kitas.csv'
 
-CSV.foreach(filepath, csv_options) do |row|
+i = 0
 
+puts "creates new seeds...."
+
+CSV.foreach(filepath, csv_options) do |row|
+  i += 1
+  puts i if i % 500 == 0
   kita = Kindergarden.new()
   kita.lat = row[1]
   kita.long = row[2]
@@ -81,9 +87,9 @@ CSV.foreach(filepath, csv_options) do |row|
 
   # getting data from the individual tables
   # filepath = "db/individual_kita_data/#{row[0]}_kitas.json"
-  filepath = 'db/individual_kita_data/#{kita.external_id}_kitas.json'
+  filepath = "db/individual_kita_data/#{kita.external_id}_kitas.json"
+
   if File.exists?(filepath)
-    # puts "it works"
     serialized_data = File.read(filepath)
     data = JSON.parse(serialized_data)
     kita.email = data["email"]
