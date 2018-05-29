@@ -10,6 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+ActiveRecord::Schema.define(version: 2018_05_29_101005) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -17,12 +18,11 @@
   create_table "bookmarks", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-
     t.bigint "kindergarden_id"
     t.bigint "user_id"
     t.index ["kindergarden_id"], name: "index_bookmarks_on_kindergarden_id"
     t.index ["user_id"], name: "index_bookmarks_on_user_id"
-
+  end
 
   create_table "carriers", force: :cascade do |t|
     t.string "name"
@@ -42,7 +42,6 @@
     t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-
     t.bigint "user_id"
     t.bigint "kindergarden_id"
     t.index ["kindergarden_id"], name: "index_inquiries_on_kindergarden_id"
@@ -79,18 +78,6 @@
   create_table "properties", force: :cascade do |t|
     t.string "name"
     t.string "type"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "kita_properties", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "properties", force: :cascade do |t|
-    t.string "name"
-    t.string "kind"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

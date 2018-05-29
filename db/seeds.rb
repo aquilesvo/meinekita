@@ -46,7 +46,7 @@ end
 
 #parsing the kita-table
 csv_options = { col_sep: ',', quote_char: '"', headers: :first_row }
-filepath = 'kitas.csv'
+filepath = 'db/kitas.csv'
 
 CSV.foreach(filepath, csv_options) do |row|
 
@@ -77,12 +77,16 @@ CSV.foreach(filepath, csv_options) do |row|
   kita.external_id = row[0]
 
   # getting data from the individual tables
-  filepath = 'individual kita-data/#{kita.external_id}'
-  serialized_data = File.read(filepath)
-  data = JSON.parse(serialized_data)
-  kita.email = data[:email]
-  kita.phone = data[:phone]
-  kita.weblink = data[:weblink]
+  # filepath = "db/individual_kita_data/#{row[0]}_kitas.json"
+  filepath = 'individual_kita_data/#{kita.external_id}_kitas.json'
+  if File.exist?(filepath)
+    puts "it works"
+    serialized_data = File.read(filepath)
+    data = JSON.parse(serialized_data)
+    kita.email = data["email"]
+    kita.phone = data[:phone]
+    kita.weblink = data[:weblink]
+  end
 
   kita.save
 end
