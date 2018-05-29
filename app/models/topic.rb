@@ -1,0 +1,3 @@
+class Topic < Property
+
+end
