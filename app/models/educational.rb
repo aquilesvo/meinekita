@@ -1,0 +1,3 @@
+class Educational < Property
+
+end
