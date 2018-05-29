@@ -1,13 +1,22 @@
 <h1> Great kindergardens </h1>
 
 <% @kindergardens.each do |kindergarden| %>
+<<<<<<< HEAD
   <%= link_to kindergarden_path, :action => 'go' do %>
     <div>
       <p><%= kindergarden.carrier %></p>
+=======
+  <%= link_to kindergarden_path(kindergarden), :action => 'go' do %>
+    <div>
+      <% if kindergarden.carrier_id %><p><%= Carrier.find(kindergarden.carrier_id + 1).name %></p><% end %>
+>>>>>>> master
       <h3><%= kindergarden.name %></h3>
       <h5><%= kindergarden.address %> <%= kindergarden.plz %> <%= kindergarden.district %> </h5>
     </div>
   <% end %>
 <% end %>
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> master
