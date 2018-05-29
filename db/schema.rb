@@ -10,7 +10,6 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_28_162713) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,7 +17,12 @@ ActiveRecord::Schema.define(version: 2018_05_28_162713) do
   create_table "bookmarks", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
+
+    t.bigint "kindergarden_id"
+    t.bigint "user_id"
+    t.index ["kindergarden_id"], name: "index_bookmarks_on_kindergarden_id"
+    t.index ["user_id"], name: "index_bookmarks_on_user_id"
+
 
   create_table "carriers", force: :cascade do |t|
     t.string "name"
@@ -38,6 +42,11 @@ ActiveRecord::Schema.define(version: 2018_05_28_162713) do
     t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+
+    t.bigint "user_id"
+    t.bigint "kindergarden_id"
+    t.index ["kindergarden_id"], name: "index_inquiries_on_kindergarden_id"
+    t.index ["user_id"], name: "index_inquiries_on_user_id"
   end
 
   create_table "kindergardens", force: :cascade do |t|
@@ -50,6 +59,26 @@ ActiveRecord::Schema.define(version: 2018_05_28_162713) do
     t.integer "min_age_months"
     t.time "opening_hour"
     t.time "closing_hour"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "category_id"
+    t.bigint "carrier_id"
+    t.index ["carrier_id"], name: "index_kindergardens_on_carrier_id"
+    t.index ["category_id"], name: "index_kindergardens_on_category_id"
+  end
+
+  create_table "kita_properties", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "kindergarden_id"
+    t.bigint "property_id"
+    t.index ["kindergarden_id"], name: "index_kita_properties_on_kindergarden_id"
+    t.index ["property_id"], name: "index_kita_properties_on_property_id"
+  end
+
+  create_table "properties", force: :cascade do |t|
+    t.string "name"
+    t.string "type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -83,4 +112,12 @@ ActiveRecord::Schema.define(version: 2018_05_28_162713) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "bookmarks", "kindergardens"
+  add_foreign_key "bookmarks", "users"
+  add_foreign_key "inquiries", "kindergardens"
+  add_foreign_key "inquiries", "users"
+  add_foreign_key "kindergardens", "carriers"
+  add_foreign_key "kindergardens", "categories"
+  add_foreign_key "kita_properties", "kindergardens"
+  add_foreign_key "kita_properties", "properties"
 end
