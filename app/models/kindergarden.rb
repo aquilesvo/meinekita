@@ -8,8 +8,8 @@ class Kindergarden < ApplicationRecord
   has_many :bookmarks
   has_many :users, :through => :bookmarks
 
-  has many :kita_properties
-  has many :properties, :through => :kita_properties
+  has_many :kita_properties
+  has_many :properties, :through => :kita_properties
 
   geocoded_by :address
   after_validation :geocode, if: :will_save_change_to_address?
