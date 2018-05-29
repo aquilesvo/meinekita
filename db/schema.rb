@@ -10,9 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_29_101005) do
-
-
+ActiveRecord::Schema.define(version: 2018_05_29_142143) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,6 +34,7 @@ ActiveRecord::Schema.define(version: 2018_05_29_101005) do
   create_table "categories", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "name"
   end
 
   create_table "inquiries", force: :cascade do |t|
@@ -120,8 +119,6 @@ ActiveRecord::Schema.define(version: 2018_05_29_101005) do
   add_foreign_key "bookmarks", "users"
   add_foreign_key "inquiries", "kindergardens"
   add_foreign_key "inquiries", "users"
-  add_foreign_key "kindergardens", "carriers"
-  add_foreign_key "kindergardens", "categories"
   add_foreign_key "kita_properties", "kindergardens"
   add_foreign_key "kita_properties", "properties"
 end

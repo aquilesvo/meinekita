@@ -9,6 +9,9 @@
 require 'csv'
 require 'json'
 
+[Property, Kindergarden].each(&:destroy_all)
+
+
 #Property.language
 languages = ["deutsch - arabisch","deutsch - englisch","deutsch - polnisch","deutsch - türkisch","deutsch - spanisch","deutsch - russisch","deutsch - französisch","deutsch - italienisch","deutsch - kurdisch","Gebärdensprache","deutsch - griechisch","deutsch - niederländisch","deutsch - portugiesisch"]
 
@@ -27,7 +30,7 @@ end
 educationals = ["Montessori-Pädagogik","Natur-und Umweltpädagogik","Situationsansatz","Sonstiges","Körper und Bewegung","Naturwissenschaftliche Grunderfahrungen","bilingual (deutsch-englisch)","bilingual (deutsch-türkisch)","Gesundheit","Ästhetische Bildung (Musik und Kunst)","Integration von Kindern mit Behinderung","Interkulturelle Pädagogik","Reggio-Pädagogik","Ansatz von Emmi Pikler","Bewegung/Sport","bilingual (deutsch-russisch)","Waldorfpädagogik","Freinet-Pädagogik","bilingual (deutsch-spanisch)","Montessori","Waldorf","bilingual (polnisch)","bilingual (deutsch-französisch)","bilingual (spanisch)","bilingual (deutsch-italienisch)","bilingual (englisch)","Religionspädagogik","musikalisch/künstlerische Früherziehung","Fröbel-Pädagogik","bilingual (französisch)","bilingual (deutsch-portugiesisch)","bilingual (deutsch-griechisch)","bewegungs-/sportorientiert"]
 
 educationals.each_with_index do |educational, index|
-  Educational.create!(name: language, external_id: index)
+  Educational.create!(name: educational, external_id: index)
 end
 
 #type
@@ -56,12 +59,12 @@ CSV.foreach(filepath, csv_options) do |row|
   kita.address = row[3]
   kita.district = row[4]
   kita.plz = row[5]
-  kita.property.educational = Poperty.find_by(external_id: row[6])
-  kita.property.topics = Poperty.find_by(external_id: row[7])
-  kita.property.languages = Property.find_by(external_id: row[8])
+  kita.properties << Educational.where(external_id: row[6].split('|').map(&:to_i))
+  kita.properties << Topic.where(external_id: row[7].split('|').map(&:to_i))
+  kita.properties << Language.where(external_id: row[8].split('|').map(&:to_i))
   kita.name = row[9]
-  kita.category_id = categories[row[10]]
-  kita.carrier = carriers[row[11]]
+  kita.category_id = categories[row[10].to_i]
+  kita.carrier_id = carriers[row[11].to_i]
   kita.mo_o = row[13]
   kita.mo_c = row[14]
   kita.tu_o = row[15]
@@ -78,17 +81,20 @@ CSV.foreach(filepath, csv_options) do |row|
 
   # getting data from the individual tables
   # filepath = "db/individual_kita_data/#{row[0]}_kitas.json"
-  filepath = 'individual_kita_data/#{kita.external_id}_kitas.json'
-  if File.exist?(filepath)
-    puts "it works"
+  filepath = 'db/individual_kita_data/#{kita.external_id}_kitas.json'
+  if File.exists?(filepath)
+    # puts "it works"
     serialized_data = File.read(filepath)
     data = JSON.parse(serialized_data)
     kita.email = data["email"]
-    kita.phone = data[:phone]
-    kita.weblink = data[:weblink]
+    kita.phone = data["phone"]
+    kita.weblink = data["weblink"]
   end
 
-  kita.save
+  kita.save!
+
+  # kita_prop = KitaProperty.new(kita.id)
+  # kita_prop.property_id =
 end
 
 

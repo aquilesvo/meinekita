@@ -1,4 +1,4 @@
 class KitaProperty < ApplicationRecord
-  belongs_to :properties
-  belongs_to :kindergardens
+  belongs_to :property
+  belongs_to :kindergarden
 end
