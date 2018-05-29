@@ -1,0 +1,2 @@
+class KitaProperty < ApplicationRecord
+end
