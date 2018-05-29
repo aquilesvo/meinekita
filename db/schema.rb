@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_29_125254) do
+ActiveRecord::Schema.define(version: 2018_05_29_155107) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -76,6 +76,8 @@ ActiveRecord::Schema.define(version: 2018_05_29_125254) do
     t.time "fr_c"
     t.integer "external_id"
     t.string "weblink"
+    t.float "latitude"
+    t.float "longitude"
     t.index ["carrier_id"], name: "index_kindergardens_on_carrier_id"
     t.index ["category_id"], name: "index_kindergardens_on_category_id"
   end
