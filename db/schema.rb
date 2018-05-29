@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_29_101005) do
+ActiveRecord::Schema.define(version: 2018_05_29_125254) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,17 +51,31 @@ ActiveRecord::Schema.define(version: 2018_05_29_101005) do
   create_table "kindergardens", force: :cascade do |t|
     t.string "name"
     t.string "address"
-    t.integer "phone"
+    t.string "phone"
     t.string "email"
     t.integer "children_below_three"
     t.integer "children_above_three"
     t.integer "min_age_months"
-    t.time "opening_hour"
-    t.time "closing_hour"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "category_id"
     t.bigint "carrier_id"
+    t.float "lat"
+    t.float "long"
+    t.string "district"
+    t.integer "plz"
+    t.time "mo_o"
+    t.time "mo_c"
+    t.time "tu_o"
+    t.time "tu_c"
+    t.time "we_o"
+    t.time "we_c"
+    t.time "th_o"
+    t.time "th_c"
+    t.time "fr_o"
+    t.time "fr_c"
+    t.integer "external_id"
+    t.string "weblink"
     t.index ["carrier_id"], name: "index_kindergardens_on_carrier_id"
     t.index ["category_id"], name: "index_kindergardens_on_category_id"
   end
@@ -80,6 +94,7 @@ ActiveRecord::Schema.define(version: 2018_05_29_101005) do
     t.string "type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "external_id"
   end
 
   create_table "users", force: :cascade do |t|

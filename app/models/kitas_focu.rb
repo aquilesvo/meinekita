@@ -1,2 +1,0 @@
-class KitasFocu < ApplicationRecord
-end
