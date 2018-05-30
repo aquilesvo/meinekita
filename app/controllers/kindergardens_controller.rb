@@ -12,7 +12,6 @@ class KindergardensController < ApplicationController
     end
   end
 
-
   def show
     @kindergarden = Kindergarden.find(params[:id])
   end
