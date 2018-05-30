@@ -1,10 +1,10 @@
 function autocomplete() {
   document.addEventListener("DOMContentLoaded", function() {
-    var flatAddress = document.getElementById('flat_address');
-
-    if (flatAddress) {
-      var autocomplete = new google.maps.places.Autocomplete(flatAddress, { types: [ 'geocode' ] });
-      google.maps.event.addDomListener(flatAddress, 'keydown', function(e) {
+    var kitaAddress = document.getElementById('kindergarden_address');
+    console.log(kitaAddress)
+    if (kitaAddress) {
+      var autocomplete = new google.maps.places.Autocomplete(kitaAddress, { types: [ 'geocode' ] });
+      google.maps.event.addDomListener(kitaAddress, 'keydown', function(e) {
         if (e.key === "Enter") {
           e.preventDefault(); // Do not submit the form on Enter.
         }
