@@ -6,6 +6,9 @@ Rails.application.routes.draw do
 
   resources :kindergardens, only: [:index, :show] do
     resources :inquiries
+    resources :bookmarks
   end
+
+  resources :users, only: [:show, :update, :destroy]
 
 end
