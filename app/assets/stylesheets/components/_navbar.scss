@@ -6,8 +6,9 @@
   height: 150px;
   padding: 0px 30px;
   display: flex;
+  justify-content: center;
   align-items: center;
-  justify-content: space-between;
+  // justify-content: space-between;
   color: $blue;
   position: relative;
 }
@@ -21,11 +22,7 @@
   margin-top: 20px;
   position: absolute;
   margin: 0 auto;
-  width: 34%;
-}
-/* Placeholder left*/
-.placeholder {
-  width: 33%;
+  width: 100%;
 }
 /* User Avatar */
 .navbar-wagon .avatar {
@@ -37,10 +34,10 @@
 /* Right section */
 .navbar-wagon-right {
   display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  width: 33%;
-  margin-top: 65px;
+  margin-top: 64px;
+  position: absolute;
+  right: 50px;
+  bottom: 21px;
 }
 
 /* Basic navbar item */
@@ -89,4 +86,14 @@
   transform: rotate(45deg);
   border-left: 1px solid #E6E6E6;
   border-top: 1px solid #E6E6E6;
+}
+
+@media(max-width: 990px) {
+  .navbar-wagon-item {
+  cursor: pointer;
+  position: absolute;
+  padding: 0 20px;
+  right: 7px;
+  top: 22px;
+}
 }
