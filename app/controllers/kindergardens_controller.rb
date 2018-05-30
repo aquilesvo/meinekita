@@ -6,8 +6,8 @@ class KindergardensController < ApplicationController
     @markers = @kindergardens.map do |kindergarden|
       {
         lat: kindergarden.latitude,
-        lng: kindergarden.longitude#,
-        # infoWindow: { content: render_to_string(partial: "/kindergardens/map_box", locals: { kindergarden: kindergarden }) }
+        lng: kindergarden.longitude,
+        infoWindow: { content: render_to_string(partial: "/kindergardens/map_box", locals: { kindergarden: kindergarden }) }
       }
     end
   end
@@ -15,5 +15,8 @@ class KindergardensController < ApplicationController
   def show
     @kindergarden = Kindergarden.find(params[:id])
   end
+
+
+
 
 end
