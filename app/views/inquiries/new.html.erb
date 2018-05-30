@@ -1,0 +1,8 @@
+<h1>Create a new inquiry</h1>
+
+<%= simple_form_for [@kindergarden, @inquiry] do |f| %>
+  <%= f.input :subject %>
+  <%= f.input :content %>
+  <%= f.button :submit %>
+<% end %>
+
