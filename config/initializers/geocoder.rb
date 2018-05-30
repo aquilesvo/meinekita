@@ -19,4 +19,8 @@ Geocoder.configure(
   # Calculation options
   units: :hm,                 # :km for kilometers or :mi for miles
   # distances: :linear          # :spherical or :linear
+  lookup:    :google,
+  api_key:   ENV['AIzaSyCDsyTUk8HJWS-FdA029AF8MhvEu9KPCjA'],
+  use_https: true,
 )
+
