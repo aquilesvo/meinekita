@@ -1,22 +1,28 @@
+<h3> Great kindergardens in Berlin </h3>
 
-<h1> Great kindergardens </h1>
-
-<% @kindergardens.each do |kindergarden| %>
-
-  <%= link_to kindergarden_path(kindergarden), :action => 'go' do %>
-    <div>
-      <% if kindergarden.carrier_id %><p><%= Carrier.find(kindergarden.carrier_id + 1).name %></p><% end %>
-
-      <h3><%= kindergarden.name %></h3>
-      <h5><%= kindergarden.address %> <%= kindergarden.plz %> <%= kindergarden.district %> </h5>
+<div class="kindergarden-index-main-container">
+  <div class="kindergarden-index-cards-container">
+    <div class="kindergarden-index-row">
+      <% @kindergardens.each do |kindergarden| %>
+        <%= link_to kindergarden_path(kindergarden), :action => 'go' do %>
+          <div class="col-md-12">
+            <div class="kindergarden-index-card">
+              <div>
+                <h4><%= kindergarden.name %></h4>
+                <h5><%= kindergarden.address %> <%= kindergarden.plz %> <%= kindergarden.district %> </h5>
+                <% if kindergarden.carrier_id %><h5><%= Carrier.find(kindergarden.carrier_id + 1).name %></h5><% end %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
     </div>
-  <% end %>
-<% end %>
+  </div>
 
-
-<div
-  id="map"
-  style="width: 100%;
-  height: 600px;"
-  data-markers="<%= @markers.to_json %>"
-></div>
+  <div
+    id="map"
+    style="width: 100%;
+    height: 600px;"
+    data-markers="<%= @markers.to_json %>">
+  </div>
+</div>

@@ -1,10 +1,6 @@
 .kindergarden-index-main-container {
   display: flex;
 }
-h3 {
-  margin-left: 15px;
-  font-weight: bold;
-}
 .kindergarden-index-card {
   background-size: cover;
   background-position: center;
@@ -25,4 +21,11 @@ h3 {
       color: red;
     }
   }
+}
+h3 {
+  margin-left: 15px;
+  font-weight: bold;
+}
+h4, h5 {
+  color: black;
 }

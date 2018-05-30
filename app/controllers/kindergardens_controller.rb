@@ -1,12 +1,12 @@
 class KindergardensController < ApplicationController
 
   def index
-    @kindergardens = Kindergarden.where.not(latitude: nil, longitude: nil)
+    @kindergardens = Kindergarden.where.not(lat: nil, long: nil)
 
     @markers = @kindergardens.map do |kindergarden|
       {
-        lat: kindergarden.latitude,
-        lng: kindergarden.longitude,
+        lat: kindergarden.lat,
+        lng: kindergarden.long,
         infoWindow: { content: render_to_string(partial: "/kindergardens/map_box", locals: { kindergarden: kindergarden }) }
       }
     end
