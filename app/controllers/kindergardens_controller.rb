@@ -4,11 +4,9 @@ class KindergardensController < ApplicationController
     @kindergardens = Kindergarden.all
   end
 
-<<<<<<< HEAD
 
-=======
   def show
     @kindergarden = Kindergarden.find(params[:id])
   end
->>>>>>> master
+
 end
