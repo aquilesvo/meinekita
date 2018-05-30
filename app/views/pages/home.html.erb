@@ -1,2 +1,21 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<div class="banner">
+  <div class="banner-content">
+    <h1>Kita's in Berlin</h1>
+    <p>Der einfachste Weg deine Kita zu finden</p>
+    <div class="search-home">
+        <%= form_tag kindergardens_path, method: :get, class: 'searchbox-home' do %>
+          <%= text_field_tag :query,
+            params[:query],
+            class: "form-control",
+            id: 'kindergarden_address',
+            placeholder: "Type in your address"
+          %>
+        <%= submit_tag 'Suchen', :class => 'searchbutton' %>
+        <% end %>
+    </div>
+  </div>
+</div>
+
+
+<div class="page-container">
+</div>
