@@ -1,4 +1,4 @@
 class Inquiry < ApplicationRecord
-  belongs_to :kindergardens
-  belongs_to :users
+  belongs_to :kindergarden
+  belongs_to :user
 end

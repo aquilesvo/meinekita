@@ -4,6 +4,16 @@
 
   <%= link_to kindergarden_path(kindergarden), :action => 'go' do %>
     <div>
+      <% @bookmark = Bookmark.find(kindergarden.bookmark_ids) %>
+      <% if @bookmark.present? %>
+        <%= link_to kindergarden_bookmark_path(kindergarden, @bookmark), method:'delete' do %>
+          <div class="bookmark-symbol"><i class="far fa-star yellow"></i></div>
+        <% end %>
+      <% else %>
+        <%= link_to kindergarden_bookmarks_path(kindergarden), method:'post' do %>
+          <div class="bookmark-symbol"><i class="far fa-star gray"></i></div>
+        <% end %>
+      <% end %>
       <% if kindergarden.carrier_id %><p><%= Carrier.find(kindergarden.carrier_id + 1).name %></p><% end %>
 
       <h3><%= kindergarden.name %></h3>

@@ -1,0 +1,19 @@
+<div class="filter-box">
+    <% districts = Kindergarden.select(:district).map(&:district).uniq %>
+    <h3>Bezirk</h3>
+    <%= select_tag :district, options_from_collection_for_select(districts, :id, self.district), multiple: true %>
+  </div>
+
+
+<%= k.select_tag :category_id, options_from_collection_for_select(cats, :id, :name, 1), multiple: true, default: true %>
+
+
+<%= simple_form_for kindergardens_path do |k| %>
+  <div class="filter-box">
+    <% cats = Category.all %>
+    <h3>Kategorie</h3>
+    <%= k.select_tag :category_id, options_from_collection_for_select(cats, :id, :name, 1), multiple: true, default: true %>
+  </div>
+  <%= submit_tag %>
+
+<% end %>

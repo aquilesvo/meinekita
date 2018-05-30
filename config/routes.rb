@@ -5,10 +5,10 @@ Rails.application.routes.draw do
 
 
   resources :kindergardens, only: [:index, :show] do
-    resources :inquiries
+    resources :inquiries, only: [:new, :create, :destroy, :update, :edit, :show]
     resources :bookmarks
   end
-
+  resources :inquiries, only: [:index]
   resources :users, only: [:show, :update, :destroy]
 
 end
