@@ -7,51 +7,100 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 require 'csv'
+require 'json'
 
+puts "deleting old data..."
+[Property, Kindergarden].each(&:destroy_all)
+
+puts "setting up static parameters"
+#Property.language
 languages = ["deutsch - arabisch","deutsch - englisch","deutsch - polnisch","deutsch - türkisch","deutsch - spanisch","deutsch - russisch","deutsch - französisch","deutsch - italienisch","deutsch - kurdisch","Gebärdensprache","deutsch - griechisch","deutsch - niederländisch","deutsch - portugiesisch"]
 
-languages.each do |language|
-  Language.create!(name: language)
+languages.each_with_index do |language, index|
+  Language.create!(name: language, external_id: index)
 end
 
-topics
+#Property.topic
+topics = ["Ästhetische Bildung (Musik und Kunst)","Gesundheit","Integration von Kindern mit Behinderung","Interkulturelle Pädagogik","Körper und Bewegung","Theaterpädagogik","Natur- und Umweltpädagogik","Religionspädagogik"]
 
+topics.each_with_index do |topic, index|
+  Topic.create!(name: topic, external_id: index)
+end
+
+#Property.educational
 educationals = ["Montessori-Pädagogik","Natur-und Umweltpädagogik","Situationsansatz","Sonstiges","Körper und Bewegung","Naturwissenschaftliche Grunderfahrungen","bilingual (deutsch-englisch)","bilingual (deutsch-türkisch)","Gesundheit","Ästhetische Bildung (Musik und Kunst)","Integration von Kindern mit Behinderung","Interkulturelle Pädagogik","Reggio-Pädagogik","Ansatz von Emmi Pikler","Bewegung/Sport","bilingual (deutsch-russisch)","Waldorfpädagogik","Freinet-Pädagogik","bilingual (deutsch-spanisch)","Montessori","Waldorf","bilingual (polnisch)","bilingual (deutsch-französisch)","bilingual (spanisch)","bilingual (deutsch-italienisch)","bilingual (englisch)","Religionspädagogik","musikalisch/künstlerische Früherziehung","Fröbel-Pädagogik","bilingual (französisch)","bilingual (deutsch-portugiesisch)","bilingual (deutsch-griechisch)","bewegungs-/sportorientiert"]
 
-educationals.each do |educational|
-  Educational.create!(name: language)
+educationals.each_with_index do |educational, index|
+  Educational.create!(name: educational, external_id: index)
 end
 
-# csv_options = { col_sep: ',', quote_char: '"', headers: :first_row }
-# filepath = 'kitas.csv'
+#type
+categories = ["Kindertagesstätte","Eltern-Initiativ-Kindertagesstätte","Waldkindergarten","Eltern-Kind-Gruppe"]
 
-# CSV.foreach(filepath) do |row|
-#   languages = Property.new()
+categories.each do |category|
+  Category.create!(name: category)
+end
+
+#parent_type
+carriers = ["(Eigenbetrieb)","(Sonstiger freier Träger)","(EKT)","(Arbeiterwohlfahrt)","(Diakonisches Werk)","(Deutscher Caritasverband)","(n.v.)","","(private Kita ohne Abschluss der Rahmenvereinbarung)","(Betriebskita)","(Humboldt Universität zu Berlin)"]
+
+carriers.each do |carrier|
+  Carrier.create!(name: carrier)
+end
+
+#parsing the kita-table
+csv_options = { col_sep: ',', quote_char: '"', headers: :first_row }
+filepath = 'db/kitas.csv'
+
+i = 0
+
+puts "creates new seeds...."
+
+CSV.foreach(filepath, csv_options) do |row|
+  i += 1
+  puts i if i % 500 == 0
+  kita = Kindergarden.new()
+  kita.lat = row[1]
+  kita.long = row[2]
+  kita.address = row[3]
+  kita.district = row[4]
+  kita.plz = row[5]
+  kita.properties << Educational.where(external_id: row[6].split('|').map(&:to_i))
+  kita.properties << Topic.where(external_id: row[7].split('|').map(&:to_i))
+  kita.properties << Language.where(external_id: row[8].split('|').map(&:to_i))
+  kita.name = row[9]
+  kita.category_id = categories[row[10].to_i]
+  kita.carrier_id = carriers[row[11].to_i]
+  kita.mo_o = row[13]
+  kita.mo_c = row[14]
+  kita.tu_o = row[15]
+  kita.tu_c = row[16]
+  kita.we_o = row[17]
+  kita.we_c = row[18]
+  kita.th_o = row[19]
+  kita.th_c = row[20]
+  kita.fr_o = row[21]
+  kita.fr_c = row[22]
+  kita.children_below_three = row[25]
+  kita.children_above_three = row[24]
+  kita.external_id = row[0]
+
+  # getting data from the individual tables
+  # filepath = "db/individual_kita_data/#{row[0]}_kitas.json"
+  filepath = "db/individual_kita_data/#{kita.external_id}_kitas.json"
+
+  if File.exists?(filepath)
+    serialized_data = File.read(filepath)
+    data = JSON.parse(serialized_data)
+    kita.email = data["email"]
+    kita.phone = data["phone"]
+    kita.weblink = data["weblink"]
+  end
+
+  kita.save!
+
+  # kita_prop = KitaProperty.new(kita.id)
+  # kita_prop.property_id =
+end
 
 
-# end
-
-# CSV.foreach(filepath, csv_options) do |row|
-#   # Here, row is an array of columns
-#   puts "#{row[]} | #{row[1]} | #{row[2]}"
-
-  # "id","alat","alon","address","district","plz","educational","topics","languages","name","type","parent","parentType","mo_o","mo_c","tu_o","tu_c","we_o","we_c","th_o","th_c","fr_o","fr_c","all","over","under"
-
-#   Kita.new( )
-
-
-
-#   kita.save
-
-#   Focus.find_by(fid: )
-#   KitaFocus.new(kita_id: kita.id, focus_id: )
-# end
-
-
-# require 'json'
-
-# filepath = 'kita-explorer/data-cleaning/data/kitas_dict.json'
-
-# serialized_kita_ = File.read(filepath)
-
-# data_id_translation = JSON.parse(serialized_beers)
