@@ -1,0 +1,15 @@
+    <div class="kindergarden-index-row">
+      <% @kindergardens.each do |kindergarden| %>
+        <%= link_to kindergarden_path(kindergarden), :action => 'go' do %>
+          <div class="col-xs-12">
+            <div class="kindergarden-index-card">
+              <div>
+                <h4><%= kindergarden.name %></h4>
+                <h5><%= kindergarden.address %> | <%= kindergarden.plz %> <%= kindergarden.district %> </h5>
+                <% if kindergarden.carrier %><h6><%= kindergarden.carrier.name %></h6><% end %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>

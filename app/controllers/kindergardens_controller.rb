@@ -1,7 +1,15 @@
 class KindergardensController < ApplicationController
 
   def index
-    @kindergardens = Kindergarden.where.not(lat: nil, long: nil)
+    params[:search] = params[:search] || {}
+
+    params[:search].each do |key, value|
+      params[:search][key].reject!(&:blank?)
+    end
+
+    @kindergardens = Kindergarden.search(params[:search])
+
+    #.
 
     @markers = @kindergardens.map do |kindergarden|
       {
@@ -10,6 +18,12 @@ class KindergardensController < ApplicationController
         infoWindow: { content: render_to_string(partial: "/kindergardens/map_box", locals: { kindergarden: kindergarden }) }
       }
     end
+
+  respond_to do |format|
+    format.html
+    format.js {render layout:false }
+  end
+
   end
 
   def show
