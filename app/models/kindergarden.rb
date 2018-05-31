@@ -12,6 +12,7 @@ class Kindergarden < ApplicationRecord
   has_many :properties, :through => :kita_properties
 
   geocoded_by :address
-  after_validation :geocode, if: :will_save_change_to_address?
-
+  if :latitude != nil && :longitude != nil
+    after_validation :geocode, if: :will_save_change_to_address?
+  end
 end
