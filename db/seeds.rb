@@ -61,8 +61,8 @@ CSV.foreach(filepath, csv_options) do |row|
   i += 1
   puts i if i % 100 == 0
   kita = Kindergarden.new()
-  kita.lat = row[1]
-  kita.long = row[2]
+  kita.latitude = row[1]
+  kita.longitude = row[2]
   kita.address = row[3]
   kita.district = row[4]
   kita.plz = row[5]

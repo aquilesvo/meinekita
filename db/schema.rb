@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_30_160800) do
+ActiveRecord::Schema.define(version: 2018_05_31_123229) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,8 +61,6 @@ ActiveRecord::Schema.define(version: 2018_05_30_160800) do
     t.datetime "updated_at", null: false
     t.bigint "category_id"
     t.bigint "carrier_id"
-    t.float "lat"
-    t.float "long"
     t.string "district"
     t.integer "plz"
     t.time "mo_o"
