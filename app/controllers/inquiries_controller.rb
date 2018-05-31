@@ -1,11 +1,17 @@
 class InquiriesController < ApplicationController
 before_action :set_inquiry, only: [:show, :edit, :update, :destroy]
-before_action :set_kindergarden, only: [:new, :create, :show, :destroy]
+before_action :set_kindergarden, only: [:show, :new, :create, :show, :destroy]
 
   def index
+    x = Inquiry.all.sort_by(&:updated_at)
+    @inquiries = x.reverse
+    @bookmarks = Bookmark.where(:user_id == current_user.id)
+    # @inquiries = inquiries.group_by(:kindergarden_id)
+    # sorted = @records.sort_by &:created_at
   end
 
   def show
+
   end
 
   def new
@@ -17,7 +23,7 @@ before_action :set_kindergarden, only: [:new, :create, :show, :destroy]
     @inquiry.user_id = current_user.id
     @inquiry.kindergarden_id = params[:kindergarden_id]
     @inquiry.save
-    redirect_to user_path
+    redirect_to inquiries_path
   end
 
   def edit
@@ -28,6 +34,7 @@ before_action :set_kindergarden, only: [:new, :create, :show, :destroy]
   end
 
   def destroy
+    raise
     @inquiry.destroy
     redirect_to inquiries_path
   end

@@ -1,0 +1,14 @@
+<h1>Message from the <%= @inquiry.created_at %></h1>
+<h2><strong>Regarding: </strong> <%= @inquiry.subject %></h2>
+<% kita = Kindergarden.find(@inquiry.kindergarden_id) %>
+<% if kita.email.present? %>
+  <h3><strong>To: </strong><%= kita.email %></h3>
+  <% else %>
+  <h3><strong>To: </strong><%= kita.name %></h3>
+<% end %>
+<p><strong>Content:</strong> <%= @inquiry.content %></p>
+
+<%= link_to 'Back to Dashboard', inquiries_path, class: "btn btn-primary" %>
+<%= link_to 'Go to Kita', kindergarden_path(kita), class: "btn btn-primary" %>
+<%= link_to 'Contact Again', new_kindergarden_inquiry_path(kita), class: "btn btn-primary" %>
+<%= link_to 'Delete From List', kindergarden_inquiry_path(kita, @inquiry), method:'delete', class: "btn btn-primary" %>
