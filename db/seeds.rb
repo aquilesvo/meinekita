@@ -70,8 +70,8 @@ CSV.foreach(filepath, csv_options) do |row|
   kita.properties << Topic.where(external_id: row[7].split('|').map(&:to_i))
   kita.properties << Language.where(external_id: row[8].split('|').map(&:to_i))
   kita.name = row[9]
-  kita.category_id = categories[row[10].to_i]
-  kita.carrier_id = carriers[row[11].to_i]
+  kita.category = categories[row[10].to_i]
+  kita.carrier = carriers[row[11].to_i]
   kita.mo_o = row[13]
   kita.mo_c = row[14]
   kita.tu_o = row[15]

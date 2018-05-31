@@ -3,24 +3,33 @@
 
 <% @kindergardens.each do |kindergarden| %>
 
-  <%= link_to kindergarden_path(kindergarden), :action => 'go' do %>
-    <div>
-      <% @bookmark = Bookmark.find(kindergarden.bookmark_ids) %>
-      <% if @bookmark.present? %>
-        <%= link_to kindergarden_bookmark_path(kindergarden, @bookmark), method:'delete' do %>
-          <div class="bookmark-symbol"><i class="far fa-star yellow"></i></div>
-        <% end %>
-      <% else %>
-        <%= link_to kindergarden_bookmarks_path(kindergarden), method:'post' do %>
-          <div class="bookmark-symbol"><i class="far fa-star gray"></i></div>
-        <% end %>
+  <div>
+   <!-- checking if bookmark present, then delete-option, otherwise create-option -->
+    <% @bookmark = Bookmark.find(current_user.bookmark_ids.select do |id|
+     kindergarden.bookmark_ids.include?(id) end) %>
+    <% if @bookmark.present? %>
+      <%= link_to kindergarden_bookmark_path(kindergarden, @bookmark), method:'delete' do %>
+        <div class="bookmark-symbol"><i class="far fa-star yellow"></i></div>
       <% end %>
-      <% if kindergarden.carrier_id %><p><%= Carrier.find(kindergarden.carrier_id + 1).name %></p><% end %>
+    <% else %>
+      <%= link_to kindergarden_bookmarks_path(kindergarden), method:'post' do %>
+        <div class="bookmark-symbol"><i class="far fa-star gray"></i></div>
+      <% end %>
+    <% end %>
 
-      <h3><%= kindergarden.name %></h3>
-      <h5><%= kindergarden.address %> <%= kindergarden.plz %> <%= kindergarden.district %> </h5>
-    </div>
-  <% end %>
+    <%= link_to kindergarden_path(kindergarden), :action => 'go' do %>
+      <div>
+
+        <!-- checking if carrier exists, then carrier.name -->
+        <% if kindergarden.carrier_id %><p><%= Carrier.find(kindergarden.carrier_id + 1).name %></p>
+        <% end %>
+
+        <h3><%= kindergarden.name %></h3>
+        <h5><%= kindergarden.address %> <%= kindergarden.plz %> <%= kindergarden.district %>
+        </h5>
+      </div>
+    <% end %>
+  </div>
 <% end %>
 
 

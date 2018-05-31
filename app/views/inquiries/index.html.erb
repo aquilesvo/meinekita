@@ -1,16 +1,37 @@
 <h1>Dashboard of <%= current_user.email %></h1>
 
+<%= link_to 'Back to Index', kindergardens_path, class: "btn btn-primary" %>
+
 <!-- @list.sort_by{|e| -e[:time_ago]} -->
+<h2>My messages</h2>
 <% @inquiries.each do |inquiry| %>
   <% @kindergarden = inquiry.kindergarden_id %>
-  <%= link_to kindergarden_inquiry_path(@kindergarden, inquiry), :action => 'go' do %>
-    <div class="inquiry-box">
-      <h3><%= inquiry.subject %></h3>
-      <h4><%= inquiry.status %></h4>
-      <h5>To: <%= Kindergarden.find(inquiry.kindergarden_id).name %></h5>
-      <p><%= inquiry.content %></p>
-      <p>Initiated: <%= inquiry.created_at %></p>
-      <p>Last Contact: <%= inquiry.updated_at %></p>
-    </div>
+  <% if inquiry.user_id == current_user.id %>
+    <%= link_to kindergarden_inquiry_path(@kindergarden, inquiry), :action => 'go' do %>
+      <div class="inquiry-box">
+        <h3><%= inquiry.subject %></h3>
+        <h4><%= inquiry.status %></h4>
+        <h5>To: <%= Kindergarden.find(inquiry.kindergarden_id).name %></h5>
+        <p><%= inquiry.content %></p>
+        <p>Initiated: <%= inquiry.created_at %></p>
+        <p>Last Contact: <%= inquiry.updated_at %></p>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>
+
+<h2>My favorites</h2>
+<% @bookmarks.each do |bookmark| %>
+  <% if bookmark.user_id == current_user.id %>
+    <% @kindergarden = Kindergarden.find(bookmark.kindergarden_id) %>
+    <% if @kindergarden.present? && @kindergarden.inquiry_ids.empty?%>
+      <%= link_to new_kindergarden_inquiry_path(@kindergarden), :action => 'go' do %>
+        <div class="inquiry-box">
+          <h3><%= @kindergarden.name %></h3>
+          <h3>Not messaged yet</h3>
+          <h2>Contact Now!</h2>
+        </div>
+      <% end %>
+    <% end %>
   <% end %>
 <% end %>

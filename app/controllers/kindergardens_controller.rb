@@ -1,8 +1,10 @@
 class KindergardensController < ApplicationController
 
   def index
-    @kindergardens = Kindergarden.all
 
+    @kindergardens = Kindergarden.all
+    # @categories = Category.all
+    # @carriers = Carrier.all
     kindergardens = Kindergarden.where.not(latitude: nil, longitude: nil)
     @markers = kindergardens.map do |kindergarden|
       {

@@ -1,7 +1,8 @@
 class BookmarksController < ApplicationController
-  before_action :set_inquiry, only: [:show, :edit, :update, :destroy]
+  before_action :set_inquiry, only: [:show, :edit, :update]
   before_action :set_kindergarden, only: [:new, :create, :destroy]
   before_action :set_user, only: [:bookmark_params]
+  before_action :set_bookmark, only: [:destroy]
 
   def new
     @bookmark = Bookmark.new()
@@ -18,7 +19,7 @@ class BookmarksController < ApplicationController
 
   def destroy
     @bookmark.destroy
-    redirect_to bookmarks_path
+    redirect_to kindergardens_path
   end
 
   private
@@ -34,4 +35,7 @@ class BookmarksController < ApplicationController
     @kindergarden = Kindergarden.find(params[:kindergarden_id])
   end
 
+  def set_bookmark
+    @bookmark = Bookmark.find(params[:id])
+  end
 end
