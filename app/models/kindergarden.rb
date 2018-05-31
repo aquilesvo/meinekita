@@ -15,4 +15,15 @@ class Kindergarden < ApplicationRecord
   if :latitude != nil && :longitude != nil
     after_validation :geocode, if: :will_save_change_to_address?
   end
+
+  def self.search(options = {})
+    search = where.not(lat: nil, long: nil)
+
+    if options[:categories].present?
+      search = search.where(category_id: options[:categories])
+    end
+
+    search.all
+  end
+
 end
