@@ -57,7 +57,7 @@ i = 0
 puts "creates new seeds...."
 
 CSV.foreach(filepath, csv_options) do |row|
-  next if i > 20
+  #next if i > 20
   i += 1
   puts i if i % 500 == 0
   kita = Kindergarden.new()
@@ -70,8 +70,8 @@ CSV.foreach(filepath, csv_options) do |row|
   kita.properties << Topic.where(external_id: row[7].split('|').map(&:to_i))
   kita.properties << Language.where(external_id: row[8].split('|').map(&:to_i))
   kita.name = row[9]
-  kita.category_id = categories[row[10].to_i]
-  kita.carrier_id = carriers[row[11].to_i]
+  kita.category = Category.find_by(name: categories[row[10].to_i])
+  kita.carrier = Carrier.find_by(name: carriers[row[11].to_i])
   kita.mo_o = row[13]
   kita.mo_c = row[14]
   kita.tu_o = row[15]

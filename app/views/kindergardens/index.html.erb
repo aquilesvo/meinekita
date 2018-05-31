@@ -1,22 +1,24 @@
+<h3> Great kindergardens in Berlin </h3>
 
-<h1> Great kindergardens </h1>
-
-<% @kindergardens.each do |kindergarden| %>
-
-  <%= link_to kindergarden_path(kindergarden), :action => 'go' do %>
-    <div>
-      <% if kindergarden.carrier_id %><p><%= Carrier.find(kindergarden.carrier_id + 1).name %></p><% end %>
-
-      <h3><%= kindergarden.name %></h3>
-      <h5><%= kindergarden.address %> <%= kindergarden.plz %> <%= kindergarden.district %> </h5>
-    </div>
+<div>
+  <%= form_tag kindergardens_path, method: "get", remote: true do %>
+  <%= simple_fields_for :search, OpenStruct.new(params[:search]) do |s| %>
+    <%= s.collection_check_boxes :categories, Category.all, :id, :name %>
+    <% end %>
+    <%= submit_tag %>
   <% end %>
-<% end %>
+</div>
+
+<div class="kindergarden-index-main-container">
+  <div class="kindergarden-index-cards-container">
+    <%= render "list" %>
+  </div>
+  <div
+    id="map"
+    style="width: 100%;
+    height: 600px;"
+    data-markers="<%= @markers.to_json %>">
+  </div>
+</div>
 
 
-<div
-  id="map"
-  style="width: 100%;
-  height: 600px;"
-  data-markers="<%= @markers.to_json %>"
-></div>
