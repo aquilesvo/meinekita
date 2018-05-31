@@ -2,6 +2,7 @@ class KindergardensController < ApplicationController
 
   def index
     if params[:query].present?
+      raise
       @kindergardens = Kindergarden.near(params[:query], 3, :units => :km)
 
       @markers = @kindergardens.map do |kindergarden|

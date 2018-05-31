@@ -17,3 +17,9 @@
   <%= submit_tag %>
 
 <% end %>
+
+ <div class="filter-box">
+        <%= simple_fields_for :search, OpenStruct.new(params[:search]) do |s| %>
+          <%= s.collection_check_boxes :languages, Property.where(type: "Language"), :id, :name %>
+        <% end %>
+      </div>

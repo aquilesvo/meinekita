@@ -1,13 +1,41 @@
 <h3> Great kindergardens in Berlin </h3>
 
 <div>
-
   <%= form_tag kindergardens_path, method: "get", remote: true do %>
-    <%= simple_fields_for :search, OpenStruct.new(params[:search]) do |s| %>
-      <%= s.collection_check_boxes :categories, Category.all, :id, :name %>
-    <% end %>
-      <%= submit_tag %>
+    <div class="filter-group">
+      <% searcher = OpenStruct.new(params[:search]) %>
+      <div class="filter-box">
+        <%= simple_fields_for :search, searcher do |s| %>
+          <%= s.collection_select :categories, Category.all, :id, :name %>
+        <% end %>
+        <%= simple_fields_for :search, searcher do |s| %>
+          <%= s.collection_select(:carriers, Carrier.all, :id, :name, {:multiple => true})%>
+        <% end %>
+      </div>
+      <div class="filter-box">
+        <%= simple_fields_for :search, searcher do |s| %>
+          <%= s.collection_check_boxes :properties, Property.where(type: "Language"), :id, :name %>
+        <% end %>
+      </div>
+      <div class="filter-box">
+        <%= simple_fields_for :search, searcher do |s| %>
+          <%= s.collection_check_boxes :properties, Property.where(type: "Topic"), :id, :name %>
+        <% end %>
+      </div>
+       <div class="filter-box">
+        <%= simple_fields_for :search, searcher do |s| %>
+          <%= s.collection_check_boxes :properties, Property.where(type: "Educational"), :id, :name %>
+        <% end %>
+      </div>
+
+    </div>
+    <%= submit_tag %>
   <% end %>
+
+
+
+
+
 
   <div class="kindergarden-index-main-container">
     <div class="kindergarden-index-cards-container">

@@ -1,3 +1,14 @@
+.filter-group {
+  display: flex;
+}
+.filter-box {
+  flex: 0 0 200px;
+  border: 1px solid $gray;
+  margin: 5px;
+  padding: 5px;
+  text-align: left;
+}
+
 .kindergarden-index-main-container {
   display: flex;
 }
