@@ -3,6 +3,8 @@
 <%= simple_form_for [@kindergarden, @inquiry] do |f| %>
   <%= f.input :subject %>
   <%= f.input :content %>
+  <%= f.input :alert, as: :boolean, checked_value: true, unchecked_value: false , label: 'Möchtest du eine Erinnerung?' %>
+
   <%= f.button :submit %>
 <% end %>
 
