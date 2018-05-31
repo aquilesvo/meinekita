@@ -42,7 +42,7 @@ categories.each do |category|
 end
 
 #parent_type
-carriers = ["(Eigenbetrieb)","(Sonstiger freier Träger)","(EKT)","(Arbeiterwohlfahrt)","(Diakonisches Werk)","(Deutscher Caritasverband)","(n.v.)","","(private Kita ohne Abschluss der Rahmenvereinbarung)","(Betriebskita)","(Humboldt Universität zu Berlin)"]
+carriers = ["Eigenbetrieb","Sonstiger freier Träger","EKT","Arbeiterwohlfahrt","Diakonisches Werk","Deutscher Caritasverband","n.v.","","private Kita ohne Abschluss der Rahmenvereinbarung","Betriebskita","Humboldt Universität zu Berlin"]
 
 carriers.each do |carrier|
   Carrier.create!(name: carrier)
@@ -57,9 +57,9 @@ i = 0
 puts "creates new seeds...."
 
 CSV.foreach(filepath, csv_options) do |row|
-  #next if i > 20
+  next if i > 200
   i += 1
-  puts i if i % 500 == 0
+  puts i if i % 100 == 0
   kita = Kindergarden.new()
   kita.lat = row[1]
   kita.long = row[2]
@@ -103,5 +103,7 @@ CSV.foreach(filepath, csv_options) do |row|
   # kita_prop = KitaProperty.new(kita.id)
   # kita_prop.property_id =
 end
+
+puts "pups!"
 
 
