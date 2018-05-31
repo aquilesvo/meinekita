@@ -12,12 +12,12 @@ class Kindergarden < ApplicationRecord
   has_many :properties, :through => :kita_properties
 
   geocoded_by :address
-  if :latitude != nil && :longitude != nil
+  if :latitude == nil && :longitude == nil
     after_validation :geocode, if: :will_save_change_to_address?
   end
 
   def self.search(options = {})
-    search = where.not(lat: nil, long: nil)
+    search = where.not(latitude: nil, longitude: nil)
 
     if options[:categories].present?
       search = search.where(category_id: options[:categories])

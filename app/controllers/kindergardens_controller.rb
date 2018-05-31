@@ -23,8 +23,8 @@ class KindergardensController < ApplicationController
 
         @markers = @kindergardens.map do |kindergarden|
           {
-            lat: kindergarden.lat,
-            lng: kindergarden.long,
+            lat: kindergarden.latitude,
+            lng: kindergarden.longitude,
             infoWindow: { content: render_to_string(partial: "/kindergardens/map_box", locals: { kindergarden: kindergarden }) }
           }
         end
