@@ -14,3 +14,9 @@
 .form-control {
   font-size: 14px;
 }
+@media(max-width: 990px) {
+  .searchbox-home {
+  display: flex;
+  justify-content: center;
+}
+}
