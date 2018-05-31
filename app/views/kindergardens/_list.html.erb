@@ -1,5 +1,15 @@
     <div class="kindergarden-index-row">
       <% @kindergardens.each do |kindergarden| %>
+           <% @bookmark = Bookmark.find(current_user.bookmark_ids.select do |id| kindergarden.bookmark_ids.include?(id) end) %>
+           <% if @bookmark.present? %>
+              <%= link_to kindergarden_bookmark_path(kindergarden, @bookmark), method:'delete' do %>
+                <div class="bookmark-symbol"><i class="far fa-star yellow"></i></div>
+              <% end %>
+           <% else %>
+              <%= link_to kindergarden_bookmarks_path(kindergarden), method:'post' do %>
+                <div class="bookmark-symbol"><i class="far fa-star gray"></i></div>
+              <% end %>
+            <% end %>
         <%= link_to kindergarden_path(kindergarden), :action => 'go' do %>
           <div class="col-xs-12">
             <div class="kindergarden-index-card">
