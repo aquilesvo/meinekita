@@ -11,6 +11,7 @@ class KindergardensController < ApplicationController
           infoWindow: { content: render_to_string(partial: "/kindergardens/map_box", locals: { kindergarden: kindergarden }) }
         }
       end
+
     elsif params[:search].present?
        params[:search] = params[:search] || {}
 
@@ -32,7 +33,7 @@ class KindergardensController < ApplicationController
         format.html
         format.js {render layout:false }
       end
-      
+
     else
       @kindergardens = Kindergarden.where.not(latitude: nil, longitude: nil)
       @markers = @kindergardens.map do |kindergarden|
@@ -43,10 +44,9 @@ class KindergardensController < ApplicationController
         }
       end
     end
+  end
 
   def show
     @kindergarden = Kindergarden.find(params[:id])
   end
-
-
 end
