@@ -16,21 +16,20 @@
 .kindergarden-index-main-container {
   display: flex;
 }
+.kindergarden-index-cards-container {
+  flex-grow: 2
+}
 .kindergarden-index-card {
+  flex: 1 1 auto;
+  position: relative;
   background-size: cover;
   background-position: center;
   height: 130px;
   border: 0.5px solid;
   border-radius: 4px;
   border-color: rgba(0,0,0,0.1);
-  margin-bottom: 15px;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  font-size: 25px;
-  color: white;
-  font-weight: bolder;
-  text-shadow: 0 0 10px rgba(0,0,0,0.7);
+  margin: 10px;
+
   a {
     color: white;
     &:hover {
@@ -38,22 +37,60 @@
     }
   }
 }
-
+.kindergarden-index-card:hover {
+  box-shadow: 0 0 5px rgba(0,0,0,0.1);
+}
+.kindergarden-index-card-category {
+  position: absolute;
+  top: 15px;
+  left: 35px;
+  h6 {
+    font-family: Abel;
+    font-size: 12px;
+    color: black
+  }
+}
+.kindergarden-index-card-name {
+  position: absolute;
+  top: 27px;
+  left: 35px;
+  font-size: 25px;
+  h4 {
+    font-family: Amatic SC;
+    font-weight: lighter;
+    font-size: 35px;
+    color: black
+  }
+}
+.kindergarden-index-card-address {
+  position: absolute;
+  top: 88px;
+  left: 35px;
+  h6 {
+    font-family: Abel;
+    font-size: 15px;
+    color: black
+  }
+}
 .yellow {
   color: yellow;
 }
 .gray {
   color: gray;
 }
-
-.kindergarden-index-card:hover {
-  box-shadow: 0 0 5px rgba(0,0,0,0.1);
-}
 h3 {
   margin-left: 15px;
   font-weight: bold;
 }
-
 h4, h5 {
   color: black;
+}
+.top-corner-star {
+  position: absolute;
+  top: 50px;
+  right: 50px;
+  z-index: 99;
+  color: #CB8589;
+  font-size: 30px;
+
 }

@@ -1,0 +1,31 @@
+.kita-show-container {
+  margin-left: 150px;
+  margin-right: 150px;
+  margin-bottom: 100px;
+  margin-top: 50px;
+  display: flex;
+  justify-content: space-around;
+}
+.kita-show-container h1, h2, p {
+  margin: 0px;
+  margin-bottom: 15px;
+}
+.kita-details-left-side {
+  flex: 1 0 30%;
+  font-size: 16px;
+  line-height: 22px;
+}
+.kita-details-left-side p {
+  margin: 0px;
+}
+.show-right-side {
+  flex: 1 0 30%;
+  text-align: center;
+}
+.btn-primary {
+  width: 350px;
+}
+.carrier {
+  color: #A9A9A9;
+  font-size: 14px;
+}
