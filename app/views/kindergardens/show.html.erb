@@ -42,10 +42,14 @@
       <br>
     <% end %>
 
-    <h2> Freie Plätze: <%= @kindergarden.children_below_three.to_i + @kindergarden.children_above_three.to_i %></h2>
+    <h2> Plätze insgesamt: <%= @kindergarden.children_below_three.to_i + @kindergarden.children_above_three.to_i %></h2>
     <p> Kinder unter 3 Jahren: <%= @kindergarden.children_below_three %></p>
     <p> Kinder über 3 Jahren: <%= @kindergarden.children_above_three %></p>
-    <p> Mindestalter in Monaten: <%= @kindergarden.min_age_months %></p>
+    <% if @kindergarden.min_age_months.present? %>
+      <p>Mindestalter in Monaten: <%= @kindergarden.min_age_months %></p>
+    <% end %>
+
+
 
 
   </div>
