@@ -27,9 +27,9 @@ before_action :set_kindergarden, only: [:show, :new, :create, :show, :destroy]
     @inquiry.kindergarden_id = params[:kindergarden_id]
     @inquiry.alert = params[:inquiry][:alert]
     @inquiry.save
-    if @inquiry.alert
-      send_alert_email
-    end
+    # if @inquiry.alert
+    #   send_alert_email
+    # end
     redirect_to inquiries_path
   end
 
