@@ -1,6 +1,67 @@
-<h1><%= @kindergarden.name %></h1>
-<h2><%= @kindergarden.address %></h2>
 
-<h3><%= kindergarden.carrier.name %></h3>
+<div class="kita-show-container">
 
-<%= link_to "Erstelle eine Anfrage", new_kindergarden_inquiry_path(@kindergarden) %>
+  <div class="kita-details-left-side">
+    <% if @kindergarden.carrier_id.present? %>
+      <div class="carrier">
+        <p><%= Carrier.find(@kindergarden.carrier_id).name %></p>
+      </div>
+    <% end %>
+    <h1><u><%= @kindergarden.name %></u></h1>
+    <h2>Adresse:</h2>
+    <p><%= @kindergarden.address %></p>
+    <p><%= @kindergarden.plz %> Berlin-<%= @kindergarden.district %></p>
+    <p><%= @kindergarden.phone %></p>
+    <p><%= @kindergarden.email %></p>
+    <br>
+
+    <% educational = Property.where(type: 'Educational') %>
+    <% topic = Property.where(type: 'Topic') %>
+    <% language = Property.where(type: 'Language') %>
+
+    <% if educational.find(@kindergarden.property_ids & educational.ids).present? %>
+      <h2>Pädagogische Schwerpunkte:</h2>
+        <% educational.find(@kindergarden.property_ids & educational.ids).each do |e| %>
+          <p><%= e.name %></p>
+        <% end %>
+      <br>
+    <% end %>
+    <% if topic.find(@kindergarden.property_ids & topic.ids).present? %>
+      <h2>Thematische Schwerpunkte:</h2>
+        <% topic.find(@kindergarden.property_ids & topic.ids).each do |t| %>
+          <p><%= t.name %></p>
+        <% end %>
+      <br>
+    <% end %>
+    <% if language.find(@kindergarden.property_ids & language.ids).present? %>
+      <h2>Sprachen:</h2>
+        <% language.find(@kindergarden.property_ids & language.ids).each do |l| %>
+          <p><%= l.name %></p>
+        <% end %>
+      <br>
+    <% end %>
+
+    <h2> Freie Plätze: <%= @kindergarden.children_below_three.to_i + @kindergarden.children_above_three.to_i %></h2>
+    <p> Kinder unter 3 Jahren: <%= @kindergarden.children_below_three %></p>
+    <p> Kinder über 3 Jahren: <%= @kindergarden.children_above_three %></p>
+    <p> Mindestalter in Monaten: <%= @kindergarden.min_age_months %></p>
+
+
+  </div>
+  <div class="show-right-side">
+
+    <div
+      id="map"
+      style="width: 100%;
+      height: 350px;"
+      data-markers="<%= @markers.to_json %>">
+    </div>
+    <br>
+    <br>
+    <%= link_to "Kontaktieren", new_kindergarden_inquiry_path(@kindergarden), class: 'btn btn-primary' %>
+  </div>
+
+
+
+</div>
+
