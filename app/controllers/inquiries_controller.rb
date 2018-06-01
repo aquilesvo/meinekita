@@ -1,5 +1,5 @@
 class InquiriesController < ApplicationController
-before_action :set_inquiry, only: [:show, :edit, :update, :destroy]
+before_action :set_inquiry, only: [:show, :edit, :update, :destroy, :alert!]
 before_action :set_kindergarden, only: [:show, :new, :create, :show, :destroy]
 
   def index
@@ -19,10 +19,15 @@ before_action :set_kindergarden, only: [:show, :new, :create, :show, :destroy]
   end
 
   def create
+    @user = current_user
     @inquiry = Inquiry.new(inquiry_params)
     @inquiry.user_id = current_user.id
     @inquiry.kindergarden_id = params[:kindergarden_id]
+    @inquiry.alert = params[:inquiry][:alert]
     @inquiry.save
+    if @inquiry.alert
+      send_alert_email
+    end
     redirect_to inquiries_path
   end
 
@@ -39,6 +44,10 @@ before_action :set_kindergarden, only: [:show, :new, :create, :show, :destroy]
     redirect_to inquiries_path
   end
 
+  def alert!
+    @inquiry.alert = true
+    @inquiry.save
+  end
 
   private
 
@@ -52,6 +61,10 @@ before_action :set_kindergarden, only: [:show, :new, :create, :show, :destroy]
 
   def set_kindergarden
     @kindergarden = Kindergarden.find(params[:kindergarden_id])
+  end
+
+  def send_alert_email
+      UserMailer.alert(current_user).deliver_now
   end
 end
 
