@@ -42,18 +42,18 @@
 }
 .kindergarden-index-card-category {
   position: absolute;
-  top: 15px;
-  left: 35px;
+  top: 8px;
+  left: 100px;
   h6 {
     font-family: Abel;
     font-size: 12px;
-    color: black
+    color: #808080;
   }
 }
 .kindergarden-index-card-name {
   position: absolute;
   top: 27px;
-  left: 35px;
+  left: 100px;
   font-size: 25px;
   h4 {
     font-family: Amatic SC;
@@ -64,8 +64,8 @@
 }
 .kindergarden-index-card-address {
   position: absolute;
-  top: 88px;
-  left: 35px;
+  top: 81px;
+  left: 100px;
   h6 {
     font-family: Abel;
     font-size: 15px;
@@ -88,9 +88,16 @@ h4, h5 {
 .top-corner-star {
   position: absolute;
   top: 50px;
-  right: 50px;
+  left: 50px;
   z-index: 99;
   color: #CB8589;
   font-size: 30px;
 
+}
+.kindergarden-index-card-compass {
+  position: absolute;
+  top: 90px;
+  left: 600px;
+  color: black;
+  font-size: 15px;
 }
