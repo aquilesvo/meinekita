@@ -13,7 +13,13 @@
             <h4><%= kindergarden.name %></h4>
           </div>
           <div class="kindergarden-index-card-address">
-            <h6><%= kindergarden.address %> | <%= kindergarden.plz %> <%= kindergarden.district %></h6>
+            <h6><%= kindergarden.address %> | <%= kindergarden.plz %> Berlin - <%= kindergarden.district %></h6>
+          </div>
+          <div class="kindergarden-index-card-compass">
+            <i class="far fa-compass"></i>
+            <% if params[:query].present? %>
+            <%= kindergarden.distance_from(params[:query]).round(2)%> km
+            <% end %>
           </div>
         </div>
       <% end %>
@@ -32,3 +38,6 @@
     </div>
   <% end %>
 </div>
+
+
+
