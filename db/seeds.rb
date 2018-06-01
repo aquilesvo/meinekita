@@ -14,7 +14,7 @@ puts "deleting old data..."
 
 puts "setting up static parameters"
 #Property.language
-languages = ["deutsch - arabisch","deutsch - englisch","deutsch - polnisch","deutsch - türkisch","deutsch - spanisch","deutsch - russisch","deutsch - französisch","deutsch - italienisch","deutsch - kurdisch","Gebärdensprache","deutsch - griechisch","deutsch - niederländisch","deutsch - portugiesisch"]
+languages = ["arabisch","englisch","polnisch","türkisch","spanisch","russisch","französisch","italienisch","kurdisch","Gebärdensprache","griechisch","niederländisch","portugiesisch"]
 
 languages.each_with_index do |language, index|
   Language.create!(name: language, external_id: index)

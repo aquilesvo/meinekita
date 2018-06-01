@@ -35,6 +35,7 @@
     <% end %>
     <% if language.find(@kindergarden.property_ids & language.ids).present? %>
       <h2>Sprachen:</h2>
+        <p>deutsch</p>
         <% language.find(@kindergarden.property_ids & language.ids).each do |l| %>
           <p><%= l.name %></p>
         <% end %>
