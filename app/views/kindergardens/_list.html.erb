@@ -5,17 +5,17 @@
 
     <div class="card-wrapper" style="position:relative;">
       <%= link_to kindergarden_path(kindergarden), :action => 'go' do %>
-        <div class="kindergarden-index-card">
+        <div class="kindergarden index-card">
           <div class="kindergarden-index-card-category">
             <h6><%= kindergarden.category.name %></h6>
           </div>
-          <div class="kindergarden-index-card-name">
+          <div class="card-header">
             <h4><%= kindergarden.name %></h4>
           </div>
-          <div class="kindergarden-index-card-address">
+          <div class="card-subheader">
             <h6><%= kindergarden.address %> | <%= kindergarden.plz %> Berlin - <%= kindergarden.district %></h6>
           </div>
-          <div class="kindergarden-index-card-compass">
+          <div class="card-container-bottom-right">
             <i class="far fa-compass"></i>
             <% if params[:query].present? %>
             <%= kindergarden.distance_from(params[:query]).round(2)%> km
