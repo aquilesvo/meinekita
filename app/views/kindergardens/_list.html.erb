@@ -1,25 +1,43 @@
-    <div class="kindergarden-index-row">
-      <% @kindergardens.each do |kindergarden| %>
-           <% @bookmark = Bookmark.find(current_user.bookmark_ids.select do |id| kindergarden.bookmark_ids.include?(id) end) %>
-           <% if @bookmark.present? %>
-              <%= link_to kindergarden_bookmark_path(kindergarden, @bookmark), method:'delete' do %>
-                <div class="bookmark-symbol"><i class="far fa-star yellow"></i></div>
-              <% end %>
-           <% else %>
-              <%= link_to kindergarden_bookmarks_path(kindergarden), method:'post' do %>
-                <div class="bookmark-symbol"><i class="far fa-star gray"></i></div>
-              <% end %>
-            <% end %>
-        <%= link_to kindergarden_path(kindergarden), :action => 'go' do %>
-          <div class="col-xs-12">
-            <div class="kindergarden-index-card">
-              <div>
-                <h4><%= kindergarden.name %></h4>
-                <h5><%= kindergarden.address %> | <%= kindergarden.plz %> <%= kindergarden.district %> </h5>
-                <% if kindergarden.carrier %><h6><%= kindergarden.carrier.name %></h6><% end %>
-              </div>
-            </div>
+
+<div class="kindergarden-index-row">
+  <h3>Ergebnisse: <%= @kindergardens.count %></h3>
+  <% @kindergardens.each do |kindergarden| %>
+
+    <div class="card-wrapper" style="position:relative;">
+      <%= link_to kindergarden_path(kindergarden), :action => 'go' do %>
+        <div class="kindergarden-index-card">
+          <div class="kindergarden-index-card-category">
+            <h6><%= kindergarden.category.name %></h6>
           </div>
+          <div class="kindergarden-index-card-name">
+            <h4><%= kindergarden.name %></h4>
+          </div>
+          <div class="kindergarden-index-card-address">
+            <h6><%= kindergarden.address %> | <%= kindergarden.plz %> Berlin - <%= kindergarden.district %></h6>
+          </div>
+          <div class="kindergarden-index-card-compass">
+            <i class="far fa-compass"></i>
+            <% if params[:query].present? %>
+            <%= kindergarden.distance_from(params[:query]).round(2)%> km
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+      <% @bookmark = Bookmark.find(current_user.bookmark_ids.select do |id| kindergarden.bookmark_ids.include?(id) end) %>
+      <% if @bookmark.present? %>
+         <%= link_to kindergarden_bookmark_path(kindergarden, @bookmark), class: "top-corner-star", method:'delete' do %>
+          <div class="bookmark-symbol"><i class="fas fa-heart"></i></div>
         <% end %>
+      <% else %>
+          <%= link_to kindergarden_bookmarks_path(kindergarden), class: "top-corner-star", method:'post' do %>
+            <div class="bookmark-symbol">
+                <i class="far fa-heart"></i>
+            </div>
+          <% end %>
       <% end %>
     </div>
+  <% end %>
+</div>
+
+
+
