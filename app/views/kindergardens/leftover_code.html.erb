@@ -23,3 +23,8 @@
           <%= s.collection_check_boxes :languages, Property.where(type: "Language"), :id, :name %>
         <% end %>
       </div>
+
+
+      <%= simple_fields_for :search, searcher do |s| %>
+          <%= s.collection_check_boxes :categories, Category.all, :id, :name %>
+        <% end %>
