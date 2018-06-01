@@ -1,5 +1,5 @@
     <div class="kindergarden-index-row">
-      <h3>Number of Results: <%= @kindergardens.count %></h3>
+      <h3>Ergebnisse: <%= @kindergardens.count %></h3>
       <% @kindergardens.each do |kindergarden| %>
            <% @bookmark = Bookmark.find(current_user.bookmark_ids.select do |id| kindergarden.bookmark_ids.include?(id) end) %>
            <% if @bookmark.present? %>

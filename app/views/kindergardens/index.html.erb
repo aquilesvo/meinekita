@@ -1,33 +1,35 @@
-<h3> Great kindergardens in Berlin </h3>
+<h3> Betreuungsangebote in Berlin </h3>
 
 <div>
   <%= form_tag kindergardens_path, method: "get", remote: true do %>
-    <div class="filter-group">
       <% searcher = OpenStruct.new(params[:search]) %>
       <div class="filter-box">
         <%= simple_fields_for :search, searcher do |s| %>
-          <%= s.collection_select :categories, Category.all, :id, :name %>
+          <%= s.collection_select(:categories, Category.all, :id, :name, {:prompt => 'Art der Einrichtung'}) %>
         <% end %>
         <%= simple_fields_for :search, searcher do |s| %>
-          <%= s.collection_select(:carriers, Carrier.all, :id, :name, {:multiple => true})%>
+          <%= s.collection_select(:carriers, Carrier.all, :id, :name, {:prompt => 'Art des Trägers'}) %>
+        <% end %>
+      </div>
+    <div class="filter-group">
+      <div class="filter-box">
+        <%= simple_fields_for :search, searcher do |s| %>
+          <%= s.collection_check_boxes :properties, Property.where(type: "Language"), :id, :name do |b| %>
+            <%= b.label class:"label-checkbox" do%>
+              <%=b.check_box + b.text%>
+              <% end %>
+            <%end%>
         <% end %>
       </div>
       <div class="filter-box">
         <%= simple_fields_for :search, searcher do |s| %>
-          <%= s.collection_check_boxes :properties, Property.where(type: "Language"), :id, :name %>
+          <%= s.collection_check_boxes :properties, Property.where(type: "Topic"), :id, :name do |b| %>
+            <%= b.label class:"label-checkbox" do%>
+              <%=b.check_box + b.text%>
+              <% end %>
+            <%end%>
         <% end %>
       </div>
-      <div class="filter-box">
-        <%= simple_fields_for :search, searcher do |s| %>
-          <%= s.collection_check_boxes :properties, Property.where(type: "Topic"), :id, :name %>
-        <% end %>
-      </div>
-       <div class="filter-box">
-        <%= simple_fields_for :search, searcher do |s| %>
-          <%= s.collection_check_boxes :properties, Property.where(type: "Educational"), :id, :name %>
-        <% end %>
-      </div>
-
     </div>
     <%= submit_tag %>
   <% end %>

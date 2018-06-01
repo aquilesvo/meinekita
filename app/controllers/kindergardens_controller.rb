@@ -2,22 +2,25 @@ class KindergardensController < ApplicationController
 
   def index
     if params[:query].present?
-      raise
-      @kindergardens = Kindergarden.near(params[:query], 3, :units => :km)
-
+      kindergardens = Kindergarden.near(params[:query], 3, :units => :km)
+      @kindergardens = kindergardens.to_a
       @markers = @kindergardens.map do |kindergarden|
         {
           lat: kindergarden.latitude,
           lng: kindergarden.longitude,
           infoWindow: { content: render_to_string(partial: "/kindergardens/map_box", locals: { kindergarden: kindergarden }) }
         }
+
       end
 
     elsif params[:search].present?
        params[:search] = params[:search] || {}
+        puts params[:search]
 
         params[:search].each do |key, value|
-          params[:search][key].reject!(&:blank?)
+          unless params[:search][key].kind_of? String
+            params[:search][key].reject!(&:blank?)
+          end
         end
 
         @kindergardens = Kindergarden.search(params[:search])

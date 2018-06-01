@@ -28,3 +28,11 @@
       <%= simple_fields_for :search, searcher do |s| %>
           <%= s.collection_check_boxes :categories, Category.all, :id, :name %>
         <% end %>
+
+
+<!-- Code für Educational filter -->
+ <div class="filter-box">
+        <%= simple_fields_for :search, searcher do |s| %>
+          <%= s.collection_check_boxes :properties, Property.where(type: "Educational"), :id, :name %>
+        <% end %>
+      </div>

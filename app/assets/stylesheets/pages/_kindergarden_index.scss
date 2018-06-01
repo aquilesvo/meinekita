@@ -1,8 +1,12 @@
+.label-checkbox {
+  font-size: 16px;
+}
+
 .filter-group {
   display: flex;
 }
 .filter-box {
-  flex: 0 0 200px;
+  flex: 1 1 auto;
   border: 1px solid $gray;
   margin: 5px;
   padding: 5px;
