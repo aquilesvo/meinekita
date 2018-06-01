@@ -2,7 +2,7 @@
 <h1>Nachrichtenverlauf</h1>
 <h2><%= kita.name %></h2>
 
-<% inquiries = Inquiry.find(current_user.inquiry_ids.select do |id| kita.inquiry_ids.include?(id) end) %>
+<% inquiries = @inquiries.select do |inquiry| kita.inquiry_ids.include?(inquiry.id) end %>
 <ul>
   <% inquiries.each do |inquiry| %>
     <% if inquiry == @inquiry %>

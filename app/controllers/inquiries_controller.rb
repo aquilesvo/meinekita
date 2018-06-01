@@ -1,12 +1,11 @@
 class InquiriesController < ApplicationController
 before_action :set_inquiry, only: [:show, :edit, :update, :destroy, :alert!]
 before_action :set_kindergarden, only: [:show, :new, :create, :show, :destroy]
+before_action :set_sorted_inquiries, only: [:index, :destroy, :show]
+
 
   def index
-    users_inquiries = Inquiry.where(user_id: current_user.id)
-    sorted_inquiries = users_inquiries.sort_by(&:updated_at)
-    inquiries = sorted_inquiries.reverse
-    @grouped_inquiries = inquiries.group_by { |d| d[:kindergarden_id] }
+    @grouped_inquiries = @inquiries.group_by { |d| d[:kindergarden_id] }
     @bookmarks = Bookmark.where(:user_id == current_user.id)
 
     # sorted = @records.sort_by &:created_at
@@ -41,8 +40,13 @@ before_action :set_kindergarden, only: [:show, :new, :create, :show, :destroy]
   end
 
   def destroy
+    kita = Kindergarden.find(@inquiry.kindergarden_id)
+    inquiries = @inquiries.select do |inquiry| kita.inquiry_ids.include?(inquiry.id) end
+    inquiries.delete(id: @inquiry.id)
+    inquiry = inquiries.first
     @inquiry.destroy
-    redirect_to inquiries_path
+    redirect_to kindergarden_inquiry_path(kita, inquiry)
+
   end
 
   def alert!
@@ -66,6 +70,12 @@ before_action :set_kindergarden, only: [:show, :new, :create, :show, :destroy]
 
   def send_alert_email
       UserMailer.alert(current_user).deliver_now
+  end
+
+  def set_sorted_inquiries
+    users_inquiries = Inquiry.where(user_id: current_user.id)
+    sorted_inquiries = users_inquiries.sort_by(&:updated_at)
+    @inquiries = sorted_inquiries.reverse
   end
 end
 
