@@ -10,7 +10,7 @@ require 'csv'
 require 'json'
 
 puts "deleting old data..."
-[Property, Kindergarden].each(&:destroy_all)
+[Property, Kindergarden, Category, Carrier].each(&:destroy_all)
 
 puts "setting up static parameters"
 #Property.language
@@ -57,7 +57,7 @@ i = 0
 puts "creates new seeds...."
 
 CSV.foreach(filepath, csv_options) do |row|
-  next if i > 200
+  next if i > 1000
   i += 1
   puts i if i % 100 == 0
   kita = Kindergarden.new()
