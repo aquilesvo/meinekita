@@ -4,21 +4,23 @@
 
 <!-- @list.sort_by{|e| -e[:time_ago]} -->
 <h2>My messages</h2>
-<% @inquiries.each do |inquiry| %>
-  <% @kindergarden = inquiry.kindergarden_id %>
-  <% if inquiry.user_id == current_user.id %>
-    <%= link_to kindergarden_inquiry_path(@kindergarden, inquiry), :action => 'go' do %>
-      <div class="inquiry-box">
-        <h3><%= inquiry.subject %></h3>
-        <h4><%= inquiry.status %></h4>
-        <h5>To: <%= Kindergarden.find(inquiry.kindergarden_id).name %></h5>
-        <p><%= inquiry.content %></p>
-        <p>Initiated: <%= inquiry.created_at %></p>
-        <p>Last Contact: <%= inquiry.updated_at %></p>
-      </div>
-    <% end %>
-  <% end %>
+<% @grouped_inquiries.each do |kita_id, inquiries| %>
+
+  <div>
+    <% kita = Kindergarden.find(kita_id) %>
+    <h3><strong>To: </strong><%= kita.name %></h3>
+    <ol>
+      <% inquiries.each do |inquiry| %>
+
+          <li><strong>Subject: </strong><%= link_to kindergarden_inquiry_path(kita, inquiry), :action => 'go' do %><%= inquiry.subject %> (<%= inquiry.created_at.to_date %>)<% end %></li>
+
+      <% end %>
+
+    </ol>
+  </div>
 <% end %>
+
+
 
 <h2>My favorites</h2>
 <% @bookmarks.each do |bookmark| %>

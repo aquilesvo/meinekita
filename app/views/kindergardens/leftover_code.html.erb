@@ -17,3 +17,20 @@
   <%= submit_tag %>
 
 <% end %>
+
+
+<% @inquiries.each do |inquiry| %>
+  <% @kindergarden = inquiry.kindergarden_id %>
+  <% if inquiry.user_id == current_user.id %>
+    <%= link_to kindergarden_inquiry_path(@kindergarden, inquiry), :action => 'go' do %>
+      <div class="inquiry-box">
+        <h3><%= inquiry.subject %></h3>
+        <h4><%= inquiry.status %></h4>
+        <h5>To: <%= Kindergarden.find(inquiry.kindergarden_id).name %></h5>
+        <p><%= inquiry.content %></p>
+        <p>Initiated: <%= inquiry.created_at %></p>
+        <p>Last Contact: <%= inquiry.updated_at %></p>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>
