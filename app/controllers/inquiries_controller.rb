@@ -3,10 +3,12 @@ before_action :set_inquiry, only: [:show, :edit, :update, :destroy, :alert!]
 before_action :set_kindergarden, only: [:show, :new, :create, :show, :destroy]
 
   def index
-    x = Inquiry.all.sort_by(&:updated_at)
-    @inquiries = x.reverse
+    users_inquiries = Inquiry.where(user_id: current_user.id)
+    sorted_inquiries = users_inquiries.sort_by(&:updated_at)
+    inquiries = sorted_inquiries.reverse
+    @grouped_inquiries = inquiries.group_by { |d| d[:kindergarden_id] }
     @bookmarks = Bookmark.where(:user_id == current_user.id)
-    # @inquiries = inquiries.group_by(:kindergarden_id)
+
     # sorted = @records.sort_by &:created_at
   end
 
@@ -39,7 +41,6 @@ before_action :set_kindergarden, only: [:show, :new, :create, :show, :destroy]
   end
 
   def destroy
-    raise
     @inquiry.destroy
     redirect_to inquiries_path
   end

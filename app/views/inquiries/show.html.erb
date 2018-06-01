@@ -1,12 +1,27 @@
-<h1>Message from the <%= @inquiry.created_at %></h1>
-<h2><strong>Regarding: </strong> <%= @inquiry.subject %></h2>
 <% kita = Kindergarden.find(@inquiry.kindergarden_id) %>
-<% if kita.email.present? %>
-  <h3><strong>To: </strong><%= kita.email %></h3>
-  <% else %>
-  <h3><strong>To: </strong><%= kita.name %></h3>
-<% end %>
-<p><strong>Content:</strong> <%= @inquiry.content %></p>
+<h1>Nachrichtenverlauf</h1>
+<h2><%= kita.name %></h2>
+
+<% inquiries = Inquiry.find(current_user.inquiry_ids.select do |id| kita.inquiry_ids.include?(id) end) %>
+<ul>
+  <% inquiries.each do |inquiry| %>
+    <% if inquiry == @inquiry %>
+      <div class="selected mail">
+        <li><strong>Betreff:</strong> <%= @inquiry.subject %> (<%= inquiry.created_at.to_date %>)
+        <p><strong>Nachricht:</strong> <%= @inquiry.content %></p>
+      </li>
+      </div>
+    <% else %>
+      <div class="unselected mail">
+        <li>
+        <strong>Betreff: </strong><%= link_to kindergarden_inquiry_path(kita, inquiry), :action => 'go' do %><%= inquiry.subject %> (<%= inquiry.created_at.to_date %>)<% end %>
+      </li>
+      </div>
+    <% end %>
+  <% end %>
+
+</ul>
+
 
 <%= link_to 'Back to Dashboard', inquiries_path, class: "btn btn-primary" %>
 <%= link_to 'Go to Kita', kindergarden_path(kita), class: "btn btn-primary" %>
