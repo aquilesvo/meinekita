@@ -1,10 +1,26 @@
-<h1>Create a new inquiry</h1>
 
-<%= simple_form_for [@kindergarden, @inquiry] do |f| %>
-  <%= f.input :subject %>
-  <%= f.input :content %>
-  <%= f.input :alert, as: :boolean, checked_value: true, unchecked_value: false , label: 'Möchtest du eine Erinnerung?' %>
 
-  <%= f.button :submit %>
-<% end %>
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-8 col-xs-offset-2">
+          <div id="chatroom">
+            <h1>Deine Nachricht an:</h1>
+            <h1><%= @kindergarden.name %></h1>
 
+            <%= simple_form_for [@kindergarden, @inquiry] do |f| %>
+              <%= f.input :subject, label: 'Betreff' %>
+              <%= f.input :content, :as => :text, :input_html => { 'rows' => 10}, label: 'Nachricht'%>
+              <%= f.input :alert,collection: [ "nein", "in 2 Wochen", "in 3 Wochen", "in 4 Wochen"], label: 'Möchtest du erinnert werden, die Kita nochmals zu konatkieren?' %>
+
+              <%= f.button :submit, 'Senden', class: 'btn-primary' %>
+            <% end %>
+
+            <br>
+            <br>
+            <br>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="build/application.js"></script>
