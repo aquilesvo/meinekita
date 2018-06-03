@@ -6,16 +6,16 @@
 <div class="card-wrapper">
   <h2>My messages</h2>
   <% @grouped_inquiries.each do |kita_id, inquiries| %>
+    <% kita = Kindergarden.find(kita_id) %>
+    <% inquiry = inquiries.first %>
 
-    <div class="kindergarden-index-card">
-      <% kita = Kindergarden.find(kita_id) %>
-      <div class="kindergarden-index-card-name"><h3><strong>To: </strong><%= kita.name %></h3>
+    <%= link_to kindergarden_inquiry_path(kita, inquiry), :action => 'go' do %>
+      <div class="kindergarden-index-card">
+        <div class="kindergarden-index-card-name"><h3><strong>To: </strong><%= kita.name %></h3>
+        </div>
+          <p><strong>Subject: </strong><%= inquiry.subject %> (<%= inquiry.created_at.to_date %>)</p>
       </div>
-
-
-        <% inquiry = inquiries.first %>
-        <p><strong>Subject: </strong><%= link_to kindergarden_inquiry_path(kita, inquiry), :action => 'go' do %><%= inquiry.subject %> (<%= inquiry.created_at.to_date %>)<% end %></p>
-    </div>
+    <% end %>
   <% end %>
 
 

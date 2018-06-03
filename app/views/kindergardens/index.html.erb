@@ -37,15 +37,6 @@
             <%end%>
         <% end %>
       </div>
-       <div class="filter-box">
-        <%= simple_fields_for :search, searcher do |s| %>
-          <%= s.collection_check_boxes :properties, Property.where(type: "Educational"), :id, :name do |b| %>
-            <%= b.label class:"label-checkbox" do%>
-              <%=b.check_box + b.text%>
-              <% end %>
-            <% end %>
-        <% end %>
-      </div>
     </div>
     <%= submit_tag %>
   <% end %>
