@@ -10,6 +10,13 @@
         <%= simple_fields_for :search, searcher do |s| %>
           <%= s.collection_select(:carriers, Carrier.all, :id, :name, {:prompt => 'Art des Trägers'}) %>
         <% end %>
+        <%= simple_fields_for :search, searcher do |s| %>
+          <%= s.collection_select(:districts, District.all, :id, :name, {:prompt => 'Stadtteil'}) %>
+        <% end %>
+
+        <!-- ratings = Model.select(:rating).uniq -->
+
+
       </div>
     <div class="filter-group">
       <div class="filter-box">
@@ -28,6 +35,15 @@
               <%=b.check_box + b.text%>
               <% end %>
             <%end%>
+        <% end %>
+      </div>
+       <div class="filter-box">
+        <%= simple_fields_for :search, searcher do |s| %>
+          <%= s.collection_check_boxes :properties, Property.where(type: "Educational"), :id, :name do |b| %>
+            <%= b.label class:"label-checkbox" do%>
+              <%=b.check_box + b.text%>
+              <% end %>
+            <% end %>
         <% end %>
       </div>
     </div>

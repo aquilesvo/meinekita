@@ -1,6 +1,7 @@
 class Kindergarden < ApplicationRecord
   belongs_to :carrier, required: false
   belongs_to :category, required: false
+  belongs_to :district, required: false
 
   has_many :inquiries, dependent: :destroy
   has_many :users, :through => :inquiries
@@ -16,6 +17,13 @@ class Kindergarden < ApplicationRecord
     after_validation :geocode, if: :will_save_change_to_address?
   end
 
+  # def self.districts
+  #   uniques = self.select(:district).distinct
+  #   districts = uniques.map { |d| d.district }
+  #   districts.each { |d| d.downcase }
+  #   districts = districts.sort!.each { |d| d.capitalize! }
+  # end
+
   def self.search(options = {})
     search = where.not(latitude: nil, longitude: nil).includes(:properties)
 
@@ -27,27 +35,15 @@ class Kindergarden < ApplicationRecord
       search = search.where(carrier_id: options[:carriers])
     end
 
-      # puts "now the options"
-      # puts options[:properties].inspect
-      # puts options[:languages].inspect + "AAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-      # puts options[:topics].inspect + "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
-      # puts options[:educationals].inspect + "CCCCCCCCCCCCCCCCCCCCCCCCCC"
-      # puts options[:properties].inspect + "DDDDDDDDDDDDDDDDDDDDDDDDD"
-      # puts "now the kiga.prop_ids"
-      # puts kindergarden.property_ids.map(&:to_s).inspect
+    if options[:districts].present?
+      search = search.where(district_id: options[:districts])
+    end
+
     search = search.all.to_a
 
     search.select! do |kindergarden|
       kindergarden.property_ids.map(&:to_s) & options[:properties] == options[:properties]
     end if options[:properties].present?
-    # search.select! do |kindergarden|
-    #   kindergarden.property_ids.map(&:to_s) & options[:topics] == options[:topics]
-    # end if options[:topics].present?
-
-    # search.select! do |kindergarden|
-    #   kindergarden.property_ids.map(&:to_s) & options[:educationals] == options[:educationals]
-    # end if options[:educationals].present?
-
 
     search
   end
