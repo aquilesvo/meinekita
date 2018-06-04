@@ -1,49 +1,49 @@
-<h3> Betreuungsangebote in Berlin </h3>
 
 <div>
   <%= form_tag kindergardens_path, method: "get", remote: true do %>
-      <% searcher = OpenStruct.new(params[:search]) %>
-      <div class="filter-box">
-        <%= simple_fields_for :search, searcher do |s| %>
-          <%= s.collection_select(:categories, Category.all, :id, :name, {:prompt => 'Art der Einrichtung'}) %>
-        <% end %>
-        <%= simple_fields_for :search, searcher do |s| %>
-          <%= s.collection_select(:carriers, Carrier.all, :id, :name, {:prompt => 'Art des Trägers'}) %>
-        <% end %>
-        <%= simple_fields_for :search, searcher do |s| %>
-          <%= s.collection_select(:districts, District.all, :id, :name, {:prompt => 'Stadtteil'}) %>
-        <% end %>
-        <div class="check-box">
-          <%= check_box_tag(:children_below_three) %>
-          <%= label_tag(:children_below_three, "< 3Jahre?") %>
+    <% searcher = OpenStruct.new(params[:search]) %>
+    <div class="filter-box">
+
+      <%= simple_fields_for :search, searcher do |s| %>
+        <%= s.collection_select(:categories, Category.all, :id, :name, {:prompt => 'Art der Einrichtung'}, { class: "filter-button large"}) %>
+      <% end %>
+      <%= simple_fields_for :search, searcher do |s| %>
+        <%= s.collection_select(:carriers, Carrier.all, :id, :name, {:prompt => 'Art des Trägers'}, { class: "filter-button large"}) %>
+      <% end %>
+      <%= simple_fields_for :search, searcher do |s| %>
+        <%= s.collection_select(:districts, District.all, :id, :name, {:prompt => 'Stadtteil'}, { class: "filter-button large"}) %>
+      <% end %>
+
+      <button type="button" class="filter-button medium" data-toggle="collapse" data-target="#languages"><%= image_tag 'png/005-language.png' %>    Sprachen</button>
+
+      <button type="button" class="filter-button medium" data-toggle="collapse" data-target="#topics"><%= image_tag 'png/004-ebook.png' %>    Thematisch</button>
+
+      <%= submit_tag "Save", class: 'filter-button slim' %>
+
+        <div id="languages" class="collapse">
+          <div class="subheader"><h4><strong>Sprachen</strong></h4></div>
+           <%= simple_fields_for :search, searcher do |s| %>
+            <%= s.collection_check_boxes :properties, Property.where(type: "Language"), :id, :name do |b| %>
+              <%= b.label class: "label-checkbox" do%>
+                <%=b.check_box + b.text.capitalize %>
+                <% end %>
+              <%end%>
+          <% end %>
         </div>
 
-        <!-- ratings = Model.select(:rating).uniq -->
-
-
-      </div>
-    <div class="filter-group">
-      <div class="filter-box">
-        <%= simple_fields_for :search, searcher do |s| %>
-          <%= s.collection_check_boxes :properties, Property.where(type: "Language"), :id, :name do |b| %>
-            <%= b.label class:"label-checkbox" do%>
-              <%=b.check_box + b.text%>
-              <% end %>
-            <%end%>
-        <% end %>
-      </div>
-      <div class="filter-box">
-        <%= simple_fields_for :search, searcher do |s| %>
-          <%= s.collection_check_boxes :properties, Property.where(type: "Topic"), :id, :name do |b| %>
-            <%= b.label class:"label-checkbox" do%>
-              <%=b.check_box + b.text%>
-              <% end %>
-            <%end%>
-        <% end %>
-      </div>
+        <div id="topics" class="collapse">
+          <div class="subheader"><h4><strong>Themen</strong></h4></div>
+          <%= simple_fields_for :search, searcher do |s| %>
+            <%= s.collection_check_boxes :properties, Property.where(type: "Topic"), :id, :name do |b| %>
+              <%= b.label class: "label-checkbox" do%>
+                <%=b.check_box + b.text%>
+                <% end %>
+              <%end%>
+          <% end %>
+        </div>
     </div>
-    <%= submit_tag %>
   <% end %>
+
 
 
 
@@ -60,3 +60,10 @@
 
   </div>
 </div>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+
+
