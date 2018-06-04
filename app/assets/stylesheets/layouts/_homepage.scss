@@ -1,11 +1,12 @@
-.searchbox-home {
-  display: flex;
-  justify-content: center;
-}
 .page-container {
   margin-left: 50px;
   margin-right: 50px;
   font-weight: lighter;
+  text-align: center;
+}
+.searchbox-home {
+  display: flex;
+  justify-content: center;
 }
 .searchbox-home {
   width: 50vw;
