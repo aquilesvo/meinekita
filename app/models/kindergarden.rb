@@ -39,6 +39,10 @@ class Kindergarden < ApplicationRecord
       search = search.where(district_id: options[:districts])
     end
 
+    if options[:children_below_three].present?
+      search = search.where(:children_below_three >= 1)
+    end
+
     search = search.all.to_a
 
     search.select! do |kindergarden|
