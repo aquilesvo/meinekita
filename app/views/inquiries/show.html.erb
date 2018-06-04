@@ -12,7 +12,7 @@
               <li>
                 <div class="mail-informat">
                   <strong>Betreff:</strong> <%= @inquiry.subject %> <br>
-                  <strong>Gesendet:</strong> <%= inquiry.created_at.to_date %> </br>
+                  <strong>Gesendet:</strong> <%= inquiry.created_at.strftime("%d.%m.%Y | %H:%M")%> </br>
                   <p><strong>Nachricht:</strong> <%= @inquiry.content %></p>
                 </div>
                 <div class="mail-informat-arrow">
@@ -25,7 +25,7 @@
                 <li>
                   <div class="mail-informat">
                     <strong>Betreff: </strong> <%= inquiry.subject %> <br>
-                    <strong>Gesendet:</strong> <%= inquiry.created_at.to_date %> </br>
+                    <strong>Gesendet:</strong> <%= inquiry.created_at.strftime("%d.%m.%Y | %H:%M") %> </br>
                   </div>
                   <div class="mail-informat-arrow"></div>
                 </li>
