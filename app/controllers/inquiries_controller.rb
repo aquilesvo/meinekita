@@ -7,7 +7,7 @@ before_action :set_sorted_inquiries, only: [:index, :destroy, :show]
   def index
     @grouped_inquiries = @inquiries.group_by { |d| d[:kindergarden_id] }
     @bookmarks = Bookmark.where(:user_id == current_user.id)
-
+    @kindergarden = Kindergarden.find(@inquiries[0].kindergarden_id)
     # sorted = @records.sort_by &:created_at
   end
 

@@ -9,6 +9,7 @@ h4 {
 }
 .kindergarden-index-main-container {
   display: flex;
+  // color: $light-gray;
 }
 .kindergarden-index-cards-container {
   flex-grow: 2
@@ -16,6 +17,7 @@ h4 {
 .kindergarden-index-card {
   flex: 1 1 auto;
   position: relative;
+  background-color: #F9F9F9;
   background-size: cover;
   background-position: center;
   height: 130px;
@@ -23,7 +25,6 @@ h4 {
   border-radius: 4px;
   border-color: rgba(0,0,0,0.1);
   margin: 10px;
-
   a {
     color: $lightgray;
     &:hover {

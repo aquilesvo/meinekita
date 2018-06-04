@@ -1,6 +1,7 @@
 .page-container {
   margin-left: 50px;
   margin-right: 50px;
+  margin-bottom: 50px;
   font-weight: lighter;
   text-align: center;
 }
@@ -20,4 +21,31 @@
   display: flex;
   justify-content: center;
 }
+}
+.three-steps-main {
+  display: flex;
+  justify-content: center;
+  margin-left: 150px;
+  margin-right: 150px;
+  border-color: $light-gray;
+}
+.first-step h3 {
+  border-color: black;
+  height: 100px;
+}
+.second-step h3 {
+  height: 100px;
+}
+.third-step h3 {
+  height: 100px;
+}
+.column {
+    width: 25%;
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
 }
