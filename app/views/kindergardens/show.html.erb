@@ -10,7 +10,7 @@
     <h1><u><%= @kindergarden.name %></u></h1>
     <h2>Adresse:</h2>
     <p><%= @kindergarden.address %></p>
-    <p><%= @kindergarden.plz %> Berlin-<%= @kindergarden.district %></p>
+    <p><%= @kindergarden.plz %> Berlin <% if @kindergarden.district_id.present? %><%= District.find(@kindergarden.district_id).name %><% end %>
     <p><%= @kindergarden.phone %></p>
     <p><%= @kindergarden.email %></p>
     <br>
