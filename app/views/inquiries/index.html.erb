@@ -1,7 +1,6 @@
-<div class="main-page">
-  <h1>Dashboard of <%= current_user.email %></h1>
+<div class="inquiry-page-container">
+  <h1> <u>Dashboard of <%= current_user.email %></u> </h1> <br>
 
-  <%= link_to 'Back to Index', kindergardens_path, class: "btn btn-primary" %>
 
   <!-- @list.sort_by{|e| -e[:time_ago]} -->
   <div class="card-wrapper">
@@ -11,10 +10,36 @@
       <% inquiry = inquiries.first %>
 
       <%= link_to kindergarden_inquiry_path(kita, inquiry), :action => 'go' do %>
-        <div class="kindergarden-index-card">
-          <div class="kindergarden-index-card-name"><h3><strong>To: </strong><%= kita.name %></h3>
+        <div class="inquiry-index-card">
+          <div class="inquiry-bookmark">
+            <% @bookmark = Bookmark.find(current_user.bookmark_ids.select do |id| @kindergarden.bookmark_ids.include?(id) end) %>
+            <% if @bookmark.present? %>
+            <div class="top-corner-star">
+                <div class="bookmark-symbol"><i class="fas fa-heart"></i></div>
+            </div>
+            <% else %>
+              <div class="top-corner-star">
+                    <div class="bookmark-symbol">
+                        <i class="far fa-heart"></i>
+                    </div>
+              </div>
+            <% end %>
           </div>
-            <p><strong>Subject: </strong><%= inquiry.subject %> (<%= inquiry.created_at.to_date %>)</p>
+          <div class="inquiry-index-card-name">
+              <% if @kindergarden.carrier_id.present? %>
+                <div class="carrier">
+                  <p><%= Carrier.find(@kindergarden.carrier_id).name %></p>
+                </div>
+              <% end %>
+            <h3>An: <%= kita.name %></h3>
+            <p><strong>Betreff: </strong><%= inquiry.subject %></p>
+          </div>
+
+            <div class="inquiry-right-side">
+              <p>Zuletzt kontaktiert am: <%= inquiry.created_at.to_date %></p>
+              <p>Erinnerungsfunktion: AN</p>
+
+            </div>
         </div>
       <% end %>
     <% end %>
@@ -27,12 +52,12 @@
         <% @kindergarden = Kindergarden.find(bookmark.kindergarden_id) %>
         <% if @kindergarden.present? && @kindergarden.inquiry_ids.empty?%>
           <%= link_to new_kindergarden_inquiry_path(@kindergarden), :action => 'go' do %>
-            <div class="kindergarden-index-card">
-            <div class="inquiry-box">
-              <h3><%= @kindergarden.name %></h3>
-              <h3>Not messaged yet</h3>
-              <h2>Contact Now!</h2>
-            </div>
+            <div class="inquiry-index-card">
+              <div class="inquiry-box">
+                <h3><%= @kindergarden.name %></h3>
+                <h3>Not messaged yet</h3>
+                <h2>Contact Now!</h2>
+              </div>
             </div>
           <% end %>
         <% end %>
@@ -41,4 +66,5 @@
 
   </div>
 
+  <%= link_to 'Back to Index', kindergardens_path, class: "btn btn-primary" %>
 </div>

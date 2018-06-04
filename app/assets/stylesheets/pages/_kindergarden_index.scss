@@ -16,6 +16,7 @@
 
 .kindergarden-index-main-container {
   display: flex;
+  // color: $light-gray;
 }
 .kindergarden-index-cards-container {
   flex-grow: 2
@@ -23,6 +24,7 @@
 .kindergarden-index-card {
   flex: 1 1 auto;
   position: relative;
+  background-color: #F9F9F9;
   background-size: cover;
   background-position: center;
   height: 130px;
