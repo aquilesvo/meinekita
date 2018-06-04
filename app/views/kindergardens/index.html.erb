@@ -13,37 +13,43 @@
         <%= simple_fields_for :search, searcher do |s| %>
           <%= s.collection_select(:districts, District.all, :id, :name, {:prompt => 'Stadtteil'}) %>
         <% end %>
-        <div class="check-box">
-          <%= check_box_tag(:children_below_three) %>
-          <%= label_tag(:children_below_three, "< 3Jahre?") %>
+        <div class="check-box filter-box">
+            <%= check_box_tag(:children_below_three) %>
+            <%= label_tag(:children_below_three, "< 3Jahre?") %>
         </div>
 
+
         <!-- ratings = Model.select(:rating).uniq -->
+        <div class="filter-box">
+          <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#languages">Sprachen</button>
+          <div id="languages" class="collapse">
+             <%= simple_fields_for :search, searcher do |s| %>
+              <%= s.collection_check_boxes :properties, Property.where(type: "Language"), :id, :name do |b| %>
+                <%= b.label class:"label-checkbox" do%>
+                  <%=b.check_box + b.text%>
+                  <% end %>
+                <%end%>
+            <% end %>
+          </div>
+        </div>
 
+        <div class="filter-box">
+          <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#topics">Thematische Schwerpunkte</button>
+          <div id="topics" class="collapse">
+            <%= simple_fields_for :search, searcher do |s| %>
+              <%= s.collection_check_boxes :properties, Property.where(type: "Topic"), :id, :name do |b| %>
+                <%= b.label class:"label-checkbox" do%>
+                  <%=b.check_box + b.text%>
+                  <% end %>
+                <%end%>
+            <% end %>
+          </div>
+        </div>
+      </div>
 
-      </div>
-    <div class="filter-group">
-      <div class="filter-box">
-        <%= simple_fields_for :search, searcher do |s| %>
-          <%= s.collection_check_boxes :properties, Property.where(type: "Language"), :id, :name do |b| %>
-            <%= b.label class:"label-checkbox" do%>
-              <%=b.check_box + b.text%>
-              <% end %>
-            <%end%>
-        <% end %>
-      </div>
-      <div class="filter-box">
-        <%= simple_fields_for :search, searcher do |s| %>
-          <%= s.collection_check_boxes :properties, Property.where(type: "Topic"), :id, :name do |b| %>
-            <%= b.label class:"label-checkbox" do%>
-              <%=b.check_box + b.text%>
-              <% end %>
-            <%end%>
-        <% end %>
-      </div>
-    </div>
     <%= submit_tag %>
   <% end %>
+
 
 
 
@@ -63,3 +69,10 @@
     </div>
   </div>
 </div>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+
+

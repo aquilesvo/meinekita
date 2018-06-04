@@ -59,3 +59,52 @@
         <% end %>
       </div>
 
+<%= simple_fields_for :search, searcher do |s| %>
+          <%= s.collection_select(:categories, Category.all, :id, :name, {:prompt => 'Art der Einrichtung'}) %>
+        <% end %>
+
+<div class="container mt-3">
+          <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#categories">Art der Einrichtung</button>
+          <div id="categories" class="collapse">
+              <div class="container">
+                <form action="/action_page.php">
+                  <% counter = 1 %>
+                  <% Category.all.each do |category| %>
+
+                    <div class="form-check">
+                      <label class="form-check-label" for="check<%= counter %>">
+                        <input type="checkbox" class="form-check-input" id="check<%= counter %>" name="option<%= counter %>" value=<%= category.id %> checked><%= category.name %>
+                      </label>
+                    </div>
+                    <% counter += 1 %>
+                  <% end %>
+
+                </form>
+              </div>
+          </div>
+        </div>
+
+
+        <p>
+          <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#categories" aria-expanded="false" aria-controls="collapseExample">
+            Art der Einrichtung
+          </button>
+        </p>
+        <div class="collapse" id="categories">
+          <div class="card card-body">
+            <% counter = 1 %>
+            <% Category.all.each do |category| %>
+              <div class="form-check check-box" >
+                <div class="check-box-item">
+                  <input class="form-check-input" type="checkbox" value="<%= category.id %>" id="defaultCheck<%= counter %>">
+                </div>
+                <div class="check-box-item">
+                  <label class="form-check-label" for="defaultCheck<%= counter %>">
+                    <%= category.name %>
+                  </label>
+                </div>
+              </div>
+              <% counter += 1 %>
+            <% end %>
+          </div>
+        </div>
