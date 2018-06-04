@@ -10,7 +10,7 @@ require 'csv'
 require 'json'
 
 puts "deleting old data..."
-[Property, Kindergarden, Category, Carrier].each(&:destroy_all)
+[Property, Kindergarden, Category, Carrier, District].each(&:destroy_all)
 
 puts "setting up static parameters"
 #Property.language
@@ -48,13 +48,20 @@ carriers.each do |carrier|
   Carrier.create!(name: carrier)
 end
 
+#district
+districts = ["Charlottenburg","Charlottenburg-Nord","Dahlem","Falkenhagener Feld","Fennpfuhl","Französisch Buchholz","Friedenau","Friedrichsfelde","Friedrichshagen","Friedrichshain","Frohnau","Gatow","Gesundbrunnen","Gropiusstadt","Grunewald","Hakenfelde","Halensee","Haselhorst","Heiligensee","Heinersdorf","Hellersdorf","Hermsdorf","Johannisthal","Karlshorst","Karow","Kladow","Kreuzberg","Köpenick","Lankwitz","Lichtenberg","Lichtenrade","Lichterfelde","Lübars","Mahlsdorf","Mariendorf","Marienfelde","Marzahn","Mitte","Moabit","Märkisches Viertel","Müggelheim","Neu-Hohenschönhausen","Neukölln","Niederschöneweide","Niederschönhausen","Nikolassee","Oberschöneweide","Pankow","Plänterwald","Prenzlauer Berg","Reinickendorf","Rudow","Rummelsburg","Schmargendorf","Schmöckwitz","Schöneberg","Siemensstadt","Spandau","Staaken","Steglitz","Tegel","Tempelhof","Tiergarten","Waidmannslust","Wannsee","Wartenberg","Wedding","Weißensee","Westend","Wilhelmsruh","Wilhelmstadt","Wilmersdorf","Wittenau","Zehlendorf"]
+
+districts.each do |district|
+  District.create!(name: district)
+end
+
 #parsing the kita-table
 csv_options = { col_sep: ',', quote_char: '"', headers: :first_row }
 filepath = 'db/kitas.csv'
 
 i = 0
 
-puts "creates new seeds...."
+puts "creating new seeds...."
 
 CSV.foreach(filepath, csv_options) do |row|
   next if i > 1000
@@ -64,12 +71,12 @@ CSV.foreach(filepath, csv_options) do |row|
   kita.latitude = row[1]
   kita.longitude = row[2]
   kita.address = row[3]
-  kita.district = row[4]
   kita.plz = row[5]
   kita.properties << Educational.where(external_id: row[6].split('|').map(&:to_i))
   kita.properties << Topic.where(external_id: row[7].split('|').map(&:to_i))
   kita.properties << Language.where(external_id: row[8].split('|').map(&:to_i))
   kita.name = row[9]
+  kita.district = District.find_by(name: row[4])
   kita.category = Category.find_by(name: categories[row[10].to_i])
   kita.carrier = Carrier.find_by(name: carriers[row[11].to_i])
   kita.mo_o = row[13]

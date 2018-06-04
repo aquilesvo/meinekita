@@ -10,6 +10,17 @@
         <%= simple_fields_for :search, searcher do |s| %>
           <%= s.collection_select(:carriers, Carrier.all, :id, :name, {:prompt => 'Art des Trägers'}) %>
         <% end %>
+        <%= simple_fields_for :search, searcher do |s| %>
+          <%= s.collection_select(:districts, District.all, :id, :name, {:prompt => 'Stadtteil'}) %>
+        <% end %>
+        <div class="check-box">
+          <%= check_box_tag(:children_below_three) %>
+          <%= label_tag(:children_below_three, "< 3Jahre?") %>
+        </div>
+
+        <!-- ratings = Model.select(:rating).uniq -->
+
+
       </div>
     <div class="filter-group">
       <div class="filter-box">

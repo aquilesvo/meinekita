@@ -1,6 +1,7 @@
 .label-checkbox {
   font-size: 16px;
 }
+.check_box
 
 .filter-group {
   display: flex;
@@ -31,7 +32,7 @@
   margin: 10px;
 
   a {
-    color: white;
+    color: $lightgray;
     &:hover {
       color: red;
     }

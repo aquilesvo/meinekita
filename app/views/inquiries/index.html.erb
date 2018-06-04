@@ -3,37 +3,37 @@
 <%= link_to 'Back to Index', kindergardens_path, class: "btn btn-primary" %>
 
 <!-- @list.sort_by{|e| -e[:time_ago]} -->
-<h2>My messages</h2>
-<% @grouped_inquiries.each do |kita_id, inquiries| %>
-
-  <div>
+<div class="card-wrapper">
+  <h2>My messages</h2>
+  <% @grouped_inquiries.each do |kita_id, inquiries| %>
     <% kita = Kindergarden.find(kita_id) %>
-    <h3><strong>To: </strong><%= kita.name %></h3>
-    <ol>
-      <% inquiries.each do |inquiry| %>
+    <% inquiry = inquiries.first %>
 
-          <li><strong>Subject: </strong><%= link_to kindergarden_inquiry_path(kita, inquiry), :action => 'go' do %><%= inquiry.subject %> (<%= inquiry.created_at.to_date %>)<% end %></li>
-
-      <% end %>
-
-    </ol>
-  </div>
-<% end %>
-
-
-
-<h2>My favorites</h2>
-<% @bookmarks.each do |bookmark| %>
-  <% if bookmark.user_id == current_user.id %>
-    <% @kindergarden = Kindergarden.find(bookmark.kindergarden_id) %>
-    <% if @kindergarden.present? && @kindergarden.inquiry_ids.empty?%>
-      <%= link_to new_kindergarden_inquiry_path(@kindergarden), :action => 'go' do %>
-        <div class="inquiry-box">
-          <h3><%= @kindergarden.name %></h3>
-          <h3>Not messaged yet</h3>
-          <h2>Contact Now!</h2>
+    <%= link_to kindergarden_inquiry_path(kita, inquiry), :action => 'go' do %>
+      <div class="kindergarden-index-card">
+        <div class="kindergarden-index-card-name"><h3><strong>To: </strong><%= kita.name %></h3>
         </div>
+          <p><strong>Subject: </strong><%= inquiry.subject %> (<%= inquiry.created_at.to_date %>)</p>
+      </div>
+    <% end %>
+  <% end %>
+
+
+
+  <h2>My favorites</h2>
+  <% @bookmarks.each do |bookmark| %>
+    <% if bookmark.user_id == current_user.id %>
+      <% @kindergarden = Kindergarden.find(bookmark.kindergarden_id) %>
+      <% if @kindergarden.present? && @kindergarden.inquiry_ids.empty?%>
+        <%= link_to new_kindergarden_inquiry_path(@kindergarden), :action => 'go' do %>
+          <div class="inquiry-box">
+            <h3><%= @kindergarden.name %></h3>
+            <h3>Not messaged yet</h3>
+            <h2>Contact Now!</h2>
+          </div>
+        <% end %>
       <% end %>
     <% end %>
   <% end %>
-<% end %>
+
+</div>

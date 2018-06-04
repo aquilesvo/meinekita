@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_31_151510) do
+ActiveRecord::Schema.define(version: 2018_06_03_193233) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,6 +35,12 @@ ActiveRecord::Schema.define(version: 2018_05_31_151510) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "name"
+  end
+
+  create_table "districts", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "inquiries", force: :cascade do |t|
@@ -62,7 +68,6 @@ ActiveRecord::Schema.define(version: 2018_05_31_151510) do
     t.datetime "updated_at", null: false
     t.bigint "category_id"
     t.bigint "carrier_id"
-    t.string "district"
     t.integer "plz"
     t.time "mo_o"
     t.time "mo_c"
@@ -78,8 +83,10 @@ ActiveRecord::Schema.define(version: 2018_05_31_151510) do
     t.string "weblink"
     t.float "latitude"
     t.float "longitude"
+    t.bigint "district_id"
     t.index ["carrier_id"], name: "index_kindergardens_on_carrier_id"
     t.index ["category_id"], name: "index_kindergardens_on_category_id"
+    t.index ["district_id"], name: "index_kindergardens_on_district_id"
   end
 
   create_table "kita_properties", force: :cascade do |t|
@@ -120,6 +127,7 @@ ActiveRecord::Schema.define(version: 2018_05_31_151510) do
   add_foreign_key "bookmarks", "users"
   add_foreign_key "inquiries", "kindergardens"
   add_foreign_key "inquiries", "users"
+  add_foreign_key "kindergardens", "districts"
   add_foreign_key "kita_properties", "kindergardens"
   add_foreign_key "kita_properties", "properties"
 end
