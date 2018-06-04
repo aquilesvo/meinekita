@@ -2,6 +2,7 @@
   margin-left: 150px;
   margin-right: 150px;
   font-weight: lighter;
+  margin-bottom: 150px;
 }
 .inquiry-index-card {
   color: #454545;
@@ -27,10 +28,13 @@
   margin: 0px;
   margin-bottom: 5px;
 }
-
+.inquiry-index-card p {
+  margin-bottom: 5px;
+}
 .inquiry-index-card-name {
   font-weight: lighter;
   flex: 1 0 auto;
+  margin-left: 80px;
   a:hover {
     text-decoration: none;
   }
@@ -62,4 +66,18 @@
 }
 .inquiry-bookmark {
   z-index: 0;
+}
+.inquiry-subject {
+  font-size: 14px;
+}
+.inquiry-content {
+  font-size: 14px;
+  color: #898989;
+}
+.favorites-left-content {
+  color: #454545 !important;
+}
+.favorites-right-content {
+  display: flex;
+  align-items: center;
 }
