@@ -64,7 +64,7 @@ i = 0
 puts "creating new seeds...."
 
 CSV.foreach(filepath, csv_options) do |row|
-  next if i > 1000
+  next if i > 500
   i += 1
   puts i if i % 100 == 0
   kita = Kindergarden.new()
