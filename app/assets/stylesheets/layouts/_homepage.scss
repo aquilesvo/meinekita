@@ -4,28 +4,28 @@
   font-weight: lighter;
   text-align: center;
 }
-.searchbox-home {
-  display: flex;
-  justify-content: center;
-}
-.searchbox-home {
-  width: 50vw;
-  box-shadow: 2px 2px 2px 1px rgba(0,0,0,0.1);
-}
+// .searchbox-home {
+//   display: flex;
+//   justify-content: center;
+// }
+// .searchbox-home {
+//   // width: 50vw;
+//   box-shadow: 2px 2px 2px 1px rgba(0,0,0,0.1);
+// }
 .form-control {
   font-size: 14px;
 }
-@media(max-width: 990px) {
-  .searchbox-home {
-  display: flex;
-  justify-content: center;
-}
-}
+// @media(max-width: 990px) {
+//   .searchbox-home {
+//   display: flex;
+//   justify-content: center;
+// }
+// }
 .three-steps-main {
-  display: flex;
-  justify-content: center;
-  margin-left: 150px;
-  margin-right: 150px;
+  // display: flex;
+  // justify-content: center;
+  // // margin-left: 150px;
+  // // margin-right: 150px;
   border-color: $light-gray;
 }
 .first-step h3 {
@@ -38,10 +38,9 @@
 .third-step h3 {
   height: 100px;
 }
-.column {
-  width: 25%;
-  margin-left: 40px;
-}
+// .column {
+//   flex: 1 1 auto;
+// }
 
 /* Clear floats after the columns */
 .row:after {
