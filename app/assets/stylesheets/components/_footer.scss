@@ -7,12 +7,12 @@
   flex: 1;
 }
 .footer-distributed{
-  background-color: #292c2f;
+  background-color: #3646A4;
   box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
   box-sizing: border-box;
   width: 100%;
   text-align: left;
-  font: bold 16px sans-serif;
+  font: 16px 'Abel';
 
   padding: 55px 50px;
   margin-top: 80px;
@@ -34,19 +34,19 @@
 /* The company logo */
 
 .footer-distributed h3{
-  color:  #ffffff;
-  font: normal 36px 'Cookie', cursive;
+  color:  #CB8588;
+  font: normal 36px 'Amatic SC';
   margin: 0;
 }
 
 .footer-distributed h3 span{
-  color:  #5383d3;
+  color:  #FAF1D7;
 }
 
 /* Footer links */
 
 .footer-distributed .footer-links{
-  color:  #ffffff;
+  color:  #FAF1D7;
   margin: 20px 0 12px;
   padding: 0;
 }
@@ -59,7 +59,7 @@
 }
 
 .footer-distributed .footer-company-name{
-  color:  #8f9296;
+  color:  #FAF1D7;
   font-size: 14px;
   font-weight: normal;
   margin: 0;
@@ -72,8 +72,8 @@
 }
 
 .footer-distributed .footer-center i{
-  background-color:  #33383b;
-  color: #ffffff;
+  background-color: #3646A4;
+  color: #FAF1D7;
   font-size: 25px;
   width: 38px;
   height: 38px;
@@ -91,7 +91,7 @@
 
 .footer-distributed .footer-center p{
   display: inline-block;
-  color: #ffffff;
+  color: #FAF1D7;
   vertical-align: middle;
   margin:0;
 }
@@ -104,7 +104,7 @@
 }
 
 .footer-distributed .footer-center p a{
-  color:  #5383d3;
+  color:  #FAF1D7;
   text-decoration: none;;
 }
 
@@ -113,11 +113,12 @@
 
 .footer-distributed .footer-right{
   width: 20%;
+  color: #FAF1D7 !important;
 }
 
 .footer-distributed .footer-company-about{
   line-height: 20px;
-  color:  #92999f;
+  color:  #FAF1D7;
   font-size: 13px;
   font-weight: normal;
   margin: 0;
@@ -125,9 +126,8 @@
 
 .footer-distributed .footer-company-about span{
   display: block;
-  color:  #ffffff;
+  color:  #FAF1D7;
   font-size: 14px;
-  font-weight: bold;
   margin-bottom: 20px;
 }
 
@@ -140,11 +140,11 @@
   width: 35px;
   height: 35px;
   cursor: pointer;
-  background-color:  #33383b;
+  background-color: #3646A4;
   border-radius: 2px;
 
   font-size: 20px;
-  color: #ffffff;
+  color: #FAF1D7;
   text-align: center;
   line-height: 35px;
 
@@ -157,7 +157,7 @@
 @media (max-width: 880px) {
 
   .footer-distributed{
-    font: bold 14px sans-serif;
+    font: 14px 'Abel';
   }
 
   .footer-distributed .footer-left,
