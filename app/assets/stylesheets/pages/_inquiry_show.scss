@@ -17,25 +17,25 @@ a:hover {
   content: '';
   position: absolute;
   border-style: solid;
-  border-width: 25px 0 25px 25px;
-  border-color: transparent #F9F9F9;
+  border-width: 30.75px 30.75px 0 0;
+  border-color: #F9F9F9 transparent transparent transparent;
   display: block;
   width: 0;
   z-index: 1;
-  right: -24px;
-  top: 15%;
+  right: -30px;
+  top: 16px;
 }
 .mail:before {
 content: '';
 position: absolute;
 border-style: solid;
-border-width: 25.5px 0 25.5px 25.5px;
-border-color: transparent rgba(0,0,0,0.1);
+border-width: 31.75px 31.75px 0 0;
+border-color: rgba(0,0,0,0.1) transparent transparent transparent;
 display: block;
 width: 0;
 z-index: 0;
-right: -26px;
-top: 15%;
+right: -32px;
+top: 15.25px;
 }
 .mail:hover {
   -webkit-filter: drop-shadow(0px 0px 5px rgba(0,0,0,0.1));
