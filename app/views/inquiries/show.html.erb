@@ -1,43 +1,39 @@
-<div class="container">
-  <div class="row">
-    <div class="col-xs-8 col-xs-offset-2">
-      <% kita = Kindergarden.find(@inquiry.kindergarden_id) %>
-      <h1>Nachrichtenverlauf</h1>
-      <h2><%= kita.name %></h2>
-      <% inquiries = @inquiries.select do |inquiry| kita.inquiry_ids.include?(inquiry.id) end %>
-      <ul class="inquiries-list">
-        <% inquiries.each do |inquiry| %>
-          <% if inquiry == @inquiry %>
-            <div class="selected mail">
-              <li>
-                <div class="mail-informat">
-                  <strong>Betreff:</strong> <%= @inquiry.subject %> <br>
-                  <strong>Gesendet:</strong> <%= inquiry.created_at.strftime("%d.%m.%Y | %H:%M")%> </br>
-                  <p><strong>Nachricht:</strong> <%= @inquiry.content %></p>
-                </div>
-                <div class="mail-informat-arrow">
-                </div>
-              </li>
+<div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+  <% kita = Kindergarden.find(@inquiry.kindergarden_id) %>
+  <h1>Nachrichtenverlauf</h1>
+  <h2><%= kita.name %></h2>
+  <% inquiries = @inquiries.select do |inquiry| kita.inquiry_ids.include?(inquiry.id) end %>
+  <ul class="inquiries-list">
+    <% inquiries.each do |inquiry| %>
+      <% if inquiry == @inquiry %>
+        <div class="selected mail">
+          <li>
+            <div class="mail-informat">
+              <strong>Betreff:</strong> <%= @inquiry.subject %> <br>
+              <strong>Gesendet:</strong> <%= inquiry.created_at.strftime("%d.%m.%Y | %H:%M")%> </br>
+              <p><strong>Nachricht:</strong> <%= @inquiry.content %></p>
             </div>
-          <% else %>
-            <%= link_to kindergarden_inquiry_path(kita, inquiry), :action => 'go' do %>
-              <div class="unselected mail">
-                <li>
-                  <div class="mail-informat">
-                    <strong>Betreff: </strong> <%= inquiry.subject %> <br>
-                    <strong>Gesendet:</strong> <%= inquiry.created_at.strftime("%d.%m.%Y | %H:%M") %> </br>
-                  </div>
-                  <div class="mail-informat-arrow"></div>
-                </li>
+            <div class="mail-informat-arrow"></div>
+          </li>
+        </div>
+      <% else %>
+        <%= link_to kindergarden_inquiry_path(kita, inquiry), :action => 'go' do %>
+          <div class="unselected mail">
+            <li>
+              <div class="mail-informat">
+                <strong>Betreff: </strong> <%= inquiry.subject %> <br>
+                <strong>Gesendet:</strong> <%= inquiry.created_at.strftime("%d.%m.%Y | %H:%M") %> </br>
               </div>
-            <% end %>
-          <% end %>
+              <div class="mail-informat-arrow"></div>
+            </li>
+          </div>
         <% end %>
-      </ul>
-    <div class="link-flexbox">
-      <%= link_to 'Neue Nachricht', new_kindergarden_inquiry_path(kita), class: "btn_only" %>
-      <%= link_to 'Kita Info', kindergarden_path(kita), class: "btn_only" %>
-      <%= link_to 'Meine Nachrichten', inquiries_path, class: "btn_only" %>
-    </div>
+      <% end %>
+    <% end %>
+  </ul>
+  <div class="link-flexbox">
+    <%= link_to 'Neue Nachricht', new_kindergarden_inquiry_path(kita), class: "btn_only" %>
+    <%= link_to 'Kita Info', kindergarden_path(kita), class: "btn_only" %>
+    <%= link_to 'Zurück', inquiries_path, class: "btn_only" %>
   </div>
 </div>
