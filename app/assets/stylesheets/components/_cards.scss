@@ -1,0 +1,14 @@
+.bookmark-symbol {
+  position: absolute;
+  top: 50px;
+  left: 50px;
+  z-index: 99;
+  color: #CB8589;
+  font-size: 30px;
+  a {
+    color: $lightgray;
+    &:hover {
+      color: red;
+    }
+  }
+}
