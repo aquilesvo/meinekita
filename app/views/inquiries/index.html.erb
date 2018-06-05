@@ -40,7 +40,7 @@
               <p><strong>Betreff: </strong><%= inquiry.subject %></p>
             </div>
             <div class="inquiry-content">
-              <p><%= inquiry.content %></p>
+              <p><%= inquiry.content.truncate(100, separator: ' ') %></p>
             </div>
           </div>
 

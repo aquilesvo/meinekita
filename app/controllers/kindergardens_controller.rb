@@ -43,6 +43,7 @@ class KindergardensController < ApplicationController
 
     else
       @kindergardens = Kindergarden.where.not(latitude: nil, longitude: nil).paginate(:page => params[:page], :per_page => 4)
+
       @markers = @kindergardens.map do |kindergarden|
         {
           lat: kindergarden.latitude,
