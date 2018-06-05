@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <title>Meine Kita in Berlin</title>
+    <%= favicon_link_tag %>
 
     <%= csrf_meta_tags %>
     <%= action_cable_meta_tag %>
@@ -12,7 +13,7 @@
     <%#= stylesheet_pack_tag 'application', media: 'all' %>
     <!-- Uncomment if you import CSS in app/javascript/packs/application.js -->
   </head>
-  <body>
+  <body class="site">
     <%= render 'shared/navbar' %>
     <%= render 'shared/flashes' %>
     <%= yield %>
@@ -20,5 +21,8 @@
     <%= javascript_include_tag 'application' %>
     <%= javascript_pack_tag 'application' %>
     <%= javascript_pack_tag "map" %>
+    <footer>
+      <%= render 'shared/footer' %>
+    </footer>
   </body>
 </html>

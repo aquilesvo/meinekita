@@ -21,3 +21,31 @@
   justify-content: center;
 }
 }
+.three-steps-main {
+  display: flex;
+  justify-content: center;
+  margin-left: 150px;
+  margin-right: 150px;
+  border-color: $light-gray;
+}
+.first-step h3 {
+  border-color: black;
+  height: 100px;
+}
+.second-step h3 {
+  height: 100px;
+}
+.third-step h3 {
+  height: 100px;
+}
+.column {
+  width: 25%;
+  margin-left: 40px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}

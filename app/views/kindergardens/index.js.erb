@@ -1,1 +1,10 @@
+
 document.querySelector('.kindergarden-index-cards-container').innerHTML = '<%= j render 'list', kindergardens: @kindergardens %>';
+
+
+
+document.querySelector('#map-container').innerHTML = '<%= j render 'map', markers: @markers %>';
+displayMap();
+// console.log("hello")
+
+

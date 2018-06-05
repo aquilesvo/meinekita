@@ -6,7 +6,7 @@
 // General style
 $font-family-sans-serif:  $body-font;
 $headings-font-family:    $headers-font;
-$body-bg:                 $light-gray;
+$body-bg:                 white;
 $font-size-base: 18px;
 
 // Colors
@@ -51,3 +51,9 @@ $border-radius-small: 2px;
 }
 
 // Override other variables below!
+.input[type="checkbox"] {
+  margin: 4px 4px 0px;
+  margin-top: 1px \9;
+  line-height: normal;
+}
+

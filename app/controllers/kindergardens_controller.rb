@@ -12,6 +12,7 @@ class KindergardensController < ApplicationController
         }
 
       end
+      @markers_json = @markers.to_json
 
     elsif params[:search].present?
        params[:search] = params[:search] || {}
@@ -23,6 +24,7 @@ class KindergardensController < ApplicationController
           end
         end
 
+
         @kindergardens = Kindergarden.search(params[:search])
 
         @markers = @kindergardens.map do |kindergarden|
@@ -32,6 +34,7 @@ class KindergardensController < ApplicationController
             infoWindow: { content: render_to_string(partial: "/kindergardens/map_box", locals: { kindergarden: kindergarden }) }
           }
         end
+        @markers_json = @markers.to_json
 
       respond_to do |format|
         format.html
@@ -49,6 +52,7 @@ class KindergardensController < ApplicationController
           infoWindow: { content: render_to_string(partial: "/kindergardens/map_box", locals: { kindergarden: kindergarden }) }
         }
       end
+      @markers_json = @markers.to_json
     end
   end
 

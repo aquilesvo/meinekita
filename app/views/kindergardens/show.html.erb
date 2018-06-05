@@ -1,18 +1,19 @@
 
 <div class="kita-show-container">
-
   <div class="kita-details-left-side">
     <% if @kindergarden.carrier_id.present? %>
       <div class="carrier">
         <p><%= Carrier.find(@kindergarden.carrier_id).name %></p>
       </div>
     <% end %>
-    <h1><u><%= @kindergarden.name %></u></h1>
-    <h2>Adresse:</h2>
+    <div>
+      <h1><%= @kindergarden.name %></h1>
+    </div>
+    <h3>Adresse:</h3>
     <p><%= @kindergarden.address %></p>
-    <p><%= @kindergarden.plz %> Berlin-<%= @kindergarden.district %></p>
+    <p><%= @kindergarden.plz %> Berlin <% if @kindergarden.district_id.present? %><%= District.find(@kindergarden.district_id).name %><% end %>
     <p><%= @kindergarden.phone %></p>
-    <p><%= @kindergarden.email %></p>
+    <a><%= mail_to @kindergarden.email %></a>
     <br>
 
     <% educational = Property.where(type: 'Educational') %>
@@ -20,21 +21,21 @@
     <% language = Property.where(type: 'Language') %>
 
     <% if educational.find(@kindergarden.property_ids & educational.ids).present? %>
-      <h2>Pädagogische Schwerpunkte:</h2>
+      <h3>Pädagogische Schwerpunkte:</h3>
         <% educational.find(@kindergarden.property_ids & educational.ids).each do |e| %>
           <p><%= e.name %></p>
         <% end %>
       <br>
     <% end %>
     <% if topic.find(@kindergarden.property_ids & topic.ids).present? %>
-      <h2>Thematische Schwerpunkte:</h2>
+      <h3>Thematische Schwerpunkte:</h3>
         <% topic.find(@kindergarden.property_ids & topic.ids).each do |t| %>
           <p><%= t.name %></p>
         <% end %>
       <br>
     <% end %>
     <% if language.find(@kindergarden.property_ids & language.ids).present? %>
-      <h2>Sprachen:</h2>
+      <h3>Sprachen:</h3>
         <p>deutsch</p>
         <% language.find(@kindergarden.property_ids & language.ids).each do |l| %>
           <p><%= l.name %></p>
@@ -42,14 +43,12 @@
       <br>
     <% end %>
 
-    <h2> Plätze insgesamt: <%= @kindergarden.children_below_three.to_i + @kindergarden.children_above_three.to_i %></h2>
+    <h3> Plätze insgesamt: <%= @kindergarden.children_below_three.to_i + @kindergarden.children_above_three.to_i %></h3>
     <p> Kinder unter 3 Jahren: <%= @kindergarden.children_below_three %></p>
     <p> Kinder über 3 Jahren: <%= @kindergarden.children_above_three %></p>
     <% if @kindergarden.min_age_months.present? %>
       <p>Mindestalter in Monaten: <%= @kindergarden.min_age_months %></p>
     <% end %>
-
-
 
 
   </div>
@@ -58,15 +57,12 @@
     <div
       id="map"
       style="width: 100%;
-      height: 350px;"
+      height: 250px;"
       data-markers="<%= @markers.to_json %>">
     </div>
     <br>
     <br>
     <%= link_to "Kontaktieren", new_kindergarden_inquiry_path(@kindergarden), class: 'btn btn-primary' %>
   </div>
-
-
-
 </div>
 

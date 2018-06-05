@@ -109,8 +109,6 @@
           </div>
         </div>
 
-
-
 <% @bookmark = Bookmark.find(current_user.bookmark_ids.select do |id| kindergarden.bookmark_ids.include?(id) end) %>
       <% if @bookmark.present? %>
          <%= link_to kindergarden_bookmark_path(kindergarden, @bookmark), class: "top-corner-star", method:'delete' do %>
@@ -123,3 +121,9 @@
             </div>
           <% end %>
       <% end %>
+
+<div class="check-box filter-box">
+            <%= check_box_tag(:children_below_three) %>
+            <%= label_tag(:children_below_three, "< 3Jahre?") %>
+        </div>
+

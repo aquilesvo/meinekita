@@ -2,3 +2,51 @@
   color: red;
 
 }
+.btn-custom {
+
+}
+
+.filter-button {
+  border-radius: 4px;
+  color: #fff;
+  // background-color: rgba(150,150,200, 0.5);
+  background: linear-gradient(to right, rgba(150,150,200, 0.2), rgba(150,150,200, 0.5));
+  box-shadow: 1px 1px 3px rgba(150,150,200, 0.7);
+  font-family: Abel;
+  font-style: bold;
+  font-size: 15px;
+  text-align: center;
+  justify-content: center;
+
+  line-height: 1.428571429;
+  height: 40px;
+}
+
+.large {
+    width: 20%;
+    padding: 0.5em 1em;
+}
+.medium {
+    width: 15%;
+    padding: 0.5em 1em;
+}
+.slim {
+    width: 80px;
+    padding: 0.5em 1em;
+    background-color: rgba(150,150,200, 0.8);
+}
+
+.filter-button-right {
+  width: 15%;
+  color: #fff;
+  background-color: #007bff;
+  border-color: #007bff;
+  font-family: Abel;
+  font-size: 15px;
+}
+
+.submit-button {
+  width: 80px;
+  font-family: Abel;
+  font-size: 15px;
+}
