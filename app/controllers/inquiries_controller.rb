@@ -24,7 +24,13 @@ before_action :set_sorted_inquiries, only: [:index, :destroy, :show]
     @inquiry = Inquiry.new(inquiry_params)
     @inquiry.user_id = current_user.id
     @inquiry.kindergarden_id = params[:kindergarden_id]
-    @inquiry.alert = params[:inquiry][:alert]
+    if params[:inquiry][:alert] == "in 2 Wochen"
+      @inquiry.alert = 2
+    elsif params[:inquiry][:alert] == "in 3 Wochen"
+      @inquiry.alert = 3
+    elsif params[:inquiry][:alert] == "in 4 Wochen"
+      @inquiry.alert = 4
+    end
     @inquiry.save
     # if @inquiry.alert
     #   send_alert_email
