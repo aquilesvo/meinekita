@@ -17,9 +17,8 @@
     <% if user_signed_in? %>
 
       <!-- Links when logged in -->
-      <%= link_to "Nachrichten", root_path, class: "navbar-wagon-item navbar-wagon-link" %>
-       <%= link_to "Alerts", root_path, class: "navbar-wagon-item navbar-wagon-link" %>
-      <%= link_to "Dashboard", inquiries_path, class: "navbar-wagon-item navbar-wagon-link" %>
+      <%= link_to "Meine Nachrichten", inquiries_path, class: "navbar-wagon-item navbar-wagon-link" %>
+       <%= link_to "Meine Favoriten", bookmarks_path, class: "navbar-wagon-item navbar-wagon-link" %>
 
       <!-- Avatar with dropdown menu -->
       <div class="navbar-wagon-item">

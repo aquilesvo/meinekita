@@ -1,0 +1,43 @@
+<div class="inquiry-page-container">
+  <h1> <u>Favoriten von <%= current_user.email %></u> </h1> <br>
+  <div class="card-wrapper">
+    <h2>Meine gespeicherten Kitas</h2>
+    <% @bookmarks.each do |bookmark| %>
+      <% if bookmark.user_id == current_user.id %>
+        <% @kindergarden = Kindergarden.find(bookmark.kindergarden_id) %>
+        <% if @kindergarden.present? && @kindergarden.inquiry_ids.empty?%>
+          <%= link_to new_kindergarden_inquiry_path(@kindergarden), :action => 'go' do %>
+            <div class="inquiry-index-card">
+
+              <div class="top-corner-star">
+                <div class="bookmark-symbol"><i class="fas fa-heart"></i></div>
+              </div>
+
+              <div class="favorites-left-content inquiry-index-card-name">
+                <% if @kindergarden.carrier_id.present? %>
+                  <div class="carrier">
+                    <p><%= Carrier.find(@kindergarden.carrier_id).name %></p>
+                  </div>
+                <% else %>
+                  <div class="carrier">
+                    <p>Ohne Träger</p>
+                  </div>
+                <% end %>
+                <h3><%= @kindergarden.name %></h3>
+                <div class="inquiry-subject">
+                  <p><%= @kindergarden.address %></p>
+                  <p><%= @kindergarden.plz %> Berlin <% if @kindergarden.district_id.present? %><%= District.find(@kindergarden.district_id).name %><% end %></p>
+                </div>
+              </div>
+              <div class="favorites-right-content">
+                <%= link_to 'kontaktieren', new_kindergarden_inquiry_path(@kindergarden), class: "btn btn-primary" %>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      <% end %>
+      <br>
+    <% end %>
+  </div>
+  <%= link_to 'Zurück zur Übersicht', kindergardens_path, class: "btn btn-primary" %>
+</div>
