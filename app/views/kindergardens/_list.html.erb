@@ -1,7 +1,6 @@
-
 <div class="kindergarden-index-row">
-  <h3>Ergebnisse: <%= @kindergardens.count %></h3>
-  <% @kindergardens.each do |kindergarden| %>
+  <h3>Ergebnisse: <%= kindergardens.count %></h3>
+  <% kindergardens.each do |kindergarden| %>
 
     <div class="card-wrapper" style="position:relative;">
       <%= link_to kindergarden_path(kindergarden), :action => 'go' do %>
@@ -23,19 +22,12 @@
           </div>
         </div>
       <% end %>
-      <% @bookmark = Bookmark.find(current_user.bookmark_ids.select do |id| kindergarden.bookmark_ids.include?(id) end) %>
-      <% if @bookmark.present? %>
-
-          <div><i class="fas fa-heart bookmark-symbol"></i></div>
-
-      <% else %>
-
-          <div><i class="far fa-heart bookmark-symbol"></i></div>
-
-      <% end %>
+      <!-- Bookmarks -->
+      <div class="bookmark-container">
+        <%= render "bookmarks/bookmarks", :kindergarden => kindergarden %>
+      </div>
     </div>
   <% end %>
 </div>
-
 
 <%= javascript_pack_tag 'bookmarks' %>

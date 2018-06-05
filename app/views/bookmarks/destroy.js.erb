@@ -1,0 +1,13 @@
+var bookmarkButtonDestroy = document.querySelector(".selected-bookmark");
+
+bookmarkButtonDestroy.classList.remove("fas");
+bookmarkButtonDestroy.classList.add("far");
+bookmarkButtonDestroy.classList.toggle("selected-bookmark");
+
+
+document.querySelector('.selected-bookmark-container').innerHTML = "<%= j render 'bookmarks/bookmarks', kindergarden: @kindergarden %>";
+
+// var newButton = document.querySelector(".bookmark-container")
+// bookmarkButtonDestroy.addEventListener("click", (event) => {
+//   event.currentTarget.classList.toggle("selected-bookmark");
+// });
