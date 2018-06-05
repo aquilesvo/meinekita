@@ -3,16 +3,13 @@
   text-align: center;
   font-weight: bold;
 }
-h4 {
-  margin-left: 15px;
-  font-weight: bold;
-}
+
 .kindergarden-index-main-container {
   display: flex;
   // color: $light-gray;
 }
 .kindergarden-index-cards-container {
-  flex-grow: 2
+  flex-grow: 2;
 }
 .kindergarden-index-card {
   flex: 1 1 auto;
@@ -49,41 +46,39 @@ h4 {
   position: absolute;
   top: 27px;
   left: 100px;
+  height: 30%;
   font-size: 25px;
+  overflow: hidden;
   h4 {
     font-family: Amatic SC;
     font-weight: lighter;
-    font-size: 35px;
+    font-size: 30px;
     color: black
   }
 }
 .kindergarden-index-card-address {
   position: absolute;
-  top: 81px;
+  bottom: 20px;
   left: 100px;
+  overflow: hidden;
   h6 {
     font-family: Abel;
     font-size: 15px;
     color: black
   }
 }
-.yellow {
-  color: yellow;
-}
-.gray {
-  color: gray;
-}
-h3 {
-  margin-left: 15px;
-  font-weight: bold;
-}
-h4, h5 {
-  color: black;
-}
-.top-corner-star {
+
+// h3 {
+//   margin-left: 15px;
+//   font-weight: bold;
+// }
+// h4, h5 {
+//   color: black;
+// }
+.bookmark-symbol {
   position: absolute;
-  top: 50px;
-  left: 50px;
+  top: 30px;
+  right: 50px;
   z-index: 99;
   color: #CB8589;
   font-size: 30px;
@@ -91,8 +86,58 @@ h4, h5 {
 }
 .kindergarden-index-card-compass {
   position: absolute;
-  bottom: 40px;
-  right: 40px;
+  bottom: 20px;
+  right: 30px;
   color: black;
   font-size: 15px;
+
 }
+
+
+
+@media(max-width: 332px) {
+
+  .bookmark{
+    transition: ease all 2s;
+    display: none; }
+  .kindergarden-index-card-name {
+    left: 0px;
+    transition: ease all 2s;
+  }
+  .kindergarden-index-card-address{
+    left: 0px;
+    bottom: 20px;
+    transition: ease all 2s;
+  }
+  .kindergarden-index-card-category {
+    left: 0px;
+    margin: 0px;
+    transition: ease all 2s;
+  }
+}
+
+
+@media(max-width: 468px) {
+  .kindergarden-index-card-compass {
+    display: none;
+    transition: ease all 2s;
+  }
+  .bookmark-symbol{
+    transition: ease all 2s;
+    right: 50px;
+    font-size: 30px; }
+
+  .kindergarden-index-card-name {
+    left: 15px;
+    transition: ease all 2s;
+  }
+  .kindergarden-index-card-address{
+    left: 15px;
+    transition: ease all 2s;
+
+  }
+  .kindergarden-index-card-category {
+    left: 15px;
+    margin: 0px;
+    transition: ease all 2s;
+  }}

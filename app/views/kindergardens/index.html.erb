@@ -1,26 +1,29 @@
 
-<div>
+<div class="container">
   <%= form_tag kindergardens_path, method: "get", remote: true do %>
     <% searcher = OpenStruct.new(params[:search]) %>
     <div class="filter-box">
+      <div class="row">
+        <%= simple_fields_for :search, searcher do |s| %>
+          <%= s.collection_select(:categories, Category.all, :id, :name, {:prompt => 'Art der Einrichtung'}, { class: "filter-button large col-xs-6 col-sm-4 col-md-2"}) %>
+        <% end %>
 
-      <%= simple_fields_for :search, searcher do |s| %>
-        <%= s.collection_select(:categories, Category.all, :id, :name, {:prompt => 'Art der Einrichtung'}, { class: "filter-button large"}) %>
-      <% end %>
-      <%= simple_fields_for :search, searcher do |s| %>
-        <%= s.collection_select(:carriers, Carrier.all, :id, :name, {:prompt => 'Art des Trägers'}, { class: "filter-button large"}) %>
-      <% end %>
-      <%= simple_fields_for :search, searcher do |s| %>
-        <%= s.collection_select(:districts, District.all, :id, :name, {:prompt => 'Stadtteil'}, { class: "filter-button large"}) %>
-      <% end %>
+        <%= simple_fields_for :search, searcher do |s| %>
+          <%= s.collection_select(:carriers, Carrier.all, :id, :name, {:prompt => 'Art des Trägers'}, { class: "filter-button large col-xs-6 col-sm-4 col-md-2"}) %>
+        <% end %>
 
-      <button type="button" class="filter-button medium" data-toggle="collapse" data-target="#languages"><%= image_tag 'png/005-language.png' %>    Sprachen</button>
+        <%= simple_fields_for :search, searcher do |s| %>
+          <%= s.collection_select(:districts, District.all, :id, :name, {:prompt => 'Stadtteil'}, { class: "filter-button large col-xs-6 col-sm-4 col-md-2"}) %>
+        <% end %>
 
-      <button type="button" class="filter-button medium" data-toggle="collapse" data-target="#topics"><%= image_tag 'png/004-ebook.png' %>    Thematisch</button>
+        <button type="button" class="filter-button medium col-xs-6 col-sm-4 col-md-2" data-toggle="collapse" data-target="#languages"><%= image_tag 'png/005-language.png' %>    Sprachen</button>
 
-      <%= submit_tag "Save", class: 'filter-button slim' %>
+        <button type="button" class="filter-button medium col-xs-6 col-sm-4 col-md-2" data-toggle="collapse" data-target="#topics"><%= image_tag 'png/004-ebook.png' %>    Thematisch</button>
 
-        <div id="languages" class="collapse">
+        <%= submit_tag "Save", class: 'filter-button slim col-xs-6 col-sm-4 col-md-2' %>
+      </div>
+      <div class="row">
+        <div id="languages" class="collapse col-xs-12">
           <div class="subheader"><h4><strong>Sprachen</strong></h4></div>
            <%= simple_fields_for :search, searcher do |s| %>
             <%= s.collection_check_boxes :properties, Property.where(type: "Language"), :id, :name do |b| %>
@@ -31,7 +34,7 @@
           <% end %>
         </div>
 
-        <div id="topics" class="collapse">
+        <div id="topics" class="collapse col-xs-12">
           <div class="subheader"><h4><strong>Themen</strong></h4></div>
           <%= simple_fields_for :search, searcher do |s| %>
             <%= s.collection_check_boxes :properties, Property.where(type: "Topic"), :id, :name do |b| %>
@@ -41,17 +44,19 @@
               <%end%>
           <% end %>
         </div>
+      </div>
     </div>
   <% end %>
 
-  <div class="kindergarden-index-main-container">
-    <div class="kindergarden-index-cards-container">
-      <%= render "kindergardens/list", kindergardens: @kindergardens %>
+  <div class="row">
+    <div class="kindergarden-index-main-container col-xs-12">
+      <div class="kindergarden-index-cards-container">
+        <%= render "kindergardens/list", kindergardens: @kindergardens %>
+      </div>
+      <div id="map-container" class="col-md-6 hidden-xs hidden-sm">
+        <%= render 'map', markers: @markers %>
+      </div>
     </div>
-    <div id="map-container">
-      <%= render 'map', markers: @markers %>
-    </div>
-
   </div>
 </div>
 

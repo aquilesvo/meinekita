@@ -8,8 +8,8 @@
     <h4>Ergebnisse: <%= @kindergardens.count %></h3>
   <% @kindergardens.each do |kindergarden| %>
 
-
-    <div class="card-wrapper" style="position:relative;">
+  <div class="row">
+    <div class="card-wrapper col-xs-12 col-md-12" style="position:relative;">
       <%= link_to kindergarden_path(kindergarden), :action => 'go' do %>
         <div class="kindergarden-index-card">
           <div class="kindergarden-index-card-category">
@@ -34,6 +34,7 @@
         <%= render "bookmarks/bookmarks", :kindergarden => kindergarden %>
       </div>
     </div>
+  </div>
   <% end %>
 </div>
 
