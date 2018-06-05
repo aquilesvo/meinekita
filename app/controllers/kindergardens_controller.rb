@@ -43,6 +43,8 @@ class KindergardensController < ApplicationController
 
     else
       @kindergardens = Kindergarden.where.not(latitude: nil, longitude: nil)
+      Rails.logger.info("Hello")
+
       @markers = @kindergardens.map do |kindergarden|
         {
           lat: kindergarden.latitude,

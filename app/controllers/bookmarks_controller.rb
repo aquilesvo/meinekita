@@ -14,12 +14,36 @@ class BookmarksController < ApplicationController
     @bookmark.user_id = current_user.id
     # @bookmark.kindergarden_id = params[:kindergarden_id]
     @bookmark.save
-    redirect_to kindergardens_path
+
+    if @bookmark.save
+      respond_to do |format|
+
+        format.html { render 'kindergardens/index' }
+        format.js
+
+      end
+    else
+      respond_to do |format|
+
+        format.html { render 'kindergardens/show' }
+        format.js
+
+      end
+    end
+
+
   end
 
   def destroy
     @bookmark.destroy
-    redirect_to kindergardens_path
+
+    respond_to do |format|
+
+      format.html { render 'kindergardens/index' }
+      format.js
+
+
+    end
   end
 
   private
