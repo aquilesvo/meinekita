@@ -48,11 +48,18 @@
 
 
 
-
-
+  <div class="subheader">
+    <h3>Betreuungsangebote in Berlin</h3>
+  </div>
   <div class="kindergarden-index-main-container">
     <div class="kindergarden-index-cards-container">
       <%= render "list" %>
+        <div class="flickr_pagination">
+          <div class="page_info">
+            <%= page_entries_info @posts %>
+          </div>
+          <%= will_paginate @posts, :container => false %>
+        </div>
     </div>
     <div id="map-container">
       <%= render 'map', markers: @markers %>
