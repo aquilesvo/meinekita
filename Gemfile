@@ -20,6 +20,8 @@ gem 'uglifier'
 gem 'webpacker'
 gem 'geocoder'
 gem 'will_paginate', '~> 3.1.0'
+gem 'momentjs-rails', '>= 2.9.0'
+gem 'bootstrap3-datetimepicker-rails', '~> 4.17.47'
 
 
 
