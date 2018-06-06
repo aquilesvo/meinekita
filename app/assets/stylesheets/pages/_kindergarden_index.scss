@@ -1,11 +1,18 @@
 .subheader {
   padding: 0.5em 1em;
-  text-align: center;
-  font-weight: bold;
+  h3 {
+    text-align: center;
+    font-weight: bold;
+  }
+  h4 {
+
+  }
 }
+
 
 .kindergarden-index-main-container {
   display: flex;
+  padding: 0px;
   // color: $light-gray;
 }
 .kindergarden-index-cards-container {
@@ -35,7 +42,7 @@
 .kindergarden-index-card-category {
   position: absolute;
   top: 8px;
-  left: 100px;
+  left: 15px;
   h6 {
     font-family: Abel;
     font-size: 12px;
@@ -45,7 +52,7 @@
 .kindergarden-index-card-name {
   position: absolute;
   top: 27px;
-  left: 100px;
+  left: 15px;
   height: 30%;
   font-size: 25px;
   overflow: hidden;
@@ -59,7 +66,7 @@
 .kindergarden-index-card-address {
   position: absolute;
   bottom: 20px;
-  left: 100px;
+  left: 15px;
   overflow: hidden;
   h6 {
     font-family: Abel;
@@ -68,13 +75,6 @@
   }
 }
 
-// h3 {
-//   margin-left: 15px;
-//   font-weight: bold;
-// }
-// h4, h5 {
-//   color: black;
-// }
 .bookmark-symbol {
   position: absolute;
   top: 30px;
@@ -92,30 +92,6 @@
   font-size: 15px;
 
 }
-
-
-
-@media(max-width: 332px) {
-
-  .bookmark{
-    transition: ease all 2s;
-    display: none; }
-  .kindergarden-index-card-name {
-    left: 0px;
-    transition: ease all 2s;
-  }
-  .kindergarden-index-card-address{
-    left: 0px;
-    bottom: 20px;
-    transition: ease all 2s;
-  }
-  .kindergarden-index-card-category {
-    left: 0px;
-    margin: 0px;
-    transition: ease all 2s;
-  }
-}
-
 
 @media(max-width: 468px) {
   .kindergarden-index-card-compass {
@@ -141,3 +117,35 @@
     margin: 0px;
     transition: ease all 2s;
   }}
+
+@media(max-width: 332px) {
+
+  .bookmark{
+    transition: ease all 2s;
+    display: none; }
+  .bookmark-symbol{
+    transition: ease all 2s;
+    right: 40px;
+    font-size: 20px; }
+  .kindergarden-index-card-name {
+    left: 0px;
+    transition: ease all 2s;
+  }
+  .kindergarden-index-card-address{
+    left: 0px;
+    bottom: 20px;
+    transition: ease all 2s;
+  }
+  .kindergarden-index-card-category {
+    left: 0px;
+    margin: 0px;
+    transition: ease all 2s;
+  }
+}
+// h3 {
+//   margin-left: 15px;
+//   font-weight: bold;
+// }
+// h4, h5 {
+//   color: black;
+// }

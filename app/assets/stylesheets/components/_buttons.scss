@@ -7,19 +7,23 @@
 }
 
 .filter-button {
-  border-radius: 4px;
-  color: #fff;
+  border-radius: 3px;
+  color: $blue;
   // background-color: rgba(150,150,200, 0.5);
-  background: linear-gradient(to right, rgba(150,150,200, 0.2), rgba(150,150,200, 0.5));
+  background: linear-gradient(to right, rgba(249, 249, 249, 0.5), rgba(249, 249, 249, 1));
   box-shadow: 1px 1px 3px rgba(150,150,200, 0.7);
   font-family: Abel;
   font-style: bold;
   font-size: 15px;
   text-align: center;
   justify-content: center;
-
   line-height: 1.428571429;
   height: 40px;
+  display: flex;
+}
+.button-element {
+  justify-content: space-between;
+  padding: 0px 5px;
 }
 
 .large {
@@ -33,7 +37,7 @@
 .slim {
     width: 80px;
     padding: 0.5em 1em;
-    background-color: rgba(150,150,200, 0.8);
+    background-color: $blue;
 }
 
 .filter-button-right {

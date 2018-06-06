@@ -1,6 +1,7 @@
 class KindergardensController < ApplicationController
 
   def index
+
     if params[:query].present?
       kindergardens = Kindergarden.near(params[:query], 1.5, :units => :km)
       @kindergardens = kindergardens.to_a
