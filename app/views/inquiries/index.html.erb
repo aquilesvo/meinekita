@@ -1,29 +1,19 @@
+<div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
 <div class="inquiry-page-container">
-  <h1> <u>Nachrichten von <%= current_user.email %></u> </h1> <br>
+
+  <div class="inquiry-page-header">
+    <h2> <u>Nachrichtenüberblick von <%= current_user.email %></u> </h2>
+  </div>
 
   <!-- @list.sort_by{|e| -e[:time_ago]} -->
   <div class="card-wrapper">
-    <h2>Meine angeschriebenen Kitas</h2>
     <% @grouped_inquiries.each do |kita_id, inquiries| %>
       <% kita = Kindergarden.find(kita_id) %>
       <% inquiry = inquiries.first %>
 
       <%= link_to kindergarden_inquiry_path(kita, inquiry), :action => 'go' do %>
         <div class="inquiry-index-card">
-          <div class="inquiry-bookmark">
-            <% @bookmark = Bookmark.find(current_user.bookmark_ids.select do |id| kita.bookmark_ids.include?(id) end) %>
-            <% if @bookmark.present? %>
-              <div class="top-corner-star">
-                <div class="bookmark-symbol"><i class="fas fa-heart"></i></div>
-              </div>
-            <% else %>
-              <div class="top-corner-star">
-                <div class="bookmark-symbol">
-                  <i class="far fa-heart"></i>
-                </div>
-              </div>
-            <% end %>
-          </div>
+
           <div class="inquiry-index-card-name">
             <% if kita.carrier_id.present? %>
               <div class="carrier">
@@ -35,6 +25,8 @@
               </div>
             <% end %>
             <h3>An: <%= kita.name %></h3>
+          </div>
+          <div class="inquiry-mail-info">
             <div class="inquiry-subject">
               <p><strong>Betreff: </strong><%= inquiry.subject %></p>
             </div>
@@ -53,5 +45,8 @@
     <% end %>
     <br>
   </div>
-  <%= link_to 'Zurück zur Suche', kindergardens_path, class: "btn btn-primary" %>
+  <div class="backlink center">
+    <%= link_to "Zurück zur Suche", kindergardens_path %>
+  </div>
+</div>
 </div>
