@@ -2,7 +2,12 @@
   <!-- Logo -->
   <div class="logo-with-title">
     <div>
-      <%= link_to 'Meine Kita', root_path %>
+      <%= link_to root_path, class: "navbar-wagon-brand" do %>
+        <%= image_tag 'logo.png', class: 'icon',  height: "42", width: "50" %>
+      <% end %>
+    </div>
+    <div>
+      <h3> Meine Kita</h3>
     </div>
   </div>
 

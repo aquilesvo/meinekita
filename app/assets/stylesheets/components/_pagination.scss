@@ -94,7 +94,7 @@
       background: #0063dc;
       color: white; }
   .flickr_pagination .page_info {
-    color: #aaaaaa;
+    color: black;
     padding-top: 0.8em; }
   .flickr_pagination .previous_page, .flickr_pagination .next_page {
     border-width: 2px; }
@@ -102,3 +102,6 @@
     margin-right: 1em; }
   .flickr_pagination .next_page {
     margin-left: 1em; }
+.page_info {
+  color: black;
+}
