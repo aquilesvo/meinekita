@@ -4,10 +4,7 @@
     text-align: center;
     font-weight: bold;
   }
-  h4 {
-  }
 }
-
 
 .kindergarden-index-main-container {
   display: flex;
@@ -37,6 +34,8 @@
     }
   }
 }
+
+
 .kindergarden-index-card:first-child {
   margin-top: 0px;
 }
@@ -45,7 +44,7 @@
 }
 .kindergarden-index-card-category {
   position: absolute;
-  top: 28px;
+  top: 16px;
   left: 20px;
   h6 {
     font-family: Abel;
@@ -63,13 +62,23 @@
   h4 {
     font-family: Amatic SC;
     font-weight: lighter;
-    font-size: 40px;
+    font-size: 32px;
     color: black
   }
 }
+
+.kindergarden-index-card-compass {
+    position: absolute;
+    bottom: 5px;
+    right: 15px;
+    font-family: Abel;
+    font-size: 15px;
+    color: rgba(0, 0, 0, 0.9);
+}
+
 .kindergarden-index-card-address {
   position: absolute;
-  bottom: 20px;
+  bottom: 5px;
   left: 20px;
   overflow: hidden;
   h6 {
