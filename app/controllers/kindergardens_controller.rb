@@ -3,7 +3,7 @@ class KindergardensController < ApplicationController
   def index
 
     if params[:query].present?
-      kindergardens = Kindergarden.near(params[:query], 1.5, :units => :km).paginate(:page => params[:page], :per_page => 4)
+      kindergardens = Kindergarden.near(params[:query], 1.5, :units => :km).paginate(:page => params[:page], :per_page => 10)
       @kindergardens = kindergardens.to_a
       @markers = @kindergardens.map do |kindergarden|
         {
@@ -26,7 +26,8 @@ class KindergardensController < ApplicationController
         end
 
 
-        @kindergardens = Kindergarden.search(params[:search]).paginate(:page => params[:page], :per_page => 4)
+        kindergardens = Kindergarden.search(params[:search]).paginate(:page => params[:page], :per_page => 10)
+        @kindergardens = kindergardens
 
         @markers = @kindergardens.map do |kindergarden|
           {
@@ -43,7 +44,7 @@ class KindergardensController < ApplicationController
       end
 
     else
-      @kindergardens = Kindergarden.where.not(latitude: nil, longitude: nil).paginate(:page => params[:page], :per_page => 4)
+      @kindergardens = Kindergarden.where.not(latitude: nil, longitude: nil).paginate(:page => params[:page], :per_page => 10)
 
       @markers = @kindergardens.map do |kindergarden|
         {
