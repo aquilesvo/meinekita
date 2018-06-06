@@ -9,6 +9,11 @@
   margin-right: 125px;
   margin-top: 50px;
   display: flex;
+  @media (max-width: 960px) {
+    display: inline-flex;
+    flex-direction: column;
+    margin: 0px;
+  }
   justify-content: space-around;
 }
 .kita-show-container h1, h2, p {
@@ -38,4 +43,8 @@
 .carrier {
   color: #A9A9A9;
   font-size: 14px;
+}
+.sticky {
+  position: sticky;
+  top: 330px;
 }

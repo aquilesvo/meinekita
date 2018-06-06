@@ -86,6 +86,9 @@ text-decoration: none !important;
   justify-content: space-around;
   margin-bottom: 50px;
   margin-top: 25px;
+  @media (max-width: 389px) {
+    flex-wrap: wrap;
+  }
 }
 
 

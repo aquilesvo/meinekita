@@ -1,8 +1,13 @@
 class BookmarksController < ApplicationController
   before_action :set_inquiry, only: [:show, :edit, :update]
   before_action :set_kindergarden, only: [:new, :create, :destroy]
-  before_action :set_user, only: [:bookmark_params]
+  before_action :set_user, only: [:index, :bookmark_params]
   before_action :set_bookmark, only: [:destroy]
+
+
+  def index
+    @bookmarks = Bookmark.where(:user_id == current_user.id)
+  end
 
   def new
     @bookmark = Bookmark.new()

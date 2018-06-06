@@ -17,9 +17,8 @@
     <% if user_signed_in? %>
 
       <!-- Links when logged in -->
-      <%= link_to "Nachrichten", root_path, class: "navbar-wagon-item navbar-wagon-link" %>
-       <%= link_to "Alerts", root_path, class: "navbar-wagon-item navbar-wagon-link" %>
-      <%= link_to "Dashboard", inquiries_path, class: "navbar-wagon-item navbar-wagon-link" %>
+      <%= link_to "Meine Nachrichten", inquiries_path, class: "navbar-wagon-item navbar-wagon-link" %>
+       <%= link_to "Meine Favoriten", bookmarks_path, class: "navbar-wagon-item navbar-wagon-link" %>
 
       <!-- Avatar with dropdown menu -->
       <div class="navbar-wagon-item">
@@ -29,11 +28,6 @@
             <li>
               <%= link_to "#" do %>
                 <i class="fa fa-user"></i> <%= t(".profile", default: "Profile") %>
-              <% end %>
-            </li>
-            <li>
-              <%= link_to "#" do %>
-                <i class="fa fa-cog"></i>  <%= t(".settings", default: "Settings") %>
               <% end %>
             </li>
             <li>
@@ -55,9 +49,22 @@
     <div class="dropdown">
       <i class="fa fa-bars dropdown-toggle" data-toggle="dropdown"></i>
       <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
-        <li><a href="#">Some mobile link</a></li>
-        <li><a href="#">Other one</a></li>
-        <li><a href="#">Other one</a></li>
+        <li>
+          <%= link_to 'Meine Nachrichten', inquiries_path %>
+        </li>
+        <li>
+          <%= link_to 'Meine Favoiten', bookmarks_path %>
+        </li>
+        <li>
+          <%= link_to "#" do %>
+            <%= t(".profile", default: "Mein Profil") %>
+          <% end %>
+        </li>
+        <li>
+          <%= link_to destroy_user_session_path, method: :delete do %>
+            <%= t(".sign_out", default: "Log out") %>
+          <% end %>
+        </li>
       </ul>
     </div>
   </div>
