@@ -103,8 +103,17 @@
   right: 26px;
   color: #969696;
   font-size: 30px;
-
 }
+
+.list-index-title {
+    text-align: center;
+    margin-bottom: 24px;
+    h3 {
+      font-family: Amatic SC;
+      font-size: 48px;
+    }
+}
+
 
 @media(max-width: 468px) {
   .card-compass {
