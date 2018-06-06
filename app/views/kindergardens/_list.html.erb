@@ -32,8 +32,15 @@
         <%= render "bookmarks/bookmarks", :kindergarden => kindergarden %>
       </div>
     </div>
+
   </div>
   <% end %>
+       <div class="flickr_pagination">
+            <div class="page_info">
+              <%= page_entries_info @posts %>
+            </div>
+            <%= will_paginate @posts, :container => false %>
+          </div>
 </div>
 
 <%= javascript_pack_tag 'bookmarks' %>
