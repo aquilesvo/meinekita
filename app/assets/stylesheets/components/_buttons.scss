@@ -33,6 +33,7 @@
   // background-color: rgba(150,150,200, 0.5);
   //background: linear-gradient(to right, rgba(249, 249, 249, 0.5), rgba(249, 249, 249, 1));
   box-shadow: 1px 1px 3px rgba(150,150,200, 0.7);
+
   font-family: Abel;
   font-style: bold;
   font-size: 15px;
@@ -41,11 +42,18 @@
   line-height: 1.428571429;
   height: 40px;
   display: flex;
-    width: 145px;
+  width: 145px;
+
 }
 .button-element {
   justify-content: space-between;
-  padding: 0px 5px;
+  padding: 0px 15%;
+  vertical-align: center;
+}
+.button-element.image {
+  position: absolute;
+  bottom: 7px;
+  left: -10px
 }
 
 .large {

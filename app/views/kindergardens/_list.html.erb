@@ -1,4 +1,5 @@
 
+
 <div class="kindergarden-index-row">
     <% @kindergardens.each do |kindergarden| %>
   <div class="row">
@@ -18,8 +19,10 @@
           </div>
           <div class="kindergarden-index-card-compass">
             <%= fa_icon "compass" %>
+
             <% if params[:query].present? %>
-            <%= kindergarden.distance_from(params[:query]).round(2)%> km
+              <i class="far fa-compass"></i>
+              <h6><%= kindergarden.distance_from(params[:query]).round(2)%> km</h6>
             <% end %>
           </div>
         </div>
