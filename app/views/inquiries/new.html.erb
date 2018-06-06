@@ -1,24 +1,38 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 col-xs-12  col-md-offset-2">
+      <div id="chatroom">
+        <h1>Deine Nachricht an:</h1>
+        <h1><%= @kindergarden.name %></h1>
 
-
-    <div class="container">
-      <div class="row">
-        <div class="col-md-8 col-xs-12  col-md-offset-2">
-          <div id="chatroom">
-            <h1>Deine Nachricht an:</h1>
-            <h1><%= @kindergarden.name %></h1>
-
-            <%= simple_form_for [@kindergarden, @inquiry] do |f| %>
-              <%= f.input :subject, label: 'Betreff' %>
-              <%= f.input :content, :as => :text, :input_html => { 'rows' => 10}, label: 'Nachricht'%>
-              <%= f.input :alert,collection: [ "nein", "in 2 Wochen", "in 3 Wochen", "in 4 Wochen"], label: 'Möchtest du erinnert werden, die Kita nochmals zu kontaktieren?' %>
-
-              <%= f.button :submit, 'Senden', class: 'btn-primary message-button' %>
-            <% end %>
-
-
+        <%= simple_form_for [@kindergarden, @inquiry] do |f| %>
+          <%= f.input :subject, label: 'Betreff' %>
+          <%= f.input :content, :as => :text, :input_html => { 'rows' => 10}, label: 'Nachricht'%>
+          <h3 id="minimum-setup">Wann möchtest du erinnert werden, die Kita nochmals zu kontaktieren?</h3>
+          <div class="container">
+            <div class="row">
+              <div class='col-sm-6'>
+                <div class="form-group">
+                  <div class='input-group date' id='datetimepicker1'>
+                    <input type='text' class="form-control" />
+                    <span class="input-group-addon">
+                      <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <script type="text/javascript">
+                $(function () {
+                  $('#datetimepicker1').datetimepicker();
+                });
+              </script>
+            </div>
           </div>
-        </div>
+          <%= f.button :submit, 'Senden', class: 'btn-primary message-button' %>
+        <% end %>
       </div>
     </div>
+  </div>
+</div>
 
-    <script src="build/application.js"></script>
+ <script src="build/application.js"></script>
