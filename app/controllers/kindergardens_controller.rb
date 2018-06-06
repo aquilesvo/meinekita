@@ -26,8 +26,8 @@ class KindergardensController < ApplicationController
         end
 
 
-        kindergardens = Kindergarden.search(params[:search]).paginate(:page => params[:page], :per_page => 10)
-        @kindergardens = kindergardens
+        @kindergardens = Kindergarden.search(params[:search])
+        @kindergardens.paginate(:page => params[:page], :per_page => 10)
 
         @markers = @kindergardens.map do |kindergarden|
           {
