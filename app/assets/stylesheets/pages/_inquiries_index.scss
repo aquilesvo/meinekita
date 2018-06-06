@@ -1,17 +1,19 @@
 .inquiry-page-container {
-  margin-left: 150px;
-  margin-right: 150px;
+
+}
+
+.inquiry-page-header {
   font-weight: lighter;
   margin-bottom: 25px;
   margin-top: 25px;
+  h1 {
+    text-align: left;
+  }
 }
 .inquiry-index-card {
   color: #454545;
-  flex: 1 1 auto;
   position: relative;
   background-color: #F9F9F9;
-  background-position: center;
-  height: 130px;
   border: 0.5px solid;
   border-radius: 4px;
   border-color: rgba(0,0,0,0.1);
@@ -21,6 +23,7 @@
   padding-bottom: 10px;
   display: flex;
   justify-content: space-between;
+  flex-direction: column;
 }
 .inquiry-index-card a:hover {
   text-decoration: none !important;
@@ -34,11 +37,20 @@
   margin-top: 1px;
 }
 .inquiry-index-card-name {
-  font-weight: lighter;
-  flex: 1 0 auto;
-  margin-left: 80px;
+  flex-grow: 1;
   a:hover {
     text-decoration: none;
+  }
+}
+.inquiry-right-side {
+  color: #B0B0B0;
+  text-align: right;
+  font-size: 14px;
+  justify-content: flex-end;
+  flex-direction: column;
+  display: flex;
+  p {
+    margin-bottom: 2px;
   }
 }
 .inquiry-right-side {
@@ -55,17 +67,7 @@
     outline: none;
   }
 }
-.inquiry-right-side {
-  color: #B0B0B0;
-  text-align: right;
-  font-size: 14px;
-  position: absolute;
-  right: 15px;
-  bottom: 10px;
-  p {
-    margin-bottom: 2px;
-  }
-}
+
 .inquiry-bookmark {
   z-index: 0;
 }
@@ -82,4 +84,7 @@
 .favorites-right-content {
   display: flex;
   align-items: center;
+}
+.backlink {
+  text-align: center;
 }

@@ -6,9 +6,16 @@
         <p><%= Carrier.find(@kindergarden.carrier_id).name %></p>
       </div>
     <% end %>
-    <div>
-      <h1><%= @kindergarden.name %></h1>
+    <div class="small-container">
+      <div class="small-container-name">
+        <h1><%= @kindergarden.name %></h1>
+      </div>
+      <div class="small-container-icon">
+        <i class="far fa-heart kita-show-heart"></i>
+      </div>
     </div>
+
+
     <h3>Adresse:</h3>
     <p><%= @kindergarden.address %></p>
     <p><%= @kindergarden.plz %> Berlin <% if @kindergarden.district_id.present? %><%= District.find(@kindergarden.district_id).name %><% end %></p>
@@ -62,7 +69,10 @@
     <br>
     <br>
     <br>
-    <%= link_to "Kontaktieren", new_kindergarden_inquiry_path(@kindergarden), class: 'btn btn-primary sticky' %>
+    <%= link_to "Kontaktieren", new_kindergarden_inquiry_path(@kindergarden), class: 'btn btn-primary' %>
+    <div class="backlink">
+      <%= link_to "Zurück zur Suche", kindergardens_path %>
+    </div>
   </div>
 
 </div>
