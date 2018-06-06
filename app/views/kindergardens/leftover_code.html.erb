@@ -112,12 +112,12 @@
 <% @bookmark = Bookmark.find(current_user.bookmark_ids.select do |id| kindergarden.bookmark_ids.include?(id) end) %>
       <% if @bookmark.present? %>
          <%= link_to kindergarden_bookmark_path(kindergarden, @bookmark), class: "top-corner-star", method:'delete' do %>
-          <div class="bookmark-symbol"><i class="fas fa-heart"></i></div>
+          <div class="bookmark-symbol"><i class="fa fa-heart"></i></div>
         <% end %>
       <% else %>
           <%= link_to kindergarden_bookmarks_path(kindergarden), class: "top-corner-star", method:'post' do %>
             <div class="bookmark-symbol">
-                <i class="far fa-heart"></i>
+                <i class="fa fa-heart"></i>
             </div>
           <% end %>
       <% end %>

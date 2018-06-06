@@ -1,24 +1,25 @@
+
+
 <div class="kindergarden-index-row">
-
-  <h3 class="subheader">Betreuungsangebote in Berlin</h3>
-
-  <h4 class="subheader">Ergebnisse: <%= @kindergardens.count %></h4>
-  <% @kindergardens.each do |kindergarden| %>
-
+    <% @kindergardens.each do |kindergarden| %>
   <div class="row">
     <div class="card-wrapper col-xs-12 col-md-12" style="position:relative;">
       <%= link_to kindergarden_path(kindergarden), :action => 'go' do %>
         <div class="kindergarden-index-card">
-          <div class="kindergarden-index-card-category">
-            <h6><%= kindergarden.category.name %></h6>
-          </div>
-          <div class="kindergarden-index-card-name">
-            <h4><%= kindergarden.name %></h4>
+          <div class="card-intro">
+            <div class="kindergarden-index-card-category">
+              <h6><%= kindergarden.category.name %></h6>
+            </div>
+            <div class="kindergarden-index-card-name">
+              <h4><%= kindergarden.name %></h4>
+            </div>
           </div>
           <div class="kindergarden-index-card-address">
             <h6><%= kindergarden.address %> | <%= kindergarden.plz %> Berlin <% if kindergarden.district_id.present? %><%= District.find(kindergarden.district_id).name %><% end %></h6>
           </div>
-          <div class="card-compass">
+          <div class="kindergarden-index-card-compass">
+            <%= fa_icon "compass" %>
+
             <% if params[:query].present? %>
               <i class="far fa-compass"></i>
               <h6><%= kindergarden.distance_from(params[:query]).round(2)%> km</h6>
