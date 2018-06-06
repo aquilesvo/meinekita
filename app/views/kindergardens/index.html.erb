@@ -44,24 +44,19 @@
             <%end%>
         <% end %>
       </div>
-    </div> 
-  <% end %>  
-
-  <div class="kindergarden-index-main-container">
-    <div class="kindergarden-index-cards-container">
-      <%= render "kindergardens/list", kindergardens: @kindergardens %>
-        <div class="flickr_pagination">
-          <div class="page_info">
-            <%= page_entries_info @posts %>
-          </div>
-          <%= will_paginate @posts, :container => false %>
-        </div>
     </div>
   <% end %>
+
   <div class="row">
     <div class="kindergarden-index-main-container col-xs-12">
       <div class="kindergarden-index-cards-container">
         <%= render "kindergardens/list", kindergardens: @kindergardens %>
+          <div class="flickr_pagination">
+            <div class="page_info">
+              <%= page_entries_info @posts %>
+            </div>
+            <%= will_paginate @posts, :container => false %>
+          </div>
       </div>
       <div id="map-container" class="hidden-xs col-sm-4 col-md-6">
         <%= render 'map', markers: @markers %>
