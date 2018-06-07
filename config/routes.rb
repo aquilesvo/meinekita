@@ -10,6 +10,6 @@ Rails.application.routes.draw do
   end
   resources :inquiries, only: [:index]
   resources :bookmarks, only: [:index]
-  resources :users, only: [:show, :update, :destroy]
-
+  resources :users, only: [:show, :edit, :update, :destroy]
+  patch '/userphoto/:id', to: 'users#remove_photo', as: 'user_photo'
 end
