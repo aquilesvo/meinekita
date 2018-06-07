@@ -24,8 +24,8 @@ gem 'momentjs-rails', '>= 2.9.0'
 gem 'bootstrap3-datetimepicker-rails', '~> 4.17.47'
 gem 'cloudinary'
 gem 'carrierwave', '~> 1.2'
-
-
+gem 'tinymce-rails'
+gem 'tinymce-rails-langs'
 
 group :development do
   gem 'web-console', '>= 3.3.0'
