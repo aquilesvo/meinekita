@@ -95,7 +95,12 @@
   z-index: 99;
   color: #CB8589;
   font-size: 30px;
-
+}
+.bookmark-symbol.red {
+  color: rgba(238, 95, 91, 0.8);
+}
+.bookmark-symbol.pale {
+  color:  rgba(238, 95, 91, 0.1);
 }
 .card-compass {
   position: absolute;
@@ -142,9 +147,9 @@
 
 @media(max-width: 332px) {
 
-  .bookmark{
-    transition: ease all 2s;
-    display: none; }
+  // .bookmark{
+  //   transition: ease all 2s;
+  //   display: none; }
   .bookmark-symbol{
     transition: ease all 2s;
     right: 40px;

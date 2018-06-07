@@ -4,7 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  has_many :bookmarks
+  has_many :bookmarks, dependent: :destroy
   has_many :kindergardens, :through => :bookmarks
 
   has_many :inquiries
