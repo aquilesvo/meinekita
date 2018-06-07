@@ -1,7 +1,15 @@
 
 
 <div class="kindergarden-index-row">
-    <% @kindergardens.each do |kindergarden| %>
+
+ <div class="apple_pagination">
+    <div class="page_info">
+      <%= page_entries_info @posts %>
+    </div>
+    <%= will_paginate @posts, :container => false %>
+  </div>
+
+  <% @kindergardens.each do |kindergarden| %>
   <div class="row">
     <div class="card-wrapper col-xs-12 col-md-12" style="position:relative;">
       <%= link_to kindergarden_path(kindergarden), :action => 'go' do %>
