@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_07_093601) do
+ActiveRecord::Schema.define(version: 2018_06_05_093127) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,7 +51,7 @@ ActiveRecord::Schema.define(version: 2018_06_07_093601) do
     t.datetime "updated_at", null: false
     t.bigint "kindergarden_id"
     t.bigint "user_id"
-    t.text "alert"
+    t.datetime "alert"
     t.index ["kindergarden_id"], name: "index_inquiries_on_kindergarden_id"
     t.index ["user_id"], name: "index_inquiries_on_user_id"
   end
