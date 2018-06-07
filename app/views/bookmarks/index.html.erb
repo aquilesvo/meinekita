@@ -9,9 +9,9 @@
             <%= link_to new_kindergarden_inquiry_path(@kindergarden), :action => 'go' do %>
               <div class="inquiry-index-card">
 
-              <div class="top-corner-star">
-                <div class="bookmark-symbol"><i class="fa fa-heart"></i></div>
-              </div>
+                <div class="bookmark-favorites">
+                  <i class="fa fa-heart "></i>
+                </div>
 
                 <div class="favorites-left-content inquiry-index-card-name">
                   <% if @kindergarden.carrier_id.present? %>
@@ -29,9 +29,11 @@
                     <p><%= @kindergarden.plz %> Berlin <% if @kindergarden.district_id.present? %><%= District.find(@kindergarden.district_id).name %><% end %></p>
                   </div>
                 </div>
+
                 <div class="favorites-right-content">
-                  <%= link_to 'kontaktieren', new_kindergarden_inquiry_path(@kindergarden), class: "btn btn-primary" %>
+                  <%= link_to 'kontaktieren', new_kindergarden_inquiry_path(@kindergarden), class: "btn btn-primary favorites-button" %>
                 </div>
+
               </div>
             <% end %>
           <% end %>
