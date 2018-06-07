@@ -17,9 +17,19 @@
     <% if user_signed_in? %>
 
       <!-- Links when logged in -->
+      <div class="link-container"><%= link_to "Meine Nachrichten", inquiries_path, class: "navbar-wagon-item navbar-wagon-link link-item" %>
+        <div class="navbar-symbol link-container">
+          <i class="fas fa-envelope-square link-item"></i>
+          <div class="counter">0</div>
+        </div>
+      </div>
+      <div class="link-container"><%= link_to "Meine Favoriten", bookmarks_path, class: "navbar-wagon-item navbar-wagon-link link-item" %>
+        <div class="navbar-symbol">
+          <i class="fas fa-star link-item"></i>
+          <div class="counter link-item">5</div>
+        </div>
+      </div>
       <%= link_to "Suche", kindergardens_path, class: "navbar-wagon-item navbar-wagon-link" %>
-      <%= link_to "Meine Nachrichten", inquiries_path, class: "navbar-wagon-item navbar-wagon-link" %>
-       <%= link_to "Meine Favoriten", bookmarks_path, class: "navbar-wagon-item navbar-wagon-link" %>
 
       <!-- Avatar with dropdown menu -->
       <div class="navbar-wagon-item">
