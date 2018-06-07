@@ -46,11 +46,15 @@
     overflow: hidden; }
 
 .apple_pagination {
-  background: #f1f1f1;
+  background: #fbfbfb;
   border: 1px solid #e5e5e5;
   text-align: center;
-  padding: 1em;
-  cursor: default; }
+  font-size: 15px;
+  line-height: 28px;
+  padding: 10px;
+  cursor: default;
+  margin-left: 8px;
+  margin-right: 8px; }
   .apple_pagination a, .apple_pagination span {
     padding: 0.2em 0.3em; }
   .apple_pagination .disabled {

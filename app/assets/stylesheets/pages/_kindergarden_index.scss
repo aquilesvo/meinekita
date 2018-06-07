@@ -36,9 +36,9 @@
 }
 
 
-.kindergarden-index-card:first-child {
-  margin-top: 0px;
-}
+// .kindergarden-index-card:first-child {
+//   margin-top: 0px;
+// }
 .kindergarden-index-card:hover {
   box-shadow: 0 0 5px rgba(0,0,0,0.1);
 }
@@ -103,8 +103,17 @@
   right: 26px;
   color: #969696;
   font-size: 30px;
-
 }
+
+.list-index-title {
+    text-align: center;
+    margin-bottom: 24px;
+    h3 {
+      font-family: Amatic SC;
+      font-size: 48px;
+    }
+}
+
 
 @media(max-width: 468px) {
   .card-compass {
