@@ -6,7 +6,7 @@
     <div class="page_info">
       <%= page_entries_info @posts %>
     </div>
-    <%= will_paginate @posts, :container => false %>
+    <%= will_paginate @posts, :previous_label => 'Vorherige', :next_label => 'Nächste', :container => false %>
   </div>
 
   <% @kindergardens.each do |kindergarden| %>
@@ -44,7 +44,7 @@
             <div class="page_info">
               <%= page_entries_info @posts %>
             </div>
-            <%= will_paginate @posts, :container => false %>
+            <%= will_paginate @posts, :previous_label => 'Vorherige', :next_label => 'Nächste', :container => false  %>
           </div>
 </div>
 
