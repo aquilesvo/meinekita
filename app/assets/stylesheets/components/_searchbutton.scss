@@ -6,3 +6,12 @@
   border-bottom-right-radius: 5px;
   font-size: 14px;
 }
+
+.search-button {
+  background: none;
+  border: 0;
+  border-bottom: 4px solid white;
+  &:focus {
+    outline: 0;
+  }
+}

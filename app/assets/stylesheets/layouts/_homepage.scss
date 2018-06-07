@@ -6,6 +6,20 @@
 .searchbox-home {
   display: flex;
   justify-content: center;
+
+  #kindergarden_address {
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+    font-size: 18px;
+    border-bottom: 4px solid white;
+    color: white !important;
+  }
+
+  #kindergarden_address::placeholder {
+    color: white !important;
+    opacity: 0.8;
+  }
 }
 // .searchbox-home {
 //   // width: 50vw;

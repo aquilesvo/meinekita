@@ -1,7 +1,6 @@
 class KindergardensController < ApplicationController
 
   def index
-
     if params[:query].present?
       kindergardens = Kindergarden.near(params[:query], 1.5, :units => :km).paginate(:page => params[:page], :per_page => 10)
       @kindergardens = kindergardens.to_a
@@ -16,6 +15,7 @@ class KindergardensController < ApplicationController
       @markers_json = @markers.to_json
 
     elsif params[:search].present?
+
        params[:search] = params[:search] || {}
         puts params[:search]
 
@@ -41,7 +41,6 @@ class KindergardensController < ApplicationController
         format.html
         format.js {render layout:false }
       end
-
     else
       @kindergardens = Kindergarden.where.not(latitude: nil, longitude: nil).paginate(:page => params[:page], :per_page => 10)
 

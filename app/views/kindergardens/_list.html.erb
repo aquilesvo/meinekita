@@ -26,7 +26,9 @@
             <h6><%= kindergarden.address %>, <%= kindergarden.plz %> Berlin-<% if kindergarden.district_id.present? %><%= District.find(kindergarden.district_id).name %><% end %></h6>
           </div>
           <div class="kindergarden-index-card-compass">
-              <p> <%= fa_icon "compass" %> <%= kindergarden.distance_from(params[:query]).round(2)%> km</p>
+            <% if params[:query] %>
+              <p> <%= fa_icon "compass" %> <%= kindergarden.distance_from(@searched_location).round(2)%> km</p>
+            <% end %>
           </div>
         </div>
       <% end %>
