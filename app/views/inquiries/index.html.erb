@@ -31,11 +31,11 @@
           <div class="inquiry-right-side">
             <div class="alert-bell">
               <% if inquiry.alert != nil %>
-                <%= image_tag 'alert-on.png',  height: "26", width: "26" %>
+                <i class="fas fa-bell fake-alert pale"></i>
+                <div class="alert-time">
+                  <%= inquiry.alert %>
+                </div>
               <% end %>
-              <div class="alert-time">
-                <%= inquiry.alert %>
-              </div>
             </div>
           </div>
         </div>
@@ -49,3 +49,5 @@
   </div>
 </div>
 </div>
+
+<%= javascript_pack_tag 'message_alert' %>

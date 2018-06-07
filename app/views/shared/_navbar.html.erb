@@ -17,9 +17,13 @@
     <% if user_signed_in? %>
 
       <!-- Links when logged in -->
+
+
       <%= link_to "Suche", kindergardens_path, class: "navbar-wagon-item navbar-wagon-link" %>
-      <%= link_to "Meine Nachrichten", inquiries_path, class: "navbar-wagon-item navbar-wagon-link" %>
-       <%= link_to "Meine Favoriten", bookmarks_path, class: "navbar-wagon-item navbar-wagon-link" %>
+      <div class="link-container"><%= link_to "Meine Nachrichten", inquiries_path, class: "navbar-wagon-item navbar-wagon-link link-item" %>
+        <div id="alert-signal" class="link-item hidden"><h6 id="bell-counter" class="navbar-symbol">1</h6>
+      </%><i class="fas fa-bell navbar-symbol"></i></div> </div>
+      <%= link_to "Meine Favoriten", bookmarks_path, class: "navbar-wagon-item navbar-wagon-link" %>
 
       <!-- Avatar with dropdown menu -->
       <div class="navbar-wagon-item">
@@ -79,3 +83,4 @@
   </div>
 </div>
 
+<%= javascript_pack_tag 'message_alert' %>

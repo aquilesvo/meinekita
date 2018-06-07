@@ -16,8 +16,8 @@
     <h3>Adresse:</h3>
     <p><%= @kindergarden.address %></p>
     <p><%= @kindergarden.plz %> Berlin <% if @kindergarden.district_id.present? %><%= District.find(@kindergarden.district_id).name %><% end %></p>
-    <p> <%= fa_icon 'phone' %> </i> <%= @kindergarden.phone %></p>
-    <a> <%= fa_icon 'envelope' %> <%= link_to @kindergarden.email, new_kindergarden_inquiry_path(@kindergarden) %></a>
+    <p> <i class="fas fa-phone"></i> </i> <%= @kindergarden.phone %></p>
+    <a> <i class="fas fa-envelope"></i> <%= link_to @kindergarden.email, new_kindergarden_inquiry_path(@kindergarden) %></a>
     <br>
 
     <% educational = Property.where(type: 'Educational') %>
