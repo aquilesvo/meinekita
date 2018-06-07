@@ -1,4 +1,5 @@
 
+  console.log('ghjkl')
 document.querySelector('.kindergarden-index-cards-container').innerHTML = '<%= j render 'list', kindergardens: @kindergardens %>';
 
 
@@ -8,3 +9,8 @@ displayMap();
 // console.log("hello")
 
 
+document.querySelectorAll(".bookmark-symbol").forEach((bookmark) => {
+  bookmark.addEventListener("click", (event) => {
+  event.currentTarget.classList.toggle("selected-bookmark");
+});
+});
