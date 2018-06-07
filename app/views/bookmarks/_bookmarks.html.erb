@@ -2,11 +2,13 @@
       <% @bookmark = Bookmark.find(current_user.bookmark_ids.select do |id| kindergarden.bookmark_ids.include?(id) end) %>
       <% if @bookmark.present? %>
         <%= link_to kindergarden_bookmark_path(kindergarden, @bookmark), remote: true,  method:'delete' do %>
-          <i class="fa fa-heart bookmark-symbol"></i>
+          <!-- <i class="fas fa-heart bookmark-symbol"></i> -->
+          <%= fa_icon "heart", class: "bookmark-symbol red" %>
         <% end %>
       <% else %>
         <%= link_to kindergarden_bookmarks_path(kindergarden), remote: true, method:'post' do %>
-          <i class="fa fa-heart bookmark-symbol"></i>
+          <!-- <i class="far fa-heart bookmark-symbol"></i> -->
+          <%= fa_icon "heart", class: "bookmark-symbol pale" %>
         <% end %>
       <% end %>
 
