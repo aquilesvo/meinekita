@@ -8,10 +8,7 @@
     <% end %>
     <div class="small-container">
       <div class="small-container-name">
-        <h1><%= @kindergarden.name %></h1>
-      </div>
-      <div class="small-container-icon">
-        <i class="fa fa-heart kita-show-heart"></i>
+        <h1><%= @kindergarden.name %> <i class="fa fa-heart kita-show-heart"></i></h1>
       </div>
     </div>
 
@@ -19,8 +16,8 @@
     <h3>Adresse:</h3>
     <p><%= @kindergarden.address %></p>
     <p><%= @kindergarden.plz %> Berlin <% if @kindergarden.district_id.present? %><%= District.find(@kindergarden.district_id).name %><% end %></p>
-    <p><%= @kindergarden.phone %></p>
-    <a><%= mail_to @kindergarden.email %></a>
+    <p> <%= fa_icon 'phone' %> </i> <%= @kindergarden.phone %></p>
+    <a> <%= fa_icon 'envelope' %> <%= link_to @kindergarden.email, new_kindergarden_inquiry_path(@kindergarden) %></a>
     <br>
 
     <% educational = Property.where(type: 'Educational') %>
@@ -63,13 +60,13 @@
     <div
       id="map"
       style="width: 100%;
-      height: 250px;"
+      height: 350px !important;"
       data-markers="<%= @markers.to_json %>">
     </div>
     <br>
     <br>
     <br>
-    <%= link_to "Kontaktieren", new_kindergarden_inquiry_path(@kindergarden), class: 'btn btn-primary' %>
+    <%= link_to "Kontaktieren", new_kindergarden_inquiry_path(@kindergarden), class: 'btn btn-primary sticky' %>
     <div class="backlink">
       <%= link_to "Zurück zur Suche", kindergardens_path %>
     </div>
