@@ -51,7 +51,7 @@ ActiveRecord::Schema.define(version: 2018_06_07_121209) do
     t.datetime "updated_at", null: false
     t.bigint "kindergarden_id"
     t.bigint "user_id"
-    t.datetime "alert"
+    t.integer "alert"
     t.index ["kindergarden_id"], name: "index_inquiries_on_kindergarden_id"
     t.index ["user_id"], name: "index_inquiries_on_user_id"
   end

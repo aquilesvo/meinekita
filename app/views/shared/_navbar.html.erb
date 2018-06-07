@@ -21,14 +21,14 @@
 
       <%= link_to "Suche", kindergardens_path, class: "navbar-wagon-item navbar-wagon-link" %>
       <div class="link-container"><%= link_to "Meine Nachrichten", inquiries_path, class: "navbar-wagon-item navbar-wagon-link link-item" %>
-        <div id="alert-signal" class="link-item hidden"><h6 id="bell-counter" class="navbar-symbol">0</h6>
+        <div id="alert-signal" class="link-item hidden"><h6 id="bell-counter" class="navbar-symbol">1</h6>
       </%><i class="fas fa-bell navbar-symbol"></i></div> </div>
       <%= link_to "Meine Favoriten", bookmarks_path, class: "navbar-wagon-item navbar-wagon-link" %>
 
       <!-- Avatar with dropdown menu -->
       <div class="navbar-wagon-item">
         <div class="dropdown">
-          <% if current_user && @current_user.photo.present? %>
+          <% if current_user && current_user.photo.present? %>
             <div class="avatar dropdown-toggle" id="navbar-wagon-menu" data-toggle="dropdown">
               <%= cl_image_tag current_user.photo, class: "avatar" %>
             </div>
