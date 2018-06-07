@@ -14,9 +14,9 @@
         <%= cl_image_tag("person-placeholder.png", width: 150) %>
           <%= simple_form_for(@current_user) do |f| %>
             <!-- [...] -->
-            <%= f.input :photo %>
+            <%= f.input :photo, label: false %>
             <%= f.input :photo_cache, as: :hidden %>
-            <%= f.button :submit, value: 'Upload photo' %>
+            <%= f.button :submit, value: 'Foto hochladen' %>
             <!-- [...] -->
           <% end %>
         <% end %>
