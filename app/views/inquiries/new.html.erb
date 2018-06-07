@@ -8,11 +8,11 @@
         <%= simple_form_for [@kindergarden, @inquiry] do |f| %>
           <%= f.input :subject, label: 'Betreff' %>
           <%= f.input :content, :as => :text, :input_html => { 'rows' => 10}, label: 'Nachricht'%>
-            <%= f.input :alert, as: :string, :input_html => { id: "flatpickr" }, label: 'Wann möchtest du erinnert werden, die Kita nochmals zu kontaktieren?' %>
+          <%= f.input :alert, as: :string, :input_html => { id: "flatpickr" }, label: 'Wann möchtest du erinnert werden, die Kita nochmals zu kontaktieren?'%>
           <%= f.button :submit, 'Senden', class: 'btn-primary message-button' %>
-          </div>
-        <% end %>
-      </div>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>
+

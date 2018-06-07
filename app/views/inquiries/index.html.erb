@@ -28,15 +28,16 @@
               <p>Zuletzt kontaktiert am: <%= inquiry.created_at.to_date %></p>
             </div>
           </div>
-
           <div class="inquiry-right-side">
-            <% if inquiry.alert == 2 %>
-              <%= image_tag 'alert-set.png',  height: "42", width: "42" %>
-            <% elsif inquiry.alert == 4 %>
-              <%= image_tag 'alert-on.png',  height: "42", width: "42" %>
-            <% end %>
+            <div class="alert-bell">
+              <% if inquiry.alert != nil %>
+                <%= image_tag 'alert-on.png',  height: "26", width: "26" %>
+              <% end %>
+              <div class="alert-time">
+                <%= inquiry.alert %>
+              </div>
+            </div>
           </div>
-
         </div>
         <br>
       <% end %>
