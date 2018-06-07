@@ -22,7 +22,7 @@
               <p><strong>Betreff: </strong><%= inquiry.subject %></p>
             </div>
             <div class="inquiry-content">
-              <p><%= inquiry.content.truncate(100, separator: ' ') %></p>
+              <p><%= inquiry.content.truncate(100, separator: ' ').html_safe %></p>
             </div>
             <div class="last-contact">
               <p>Zuletzt kontaktiert am: <%= inquiry.created_at.to_date %></p>
