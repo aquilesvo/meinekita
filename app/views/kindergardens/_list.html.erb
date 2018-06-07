@@ -6,7 +6,7 @@
     <div class="page_info">
       <%= page_entries_info @posts %>
     </div>
-    <%= will_paginate @posts, :container => false %>
+    <%= will_paginate @posts, :previous_label => 'Vorherige', :next_label => 'Nächste', :container => false %>
   </div>
 
   <% @kindergardens.each do |kindergarden| %>
@@ -26,8 +26,10 @@
             <h6><%= kindergarden.address %>, <%= kindergarden.plz %> Berlin-<% if kindergarden.district_id.present? %><%= District.find(kindergarden.district_id).name %><% end %></h6>
           </div>
           <div class="kindergarden-index-card-compass">
-            <% if params[:query] %>
-              <p> <i class="fas fa-compass"></i> <%= kindergarden.distance_from(@searched_location).round(2)%> km</p>
+
+            <% if params[:search] %>
+              <p> <i class="fas fa-compass"></i> <%= kindergarden.distance_from('Görlizer Park, Berlin').round(2)%> km</p>
+
             <% end %>
           </div>
         </div>
@@ -44,7 +46,7 @@
             <div class="page_info">
               <%= page_entries_info @posts %>
             </div>
-            <%= will_paginate @posts, :container => false %>
+            <%= will_paginate @posts, :previous_label => 'Vorherige', :next_label => 'Nächste', :container => false  %>
           </div>
 </div>
 
