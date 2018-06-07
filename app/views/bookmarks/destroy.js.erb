@@ -1,13 +1,25 @@
 var bookmarkButtonDestroy = document.querySelector(".selected-bookmark");
+  console.log("inside Destroy");
+  console.log(document.querySelector(".selected-bookmark"));
 
-bookmarkButtonDestroy.classList.remove("fas");
-bookmarkButtonDestroy.classList.add("far");
 bookmarkButtonDestroy.classList.toggle("selected-bookmark");
 
 
 document.querySelector('.selected-bookmark-container').innerHTML = "<%= j render 'bookmarks/bookmarks', kindergarden: @kindergarden %>";
+  console.log(document.querySelector('.selected-bookmark-container'));
+  console.log(document.querySelectorAll(".bookmark-symbol"));
+  console.log(document.querySelector(".selected-bookmark"));
 
 // var newButton = document.querySelector(".bookmark-container")
 // bookmarkButtonDestroy.addEventListener("click", (event) => {
 //   event.currentTarget.classList.toggle("selected-bookmark");
 // });
+document.querySelector('.selected-bookmark-container').addEventListener("DOMContentLoaded", (event) => {
+  console.log(document.querySelector('.selected-bookmark-container'));
+  console.log(document.querySelectorAll(".bookmark-symbol"));
+  document.querySelectorAll(".bookmark-symbol").forEach((bookmark) => {
+    bookmark.addEventListener("click", (event) => {
+      event.currentTarget.classList.toggle("selected-bookmark");
+    });
+  });
+});
