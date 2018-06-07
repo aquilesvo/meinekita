@@ -6,11 +6,11 @@ document.querySelectorAll(".bookmark-symbol").forEach((bookmark) => {
 });
 });
 
-document.querySelectorAll(".bookmark-container").forEach((bookmark) => {
-  bookmark.addEventListener("click", (event) => {
+// document.querySelectorAll(".bookmark-container").forEach((bookmark) => {
+//   bookmark.addEventListener("click", (event) => {
 
-  event.currentTarget.classList.toggle("selected-bookmark-container");
-});
-});
+//   event.currentTarget.classList.toggle("selected-bookmark-container");
+// });
+// });
 
 
