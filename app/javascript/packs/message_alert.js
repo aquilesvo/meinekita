@@ -4,8 +4,6 @@ var requiredElement = elements[0];
 var alertTimers = document.getElementsByClassName('alert-time');
 var requiredTimer = alertTimers[0];
 
-console.log(requiredTimer);
-
 var fired = false;
 
 window.addEventListener("scroll", function(){
