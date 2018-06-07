@@ -16,9 +16,9 @@
           <%= s.collection_select(:districts, District.all, :id, :name, {:prompt => 'Stadtteil'}, { class: "filter-button large col-xs-6 col-sm-4 col-md-2"}) %>
         <% end %>
 
-        <button type="button" class="filter-button medium col-xs-6 col-sm-4 col-md-2" data-toggle="collapse" data-target="#languages"><div class="button-element"><%= fa_icon "comments" %></div><div class="button-element">Sprachen</div></button>
+        <button type="button" class="filter-button medium col-xs-6 col-sm-4 col-md-2" data-toggle="collapse" data-target="#languages"><div class="button-element"><i class="fas fa-comments"></i></div><div class="button-element">Sprachen</div></button>
 
-        <button type="button" class="filter-button medium col-xs-6 col-sm-4 col-md-2" data-toggle="collapse" data-target="#topics"><div class="button-element"><%= fa_icon "book" %></div><div class="button-element">Thematisch</div></button>
+        <button type="button" class="filter-button medium col-xs-6 col-sm-4 col-md-2" data-toggle="collapse" data-target="#topics"><div class="button-element"><i class="fas fa-book"></i></div><div class="button-element">Thematisch</div></button>
 
         <%= submit_tag "Suchen", class: 'filter-button searchbutton slim col-xs-6 col-sm-4 col-md-2', style: "color: white; width: 150px;" %>
       </div>

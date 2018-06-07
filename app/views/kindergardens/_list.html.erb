@@ -27,7 +27,7 @@
           </div>
           <div class="kindergarden-index-card-compass">
             <% if params[:query] %>
-              <p> <%= fa_icon "compass" %> <%= kindergarden.distance_from(@searched_location).round(2)%> km</p>
+              <p> <i class="fas fa-compass"></i> <%= kindergarden.distance_from(@searched_location).round(2)%> km</p>
             <% end %>
           </div>
         </div>

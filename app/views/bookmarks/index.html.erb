@@ -6,7 +6,7 @@
         <% if bookmark.user_id == current_user.id %>
           <% @kindergarden = Kindergarden.find(bookmark.kindergarden_id) %>
           <% if @kindergarden.present? && @kindergarden.inquiry_ids.empty?%>
-            <%= link_to new_kindergarden_inquiry_path(@kindergarden), :action => 'go' do %>
+            <%= link_to kindergarden_path(@kindergarden), :action => 'go' do %>
               <div class="inquiry-index-card">
 
                 <div class="bookmark-favorites">
@@ -46,3 +46,5 @@
     </div>
   </div>
 </div>
+
+
