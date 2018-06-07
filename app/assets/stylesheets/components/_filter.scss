@@ -1,0 +1,25 @@
+.language-options {
+  display: flex !important;
+
+  flex-wrap: wrap;
+  flex-direction: column;
+  height: 100px;
+  // width: 50vw;
+  span > label > input {
+    margin-right: 5px;
+  }
+}
+.topic-options {
+  display: flex !important;
+  flex-wrap: wrap;
+  flex-direction: column;
+  height: 100px;
+
+  span > label > input {
+    margin-right: 5px;
+  }
+}
+.subheader {
+  text-align: center;
+}
+

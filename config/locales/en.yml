@@ -31,3 +31,7 @@
 
 en:
   hello: "Hello world"
+  will_paginate:
+    page_entries_info:
+      multi_page: "%{from} - %{to} von %{count} Kitas"
+      multi_page_html: "%{from} - %{to} von %{count} Kitas"
