@@ -26,16 +26,19 @@
     <div class="row">
       <div id="languages" class="collapse col-xs-12">
         <div class="subheader"><h4><strong>Sprachen</strong></h4></div>
-         <%= simple_fields_for :search, searcher do |s| %>
-          <%= s.collection_check_boxes :properties, Property.where(type: "Language"), :id, :name do |b| %>
-            <%= b.label class: "label-checkbox" do%>
-              <%=b.check_box + b.text.capitalize %>
+        <div class="language-options">
+          <%= simple_fields_for :search, searcher do |s| %>
+            <%= s.collection_check_boxes :properties, Property.where(type: "Language"), :id, :name do |b| %>
+              <%= b.label class: "label-checkbox" do%>
+                <%=b.check_box + b.text.capitalize %>
               <% end %>
             <%end%>
-        <% end %>
+          <% end %>
+        </div>
       </div>
       <div id="topics" class="collapse col-xs-12">
         <div class="subheader"><h4><strong>Themen</strong></h4></div>
+        <div class="topic-options">
         <%= simple_fields_for :search, searcher do |s| %>
           <%= s.collection_check_boxes :properties, Property.where(type: "Topic"), :id, :name do |b| %>
             <%= b.label class: "label-checkbox" do%>
@@ -43,6 +46,7 @@
               <% end %>
             <%end%>
         <% end %>
+        </div>
       </div>
     </div>
   <% end %>
