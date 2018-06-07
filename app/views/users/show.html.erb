@@ -11,6 +11,7 @@
              <%= link_to 'Delete', user_photo_path(current_user), method: :patch %>
           </div>
         <% else %>
+        <%= cl_image_tag("person-placeholder.png", width: 150) %>
           <%= simple_form_for(@current_user) do |f| %>
             <!-- [...] -->
             <%= f.input :photo %>
