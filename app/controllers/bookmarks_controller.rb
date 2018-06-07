@@ -44,8 +44,8 @@ class BookmarksController < ApplicationController
 
     respond_to do |format|
 
-      format.html { render 'kindergardens/index' }
       format.js
+      format.html { render 'kindergardens/index' }
 
 
     end
