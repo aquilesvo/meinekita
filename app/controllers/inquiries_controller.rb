@@ -7,7 +7,7 @@ before_action :set_sorted_inquiries, only: [:index, :destroy, :show]
   def index
     @grouped_inquiries = @inquiries.group_by { |d| d[:kindergarden_id] }
     @bookmarks = Bookmark.where(:user_id == current_user.id)
-    @kindergarden = Kindergarden.find(@inquiries[0].kindergarden_id)
+    # @kindergarden = Kindergarden.find(@inquiries[0].kindergarden_id)
     # sorted = @records.sort_by &:created_at
   end
 
@@ -24,13 +24,7 @@ before_action :set_sorted_inquiries, only: [:index, :destroy, :show]
     @inquiry = Inquiry.new(inquiry_params)
     @inquiry.user_id = current_user.id
     @inquiry.kindergarden_id = params[:kindergarden_id]
-    if params[:inquiry][:alert] == "in 2 Wochen"
-      @inquiry.alert = 2
-    elsif params[:inquiry][:alert] == "in 3 Wochen"
-      @inquiry.alert = 3
-    elsif params[:inquiry][:alert] == "in 4 Wochen"
-      @inquiry.alert = 4
-    end
+    @inquiry.alert = params[:inquiry][:alert].to_datetime
     @inquiry.save
     # if @inquiry.alert
     #   send_alert_email
