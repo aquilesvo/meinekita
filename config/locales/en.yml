@@ -32,6 +32,16 @@
 en:
   hello: "Hello world"
   will_paginate:
-    page_entries_info:
+   page_entries_info:
+
       multi_page: "%{from} - %{to} von %{count} Kitas"
       multi_page_html: "%{from} - %{to} von %{count} Kitas"
+
+      single_page:
+        zero:  "Keine Kitas gefunden"
+        one:   "1 Kita"
+        other: "Alle %{count} Kitas"
+      single_page_html:
+        zero:  "Keine Kitas gefunden"
+        one:   "1 Kita"
+        other: "Alle %{count} Kitas"
