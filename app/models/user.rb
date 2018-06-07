@@ -10,4 +10,5 @@ class User < ApplicationRecord
   has_many :inquiries
   has_many :kindergardens, :through => :inquiries
 
+  mount_uploader :photo, PhotoUploader
 end
