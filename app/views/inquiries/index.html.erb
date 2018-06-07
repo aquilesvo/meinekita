@@ -14,31 +14,29 @@
       <%= link_to kindergarden_inquiry_path(kita, inquiry), :action => 'go' do %>
         <div class="inquiry-index-card">
 
-          <div class="inquiry-index-card-name">
-            <% if kita.carrier_id.present? %>
-              <div class="carrier">
-                <p><%= Carrier.find(kita.carrier_id).name %></p>
-              </div>
-            <% else %>
-              <div class="carrier">
-                <p>Ohne Träger</p>
-              </div>
-            <% end %>
-            <h3>An: <%= kita.name %></h3>
-          </div>
           <div class="inquiry-mail-info">
+            <div class="inquiry-index-card-name">
+              <h3>An: <%= kita.name %></h3>
+            </div>
             <div class="inquiry-subject">
               <p><strong>Betreff: </strong><%= inquiry.subject %></p>
             </div>
             <div class="inquiry-content">
               <p><%= inquiry.content.truncate(100, separator: ' ') %></p>
             </div>
+            <div class="last-contact">
+              <p>Zuletzt kontaktiert am: <%= inquiry.created_at.to_date %></p>
+            </div>
           </div>
 
           <div class="inquiry-right-side">
-            <p>Zuletzt kontaktiert am: <%= inquiry.created_at.to_date %></p>
-            <p>Erinnerungsfunktion: AN</p>
+            <% if inquiry.alert == 2 %>
+              <%= image_tag 'alert-set.png',  height: "42", width: "42" %>
+            <% elsif inquiry.alert == 4 %>
+              <%= image_tag 'alert-on.png',  height: "42", width: "42" %>
+            <% end %>
           </div>
+
         </div>
         <br>
       <% end %>
