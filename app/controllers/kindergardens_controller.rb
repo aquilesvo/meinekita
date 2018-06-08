@@ -26,12 +26,12 @@ class KindergardensController < ApplicationController
         end
 
         # distances = {}
-        # @kindergardens = Kindergarden.search(params[:search]).order_bypaginate(:page => params[:page], :per_page => 10)
-        unsorted = Kindergarden.search(params[:search]).to_a
-        sorted = unsorted.sort { |kita1, kita2| kita1.distance_from('Görlizer Park, Berlin') <=> kita2.distance_from('Görlizer Park, Berlin') }
+        @kindergardens = Kindergarden.search(params[:search]).paginate(:page => params[:page], :per_page => 10)
+        # unsorted = Kindergarden.search(params[:search]).to_a
+        # sorted = unsorted.sort { |kita1, kita2| kita1.distance_from('Görlizer Park, Berlin') <=> kita2.distance_from('Görlizer Park, Berlin') }
 
         # sorted = unsorted.near('Görlizer Park, Berlin', 1.5, :units => :km).order("distance")
-        @kindergardens = sorted.paginate(:page => params[:page], :per_page => 10)
+        # @kindergardens = sorted.paginate(:page => params[:page], :per_page => 10)
 
         @markers = @kindergardens.map do |kindergarden|
           {
