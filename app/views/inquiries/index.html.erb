@@ -33,7 +33,7 @@
               <% if inquiry.alert != nil %>
                 <i class="fas fa-bell fake-alert pale"></i>
                 <div class="alert-time">
-                  <%= inquiry.alert %>
+                  <%= inquiry.alert.to_date %>
                 </div>
               <% end %>
             </div>
