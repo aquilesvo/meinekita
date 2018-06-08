@@ -25,7 +25,7 @@
               <p><%= inquiry.content.truncate(100, separator: ' ').html_safe %></p>
             </div>
             <div class="last-contact">
-              <p>Zuletzt kontaktiert am: <%= inquiry.created_at.to_date %></p>
+              <p>Zuletzt kontaktiert am: <%= inquiry.created_at.strftime('%d.%m.%y') %></p>
             </div>
           </div>
           <div class="inquiry-right-side">
@@ -33,7 +33,7 @@
               <% if inquiry.alert != nil %>
                 <i class="fas fa-bell fake-alert pale"></i>
                 <div class="alert-time">
-                  <%= inquiry.alert %>
+                  <%= inquiry.alert.strftime('%d.%m.%y') %>
                 </div>
               <% end %>
             </div>
