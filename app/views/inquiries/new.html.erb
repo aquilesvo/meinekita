@@ -7,8 +7,11 @@
 
         <%= simple_form_for [@kindergarden, @inquiry] do |f| %>
           <%= f.input :subject, label: 'Betreff' %>
-        <%= f.text_area :content, :class => "tinymce", :rows => 10, :cols => 90 %>
-          <%= f.input :alert, as: :string, :input_html => { id: "flatpickr" }, label: 'Wann möchtest du erinnert werden, die Kita nochmals zu kontaktieren?'%>
+
+          <%= f.text_area :content, :class => "tinymce", :rows => 5, :cols => 90 %>
+          <div class="form-box"><i class="fas fa-bell fake-alert red display-inline" data-fa-transform="grow-6"></i>
+          <h4 class="alert-message display-inline">Wann möchtest du erinnert werden, die Kita nochmals zu kontaktieren?</h4></div>
+          <%= f.input :alert, as: :string, :input_html => { id: "flatpickr" }, label: false, value: '', placeholder: 'Wähle ein Datum' %>
           <%= f.button :submit, 'Senden', class: 'btn-primary message-button' %>
         </div>
       <% end %>
