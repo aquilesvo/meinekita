@@ -259,6 +259,7 @@ DEPENDENCIES
   pry-byebug
   pry-rails
   puma
+  rack-test (~> 1.0)
   rails (= 5.2.0)
   redis
   sass-rails
@@ -276,4 +277,4 @@ RUBY VERSION
    ruby 2.4.4p296
 
 BUNDLED WITH
-   1.16.2
+   1.16.3
