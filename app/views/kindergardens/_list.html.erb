@@ -28,8 +28,9 @@
           <div class="kindergarden-index-card-compass">
 
             <% if params[:search] %>
-              <p> <i class="fas fa-compass"></i> <%= kindergarden.distance_from('Görlizer Park, Berlin').round(2)%> km</p>
-
+              <p> <i class="fas fa-compass"></i> <%= kindergarden.distance_from(params[:search]).round(2)%> km</p>
+              <% elsif params[:query] %>
+              <p> <i class="fas fa-compass"></i> <%= kindergarden.distance_from(params[:query]).round(2)%> km</p>
             <% end %>
           </div>
         </div>
